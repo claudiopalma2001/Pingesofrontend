@@ -186,7 +186,7 @@ function CartBodyContent() {
                 buyOrder: `BO-${Date.now()}`,
                 sessionId: sessionId,
                 amount: totalAmount,
-                returnUrl: "https://main.d26i076z7d4xot.amplifyapp.com/api/v1/pago/confirmar",
+                returnUrl: "https://main.d26i076z7d4xot.amplifyapp.com/pago/confirmar",
             };
 
             const response = await gestionService.iniciarPago(payload);
