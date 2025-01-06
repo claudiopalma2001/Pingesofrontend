@@ -63,7 +63,7 @@ const HistorialCompras = () => {
   // Función para obtener el userId a partir del correo
   const getUserIdByEmail = async (email) => {
     try {
-      const response = await axios.get(`http://docedeseosimplementacion-env.eba-nnxjyerc.sa-east-1.elasticbeanstalk.com/api/v1/usuarios/correoId/${email}`);
+      const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${email}`);
       if (response && response.data) {
         setUserId(response.data); // Establece el userId
       }
@@ -76,7 +76,7 @@ const HistorialCompras = () => {
     if (userId) {
       const fetchCompras = async () => {
         try {
-          const response = await axios.get(`http://docedeseosimplementacion-env.eba-nnxjyerc.sa-east-1.elasticbeanstalk.com/api/v1/compras/idUsuario/${userId}`);
+          const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/compras/idUsuario/${userId}`);
           setCompras(response.data);
         } catch (error) {
           console.error("Error al obtener el historial de compras:", error);
