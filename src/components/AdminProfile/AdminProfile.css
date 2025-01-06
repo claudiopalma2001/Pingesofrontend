@@ -1,0 +1,161 @@
+/* Asegura que el contenido principal no quede tapado por el header */
+.admin-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  /*margin-top: 200px;  Agrega margen superior para evitar que el contenido quede tapado por el header */
+  font-family: 'Asap', sans-serif;
+}
+
+.admin-profile-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: calc(100vh - 110px); /* Ajusta el valor en px */
+  margin-top: 100px; /* Empuja el contenido hacia abajo */
+  width: 100vw;
+}
+
+.admin-profile-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 100px;
+}
+
+.admin-profile-header h2 {
+  flex: 1;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.add-cupon-container {
+  display: grid;
+  place-items: center;
+  padding-bottom: 30px;
+
+}
+
+.add-cupon-button {
+
+
+  background-color: #279529;
+  color: #ffffff;
+  border: 1px solid #009303;
+  border-radius: 5px;
+  width: 180px;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Asap', sans-serif;
+}
+
+.cancel-cupon-button {
+
+
+  margin-top: 20px;
+  background-color: #cf3535;
+  color: #ffffff;
+  border: 1px solid #ba2020;
+  border-radius: 5px;
+  width: 180px;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Asap', sans-serif;
+}
+
+.add-cupon-button:hover {
+  background-color: #40bd43;
+}
+
+.cancel-cupon-button:hover {
+  background-color: #e14d4d;
+
+}
+
+
+/* El contenedor donde se encuentran los cupones
+.cupones-list-container {
+  width: 100%;
+  /*overflow-y: auto;
+  max-height: 80vh;
+  margin-top: 20px;
+}
+*/
+.cupones-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(280px, 280px));
+  grid-auto-rows: minmax(260px, 260px);
+  column-gap: 40px; /* Espacio entre cupones */
+  row-gap: 70px;
+  justify-content: center;
+  height: calc(100vh - 100px); /* Ajusta el valor en px */
+  margin-top: 100px; /* Empuja el contenido hacia abajo */
+}
+
+.cupon-card {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
+}
+
+.cupon-card h3 {
+  margin-top: 15px;
+  font-size: 20px;
+}
+
+.eliminar-button {
+
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  background-color: #f44336;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+
+}
+
+.eliminar-button:hover{
+  background-color: #fd6f65;
+}
+.cupones-body-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+  height: 500px;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+
+  .cupones-list {
+
+    grid-template-columns: repeat(1, minmax(280px, 280px));
+
+  }
+
+  .add-cupon-button {
+
+
+    background-color: #279529;
+    color: #ffffff;
+    border: 1px solid #009303;
+    border-radius: 5px;
+    width: 180px;
+    height: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+  }
+}

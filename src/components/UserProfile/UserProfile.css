@@ -1,0 +1,97 @@
+.user-profile-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.user-account-information{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 800px;
+}
+
+.user-profile-photo{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 10px;
+}
+
+.user-information-paths{
+    display: flex;
+    flex-direction: column;
+}
+
+.user-information-paths button{
+
+    background-color: #eaeaea;
+    color: #424242;
+    padding: 10px 20px;
+    width: 200px;
+    border: 3px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+
+
+}
+
+.user-information-paths button:hover {
+    background-color: #f3f3f3;
+
+
+}
+.profile-picture {
+    width: 200px; /* Tamaño de la imagen */
+    height: 200px; /* Tamaño de la imagen */
+    border-radius: 50%; /* Esto hace que la imagen sea redonda */
+    object-fit: cover; /* Ajusta la imagen para que no se deforme */
+    border: 2px solid #ddd; /* Opcional: Agrega un borde para estilizar */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: Agrega sombra */
+}
+
+.user-account-profile {
+    width: 50%;
+    padding: 20px;
+    background-color: #f8f9fa; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.user-account-profile-name {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333; /* Texto oscuro */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.user-profile-data {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.user-profile-field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 25px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Línea divisoria */
+}
+
+.user-profile-field:last-child {
+    border-bottom: none; /* Quitar línea en el último campo */
+}
+
+.user-profile-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.user-profile-value {
+    color: #777;
+    text-align: right;
+}

@@ -1,0 +1,71 @@
+
+
+.cupon-card2 h3{
+    font-family: 'Asap', sans-serif;
+    color: #222222;
+    font-weight: 500;
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+.cupons-body-content2 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 280px));
+    grid-auto-rows: minmax(210px, 210px);
+    column-gap: 40px; /* Espacio entre cupones */
+    row-gap: 50px;
+    justify-content: center;
+    width: 100vw; /* Asegúrate de que ocupe el ancho completo de la ventana */
+    max-width: 100%;
+    height: calc(100vh - 250px); /* Ajusta el valor en px */
+    margin-top: 100px; /* Empuja el contenido hacia abajo */
+
+}
+
+
+.plantilla-image2 {
+    width: 280px; /* Ajusta el ancho a tu preferencia */
+    height: 121px; /* Mantiene la proporción de la imagen */
+    /*border-radius: 4px;*/
+    border: 1px solid #ddd;
+    opacity: 1; /* Comienza invisible */
+
+}
+
+.plantilla-image2.loaded {
+    opacity: 1; /* Visible */
+
+}
+
+.cupon-card2 {
+    border: 1px solid #ddd;
+    width: 280px;
+    height: 210px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0; /* Estado inicial */
+    animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+}
+
+@media (max-width: 768px) {
+    .banner-image {
+        width: 100%; /* Ajusta el ancho al contenedor */
+        height: auto; /* Mantiene la proporción */
+    }
+
+    .cupons-body-content2 {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(280px, 280px));
+        grid-auto-rows: minmax(210px, 210px);
+        column-gap: 40px; /* Espacio entre cupones */
+        row-gap: 50px;
+        justify-content: center;
+        max-width: 100%;
+
+
+    }
+
+
+}

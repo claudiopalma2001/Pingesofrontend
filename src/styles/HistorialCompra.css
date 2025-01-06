@@ -1,0 +1,58 @@
+.historial-container {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 20;
+  height: 100vh;
+  background-color: #f4f4f4;
+}
+
+.historial-compras {
+  padding: 60px;
+  overflow-x: auto;
+}
+
+.historial-compras h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.tabla-compras {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.tabla-compras th, .tabla-compras td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+}
+
+.tabla-compras th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.tabla-compras tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.tabla-compras tr:hover {
+  background-color: #ddd;
+}
+
+.tabla-compras td {
+  word-wrap: break-word;
+  max-width: 200px;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+.loading {
+  font-size: 20px;
+  text-align: center;
+  margin-top: 50px;
+  color: #4CAF50;
+}

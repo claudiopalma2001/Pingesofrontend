@@ -1,0 +1,190 @@
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn3 {
+    from {
+        opacity: 0;
+
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.cupons-body {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: calc(100vh - 110px); /* Ajusta el valor en px */
+    margin-top: 100px; /* Empuja el contenido hacia abajo */
+    font-family: 'Asap', sans-serif;
+}
+
+.cupons-body-bottom-space {
+
+    height: 80px;
+    margin-bottom: 30px;
+}
+
+.cupons-body-content {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(280px, 280px));
+    grid-auto-rows: minmax(270px, 270px);
+    column-gap: 40px; /* Espacio entre cupones */
+    row-gap: 60px;
+    justify-content: center;
+    width: 100vw; /* Asegúrate de que ocupe el ancho completo de la ventana */
+    max-width: 100%;
+    height: calc(100vh - 250px); /* Ajusta el valor en px */
+    margin-top: 100px; /* Empuja el contenido hacia abajo */
+
+}
+
+
+.plantilla-image {
+    width: 280px; /* Ajusta el ancho a tu preferencia */
+    height: 121px; /* Mantiene la proporción de la imagen */
+    /*border-radius: 4px;*/
+    border: 1px solid #ddd;
+    opacity: 1; /* Comienza invisible */
+
+}
+
+.plantilla-image.loaded {
+    opacity: 1; /* Visible */
+
+}
+
+.cupon-card {
+    border: 1px solid #ddd;
+    width: 400px;
+    height: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    opacity: 0; /* Estado inicial */
+    animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cupon-card:hover{
+
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cupons-body-content-info-text {
+    font-size: 25px;
+    margin: 10px 0;
+    color: #404040;
+    font-weight: 500;
+
+}
+
+.cupons-price{
+    color: #72aaac;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.tematica-title {
+    font-size: 65px;
+
+    color: #7e858d;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    font-weight: normal;
+
+
+}
+.tematica-slogan{
+    font-size: 23px;
+
+    margin-bottom: 5px;
+    color:#7e858d ;
+
+}
+
+.slogan-text{
+    font-size: 21px;
+
+}
+
+.plantillas-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px; /* Espacio entre imágenes de plantillas */
+}
+
+.editar2-button {
+    border: 1px solid #c3c3c3;
+    background-color: #ffffff;
+    color: #7c7c7c;
+    padding: 10px 20px;
+    width: 100px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 18px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    font-family: 'Asap', sans-serif;
+
+
+}
+
+.editar2-button:hover {
+    background-color: #f8f8f8;
+    border: 1px solid #838383;
+
+}
+
+.cupon-image {
+    width: 100%; /* Que ocupe todo el ancho disponible */
+    height: auto; /* Mantiene la proporción */
+    /*border-radius: 4px; /* Esquinas redondeadas */
+    margin-bottom: 8px; /* Espacio debajo de la imagen */
+}
+
+@media (max-width: 768px) {
+
+    .cupons-body-content {
+
+        grid-template-columns: repeat(1, minmax(280px, 280px));
+
+    }
+
+    .tematica-title {
+        font-size: 55px;
+
+        color: #7e858d;
+        margin-top: 60px;
+        margin-bottom: 20px;
+        font-weight: normal;
+
+
+    }
+    .tematica-slogan{
+        font-size:19px;
+
+        margin-bottom: 5px;
+        color:#7e858d ;
+
+    }
+
+    .slogan-text{
+        font-size: 18px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+
+}

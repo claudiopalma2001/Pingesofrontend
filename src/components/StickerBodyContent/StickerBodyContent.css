@@ -1,0 +1,120 @@
+/* Estilo para el botón que abre el menú */
+@media screen and (min-width: 768px) and (min-height: 300px) and (max-width: 1024px) and (orientation:landscape) {
+  .open-sticker-menu-btn {
+    padding: 10px 20px;
+    background-color: #ffffffb4;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    width: 90px;
+  }
+  /* Estilo para el contenedor del menú */
+.sticker-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 320px; /* Ajusta el ancho del menú */
+  max-height: 300px; /* Limita la altura del menú */
+  overflow-y: auto; /* Permite hacer scroll si el contenido excede la altura */
+  position: absolute; /* Asegura que el menú se posicione sobre otros elementos */
+  z-index: 9999;
+  bottom: 50px; /* Coloca el menú encima del botón */
+}
+
+/* Estilo para el grid de stickers */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Fija 3 columnas */
+  gap: 5px;
+  grid-auto-rows: 80px; /* Ajusta la altura de cada celda */
+  padding: 5px;
+}
+
+/* Estilo para cada sticker dentro del grid */
+.sticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sticker-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.sticker-item p {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #333;
+}
+  
+}
+@media screen and (min-width: 1025px){
+  
+.open-sticker-menu-btn {
+  padding: 10px 20px;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.open-sticker-menu-btn:hover {
+  background-color: #a1a1a1;
+}
+
+/* Estilo para el contenedor del menú */
+.sticker-menu {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  width: 320px; /* Ajusta el ancho del menú */
+  max-height: 300px; /* Limita la altura del menú */
+  overflow-y: auto; /* Permite hacer scroll si el contenido excede la altura */
+  position: absolute; /* Asegura que el menú se posicione sobre otros elementos */
+  z-index: 9999;
+  bottom: 50px; /* Coloca el menú encima del botón */
+}
+
+/* Estilo para el grid de stickers */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Fija 3 columnas */
+  gap: 10px;
+  grid-auto-rows: 100px; /* Ajusta la altura de cada celda */
+  padding: 10px;
+}
+
+/* Estilo para cada sticker dentro del grid */
+.sticker-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.sticker-item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+
+.sticker-item p {
+  font-size: 12px;
+  margin-top: 5px;
+  color: #333;
+}
+
+}

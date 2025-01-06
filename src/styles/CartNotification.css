@@ -1,0 +1,81 @@
+@keyframes shrinkBar {
+    from {
+        width: 112%; /* Inicia con 112% */
+    }
+    to {
+        width: 0%; /* Termina en 0% */
+    }
+}
+
+.cart-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 250px;
+    background-color: #ffffff;
+    border: 1px solid #ececec;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    margin-top: 100px;
+    color: #8a8a8a;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 9999;
+}
+
+.cart-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cart-notification p {
+    font-size: 14px;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    font-weight: 600;
+    color: #365c36;
+    margin: 10px 0 -5px 0;
+}
+
+.notification-content h4 {
+    font-size: 16px;
+    margin: 0 0 10px 0;
+    font-weight: 600;
+}
+
+.view-cart-button {
+    background-color: #7a7a7a;
+    color: white;
+    width: 100%;
+    height: 35px;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.view-cart-button:hover {
+    background-color: #a8a8a8;
+}
+
+.notification-image {
+
+    width: 100%;
+    border: 1px solid #e1e1e1;
+    height: auto;
+    max-height: 100px; /* Limita la altura de la imagen */
+    margin-bottom: 10px;
+
+}
+
+.notification-content-timebar {
+    background-color: #365c36;
+    height: 2px;
+    margin-left: -15px;
+    margin-top: 15px;
+    margin-bottom: -15px;
+
+}

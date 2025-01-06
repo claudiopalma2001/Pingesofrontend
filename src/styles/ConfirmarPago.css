@@ -1,0 +1,105 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+
+  min-height: 100vh;
+  margin-top: 40px;
+}
+
+.transaction-container {
+  width: 100%; /* Ocupa todo el ancho */
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transaction-details {
+  width: 100%; /* Ocupa todo el ancho */
+  max-width: 1200px; /* Limitar para pantallas grandes */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.details {
+  display: block;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Filas responsivas */
+  gap: 15px;
+  text-align: left;
+  padding: 10px 0;
+}
+
+.details p {
+  margin: 5;
+  font-size: 16px;
+}
+
+
+.redirect-button {
+  margin: 20px auto;
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+.download-button {
+  margin: 20px auto;
+  padding: 15px 30px;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  display: block;
+}
+/*necesariamente cuando apreto descarga no debiesen descargarse los cupones*/
+.disabled-button {
+  margin: 20px auto;
+  padding: 15px 30px;
+  background-color: #797979;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  display: block;
+}
+.redirect-button:hover {
+  background-color: #0056b3;
+}
+
+/* Mensaje de error */
+.error-message {
+  text-align: center;
+  color: #ff0000;
+}
+
+.error-message h2 {
+  font-size: 28px;
+  margin: 20px 0;
+}
+
+.error-message ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.error-message ul li {
+  font-size: 16px;
+}

@@ -1,0 +1,85 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Asap', sans-serif;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    max-width: 90%;
+    text-align: center;
+}
+
+.login-container p {
+    color: #7a7a7a;
+    text-decoration: none;
+}
+
+.login-container a {
+    color: #7a7a7a;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    color: #7a7a7a;
+    text-decoration: underline;
+}
+
+.login-container h2 {
+    color: #7a7a7a;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    color: #7a7a7a;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 95%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border 0.3s ease;
+}
+
+
+.social-login {
+    margin-top: 20px;
+}
+
+.login-button {
+    background-color: #7a7a7a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Asap', sans-serif;
+}
+
+.volver-icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: -40px;
+}
+
+.login-button:hover {
+    background-color: #8c8c8c;
+}
