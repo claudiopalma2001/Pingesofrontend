@@ -4,6 +4,7 @@
     display: flex;
     width: 100vw;
     flex-direction: row;
+    justify-content: space-around;
 
     position: relative;
    
@@ -29,7 +30,7 @@
       "colorS colorS colorS colorS"
       "stickers stickers stickers stickers";
     align-self: center;
-    justify-content: space-around;
+   
     gap: 20px;
   }
   
