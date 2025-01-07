@@ -218,7 +218,6 @@ body{
   .navbar{
     overflow: hidden;
     touch-action: none;
-    display: none;
   }
   /* Estilos para dispositivos móviles en modo horizontal */
   .cupon-edit-view-container {

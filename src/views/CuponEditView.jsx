@@ -117,26 +117,12 @@ function CuponEditView() {
   const [isLandscape, setIsLandscape] = useState(false);
 
   function checkResolution() {
-    if (window.innerWidth >= 300 && window.innerWidth < 900) {
+    if (window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) {
       setIsLandscape(true); // Establece el estado si la resolución está en el rango
     } else {
       setIsLandscape(false); // Asegúrate de deshabilitar el estado si la resolución no está en el rango
     }
   }
-
-  // Usar useEffect para controlar la lógica solo al montar o cuando la ventana cambie de tamaño
-  useEffect(() => {
-    checkResolution(); // Verificar la resolución al cargar el componente
-
-    // Configurar el listener para el cambio de tamaño
-    window.addEventListener("resize", checkResolution);
-
-    // Limpiar el listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener("resize", checkResolution);
-    };
-  }, []);
-
   /*Testing */
   // Usar otro useEffect para observar cambios en `isLandscape`
   useEffect(() => {}, [isLandscape]); // Este useEffect se ejecutará cuando `isLandscape` cambie
