@@ -19,6 +19,7 @@ import CartNotification from "./CartNotification";
 import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
 
+
 /*Defino las fuentes disponibles*/
 /*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
 const fonts = {
@@ -31,8 +32,6 @@ const fonts = {
 
 /*defino algunos tamaños de prueba*/
 const sizes = {
-  Pequeña: "12px", // Tamaño pequeño
-  Mediana: "18px", // Tamaño mediano
   Grande: "24px",
   Enorme: "28px", // Tamaño grande
   Especial: "40px", //De momento solo la usare para las cursivas con espacios
@@ -42,6 +41,39 @@ reeditar un cupon! */
 
 function CuponEditView() {
 
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const requestFullScreen = () => {
+    const element = document.documentElement; // Se selecciona toda la página
+
+    // Verifica si el navegador soporta el modo pantalla completa y lo activa
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) { // Firefox
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) { // Chrome, Safari, Opera
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) { // IE/Edge
+      element.msRequestFullscreen();
+    } else {
+      console.log("Pantalla completa no soportada en este navegador.");
+    }
+    setIsFullScreen(true);
+  };
+
+
+  const exitFullScreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { // Firefox
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { // Chrome, Safari, Opera
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE/Edge
+      document.msExitFullscreen();
+    }
+
+    setIsFullScreen(false);
+  };
  
   /*Debo ver el tema del inicio de sesion y el token, ya qe los
   cupones estan asociados a un usuario en particular (que pasa si no hay usuario?)*/
@@ -806,11 +838,12 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
                 {nombreTematica}
               </h2>
             </div>
+            
 
             <div className="font-edit-tools">
-              {/*Aca esta el selector de fuentes disponible.*/}
-
-              <select
+             
+             
+                <select
                 style={{ fontFamily: selectedFont }}
                 className="font-selector"
                 value={selectedFont}
@@ -947,6 +980,9 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
             Agregar al carrito
            
           </button>
+           {/*Aca esta el selector de fuentes disponible.*/}
+           {(isLandscape && !isFullScreen) ? ( <button className="Landscape-button" onClick={requestFullScreen}>Activar Pantalla Completa</button>)
+           : (<button className="Landscape-button" onClick={exitFullScreen}>Desactivar Pantalla Completa</button>)}
         </div>
         {/* Notificación */}
         {showNotification && 

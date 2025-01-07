@@ -1,4 +1,4 @@
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1025px) {
 
   .cupon-edit-view-container {
     display: flex;
@@ -139,7 +139,7 @@
   
   .first-cupon-image-placeholder {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 53.2%;
     width: 17%;
     transform-origin: center;
@@ -155,7 +155,7 @@
   }
   .second-cupon-image-placeholder {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 73.4%;
     width: 12%;
     transform-origin: center;
@@ -170,7 +170,7 @@
   }
   .third-cupon-image-placeholder {
     position: absolute;
-    top: 52%;
+    top:46%;
     left: 55%;
     width: 30%;
     transform-origin: center;
@@ -186,7 +186,7 @@
   .btn-check{
       position: absolute;
     cursor: pointer;
-    top: 59%;
+    top: 54%;
     left: 62.4%;
     background-color: transparent;
     border: none;
@@ -203,7 +203,7 @@
 
 /*Para un diseño horizontal de los elementos*/
 @media screen and (min-width: 300px) and (max-width: 900px) and (orientation:landscape) {
-  body{
+body{
   margin-top:0 !important;
   overflow: hidden;
 }
@@ -417,6 +417,14 @@
     top:80%;
     left: 80%;
     z-index:9999;
+  }
+  .Landscape-button{
+    position: absolute;
+    top: 78%;
+    left: 55%;
+    width: 50px;
+    font-size: 10px;
+  
   }
   .date-container{
     position: relative;
