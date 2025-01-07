@@ -833,10 +833,14 @@ function CuponEditView() {
           !isLandscape ? (
         <div>
           <div className="cupon-edit-view-tools">
-            <div className="cupon-category-name">
-              <h2 className="handlee-text" style={{ fontSize: "3vw" }}>
+            <div className="cupon-category-name" style={{alignContent:"flex-start", display:"flex", flexDirection:"column", textAlign:"left"
+              , fontWeight:"bold"
+            }}>
+              <h2 className="handlee-text" style={{margin:"0", fontSize: "3vw" , fontFamily: 'Inria Sans', color: "#7e858d"}}>
                 {nombreTematica}
               </h2>
+              <div style={{fontFamily: 'Inria Sans'}}>Personaliza tu cupón y hazlo único!</div>
+              <div style={{fontFamily: 'Inria Sans', color:"#7e858d"}}>Ahora elige la letra, el color y el sticker que más te guste.</div>
             </div>
 
             <div className="font-edit-tools">
@@ -915,16 +919,16 @@ function CuponEditView() {
                 />
               </div>
             </div>
-            <p
-              className="help-text"
-              style={{
-                textAlign: "center",
-                color: "#7c7c7c",
-                fontFamily: "Inria Sans",
-              }}
-            >
-              Para eliminar el sticker, presione click derecho encima de él
-            </p>
+            {stickers.length>0 && (<p
+                className="help-text"
+                style={{
+                  textAlign: "center",
+                  color: "#7c7c7c",
+                  fontFamily: "Inria Sans",
+                }}
+              >
+                Para eliminar el sticker, presione click derecho encima de él
+              </p>)}
           </div>
         </div>
           ) : ( 
@@ -1012,16 +1016,7 @@ function CuponEditView() {
                   />
                 </div>
               </div>
-              <p
-                className="help-text"
-                style={{
-                  textAlign: "center",
-                  color: "#7c7c7c",
-                  fontFamily: "Inria Sans",
-                }}
-              >
-                Para eliminar el sticker, presione click derecho encima de él
-              </p>
+             
             </div>
             <button type="button" className="toogle-tool-div" onClick={toggleDiv}>
         {isToolsVisible ? "<": '>'}
@@ -1083,8 +1078,8 @@ function CuponEditView() {
           <button className="btn-check" onClick={handleCheckClick}>
             {Check ? "✔" : ""}
           </button>
-          {/*Input para manejar la fecha*/}
-          <div className="date-container">
+            {/*Input para manejar la fecha*/}
+            <div className="date-container">
             <input type="date" className="dateInput" ref={dateInputRef} />
           </div>
 

@@ -86,17 +86,8 @@ const Navbar = ({ toggleSidebar}) => {
       <button onClick={toggleSidebar} className="toggle-sidebar-button">
         ☰ Cupones
       </button>
-      <div className="navbar-search">
-        <input type="search" id="search" name="search" required/>
-        <i>
-          <img
-            src={searchIcon}
-            alt="search-icon"
-            className="navbar-search-icon"
-          />
-        </i>
-      </div>
-      <img src={userIcon} alt="user-icon" className="navbar-user-icon" />
+
+
       <div className="navbar-actions-right">
         {isAuthenticated ? (
           location.pathname !== `/user/${correo}` ? (

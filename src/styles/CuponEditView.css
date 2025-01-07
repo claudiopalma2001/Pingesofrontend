@@ -1,11 +1,10 @@
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 901px) {
 
   .cupon-edit-view-container {
     display: flex;
     width: 100vw;
     flex-direction: row;
     justify-content: space-around;
-
     position: relative;
    
   }
@@ -15,23 +14,19 @@
     grid-template-rows: 30% 70%;
     grid-template-areas:
       "name name name name"
-      "tools tools tools tools"
       "tools tools tools tools";
-  
-    background-color: #d9d9d9;
     width: 30vw;
-    height: 100%;
+    height: 80%;
   }
   .font-edit-tools {
     display: grid;
     grid-area: tools;
     grid-template-areas:
-      "font font size size"
-      "colorS colorS colorS colorS"
-      "stickers stickers stickers stickers";
-    align-self: center;
-   
-    gap: 20px;
+"font     size     colorS  " 
+"stickers stickers stickers";
+    align-self: center
+  ;
+  gap: 40px;
   }
   
   .Sticker-Component{
@@ -54,7 +49,9 @@
     text-align: center;
     height: 8vh;
     font-size: 20px;
-    border: none;
+    border-color: black;
+    width: 173px;
+
   }
   .font-selector option {
       background: #fff;
@@ -70,8 +67,10 @@
     grid-area: size;
     text-align: center;
     height: 8vh;
-    border: none;
+    border-color: black;
+    
   }
+
   
   .font-selector option {
       background: #fff;
@@ -87,10 +86,11 @@
     height: 50px;
     background-color: rgba(206, 206, 206, 0);
     color: #151515;
-    border: none;
+
+    border-color: black;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: -10px;
     background-color: #ffffff;
     justify-self: center;
   }
@@ -102,8 +102,9 @@
   
   .picker-container {
       position: fixed;
-      top: 70vh; 
-      left: 11.5vw; 
+      top: 37vh;
+    left: 32.5vw;
+      
       opacity: 0; 
       transform: translateY(-10px); /* Lo mueve hacia arriba */
       pointer-events: none; /* Evita interacción mientras está oculto */
@@ -119,9 +120,7 @@
       pointer-events: auto; /* Permite interacción */
     }
   .cupon-category-name {
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    justify-content: space-between;
     grid-area: name;
   }
   .alex-brush-text {
@@ -199,6 +198,13 @@
   .canvas-cupon {
     width: 60vw;
   }
+  .date-container{
+    position: relative;
+    top: -28%;
+    z-index: 999999;
+    left: 58%;
+    width: 50px;
+  }
   
 }
 
@@ -219,6 +225,7 @@ body{
     display: flex;
     width: 100%;
     flex-direction: row;
+   
     
     position: relative;
 

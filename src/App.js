@@ -33,6 +33,7 @@ function App() {
                 <Route path='/admin/cupon/agregar' element={<FormularioCrearPlantillaYCupon/>}></Route>
                 <Route path='/edit/:nombreTematica/:id' element={<CuponEditView/>}></Route>
                 <Route path='/reedit/:id' element={<CuponReEditView/>}></Route>
+                <Route path='/pago' element={<Pago/>}></Route>
                 <Route path='/pago/confirmar' element={<ConfirmarPago/>}></Route>
                 <Route path="/cart" element={<CartPage />} />
                 <Route path="/historial" element={<HistorialCompras />} />

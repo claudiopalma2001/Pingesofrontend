@@ -83,3 +83,12 @@
 .login-button:hover {
     background-color: #8c8c8c;
 }
+
+@media (max-width: 768px) {
+
+    .login-container {
+
+        width: 300px;
+
+    }
+}

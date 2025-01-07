@@ -30,8 +30,6 @@ const fonts = {
 
 /*defino algunos tamaños de prueba*/
 const sizes = {
-  Pequeña: "12px", // Tamaño pequeño
-  Mediana: "18px", // Tamaño mediano
   Grande: "24px",
   Enorme: "28px", // Tamaño grande
   Especial: "40px", //De momento solo la usare para las cursivas con espacios

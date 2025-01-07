@@ -1,8 +1,8 @@
 import axios from "axios";
 /*esto cambiara en el futuro cuando se despliegue. ver las variables de entorno*/
-const USERS_API_LOGIN = "https://pingesobackend-production.up.railway.app/api/v1/usuarios/login"
-const USERS_API_SAVE ="https://pingesobackend-production.up.railway.app/api/v1/usuarios/save"
-const BASE_URL = "https://pingesobackend-production.up.railway.app/api/v1";
+const USERS_API_LOGIN = "http://localhost:8080/api/v1/usuarios/login"
+const USERS_API_SAVE ="http://localhost:8080/api/v1/usuarios/save"
+const BASE_URL = "http://localhost:8080/api/v1";
 
 function login(user){
     return axios.post(USERS_API_LOGIN,user);
@@ -12,12 +12,12 @@ function register(user){
      axios.post(USERS_API_SAVE,user);
 }
 function getUserByEmail(email){
-    const link = `https://pingesobackend-production.up.railway.app/api/v1/usuarios/correo/${email}`
+    const link = `http://localhost:8080/api/v1/usuarios/correo/${email}`
     return axios.get(link)
 }
 
 function getUserByIdRol(idRol){
-    const link = `https://pingesobackend-production.up.railway.app/api/v1/usuarios/idRol/${idRol}`
+    const link = `http://localhost:8080/api/v1/usuarios/idRol/${idRol}`
     return axios.get(link)
 }
 
