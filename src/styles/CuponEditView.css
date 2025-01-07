@@ -4,7 +4,7 @@
     display: flex;
     width: 100vw;
     flex-direction: row;
-    justify-content: space-around;
+
     position: relative;
    
   }
@@ -209,32 +209,31 @@ body{
 }
   /*No necesito el navbar.*/
   .navbar{
-    display: none;
     overflow: hidden;
     touch-action: none;
+    display: none;
   }
   /* Estilos para dispositivos móviles en modo horizontal */
   .cupon-edit-view-container {
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    
     position: relative;
-  
+
    
   }
   
   .cupon-edit-view-tools {
-    position: absolute;
+    position: relative;
     display: grid;
     top: 20%;
     grid-template-rows: 30% 70%;
     grid-template-areas:
 "tools tools tools tools";
     background-color: transparent;
-    width: 27vw;
+    width: 19vw;
     height: 400%;
-    
   }
   .font-edit-tools {
     position: absolute;
@@ -433,5 +432,25 @@ body{
   }
   .dateInput{
    position: inherit;
+  }
+  .toogle-tool-div{
+    position: relative;
+    z-index: 9999;
+    top: 58%;
+    padding: 10px 10px;
+    background-color: #ffffffb4;
+    color: rgb(0, 0, 0);
+    border: none;
+  
+    cursor: pointer;
+    font-size: 10px;
+    width: 40px;
+  }
+  .tools-container{
+    position: absolute;
+    z-index: 99999;
+    top: 43%;
+    display: flex;
+  flex-direction: row-reverse;
   }
 }
