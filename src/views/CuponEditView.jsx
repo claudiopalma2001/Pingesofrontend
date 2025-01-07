@@ -696,6 +696,7 @@ function CuponEditView() {
     Check,
     datePlaceholder,
     stickers,
+    isLandscape
   ]);
 
   const { addToCart } = useContext(CartContext); // Accede a la función `addToCart`
@@ -782,6 +783,19 @@ function CuponEditView() {
   const toggleDiv = () => {
     setIsToolsVisible(!isToolsVisible);
   }
+
+  const [checkMovil, setCheckMovil]= useState(false);
+  const checkSmartphone=()=>{
+    if (window.innerWidth > 300 && window.innerWidth<450) {
+      setCheckMovil(true);
+      
+    }else{
+      setCheckMovil(false);
+    }
+  }
+  useEffect(()=>{
+    checkSmartphone();
+  },[checkMovil]);
   return (
     <>
       
@@ -789,7 +803,7 @@ function CuponEditView() {
       {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
-    {(window.innerWidth > 300 && window.innerWidth<450) ? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
+    {checkMovil? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
      ( <div className="cupon-edit-view-container">
         {
           
