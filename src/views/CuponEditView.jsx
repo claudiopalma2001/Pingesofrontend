@@ -18,7 +18,7 @@ import StickerBodyContent from "../components/StickerBodyContent/StickerBodyCont
 import CartNotification from "./CartNotification";
 import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
-import arrowIcon from "../assets/Icons/arrow-next-small-svgrepo-com.svg" 
+
 
 /*Defino las fuentes disponibles*/
 /*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
@@ -176,7 +176,7 @@ function CuponEditView() {
 
   /*Para manejar el estado de la fuente actual.. la seleccionada*/
   const [selectedFont, SetSelectedFont] =
-    useState("Handlee"); /* por default handlee*/
+    useState(fonts.Asap); /* por default handlee*/
 
   const handleFontChange = (e) => {
     SetSelectedFont(e.target.value);
@@ -381,7 +381,6 @@ function CuponEditView() {
       if (lastTap && now - lastTap.time < 500) {
         if (clickedSticker.id === lastTap.sticker.id) {
           // Doble toque: eliminamos el sticker
-          console.log("Sticker Seleccionado para eliminar", clickedSticker);
 
           setStickers((prevStickers) =>
             prevStickers.filter((sticker) => sticker.id !== clickedSticker.id)
@@ -437,9 +436,6 @@ function CuponEditView() {
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
 
-    console.log("x touch: ", x, "y touch:", y);
-
-    console.log("offsetX: ", selectedSticker.x, "offsetY:", selectedSticker.y);
 
     // Actualizar el sticker con las nuevas coordenadas
     const updatedSticker = {
@@ -447,13 +443,7 @@ function CuponEditView() {
       x: x - selectedSticker.offsetX,
       y: y - selectedSticker.offsetY,
     };
-    console.log(
-      "x sticker: ",
-      updatedSticker.x,
-      "y sticker:",
-      updatedSticker.y
-    );
-
+    
     setStickers((prevStickers) =>
       prevStickers.map((sticker) =>
         sticker.id === selectedSticker.id ? updatedSticker : sticker
