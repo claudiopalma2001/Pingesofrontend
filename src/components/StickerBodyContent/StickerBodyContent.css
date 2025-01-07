@@ -1,5 +1,5 @@
 /* Estilo para el botón que abre el menú */
-@media screen and (min-width: 300px) and(max-width: 900px) and (orientation:landscape) {
+@media screen and (min-width: 300px) and  (max-width: 1024px) and (orientation:landscape) {
   .open-sticker-menu-btn {
     padding: 10px 20px;
     background-color: #ffffffb4;
@@ -56,7 +56,7 @@
 }
   
 }
-@media screen and (min-width: 1366px){
+@media screen and (min-width: 1025px){
   
 .open-sticker-menu-btn {
   padding: 10px 20px;
