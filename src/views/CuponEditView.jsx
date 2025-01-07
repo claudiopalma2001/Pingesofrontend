@@ -114,8 +114,8 @@ function CuponEditView() {
   const [isLandscape, setIsLandscape] = useState(false);
 
   function checkResolution() {
-    if (window.innerWidth >= 768 && window.innerWidth < 1025) {  
-      setIsLandscape(true);  // Establece el estado si la resolución está en el rango
+    if (window.innerWidth >= 300 && window.innerWidth < 900) {  
+      setIsLandscape(true);  // Establece el estado si la resolución está en el rango movil
     } else {
       setIsLandscape(false); // Asegúrate de deshabilitar el estado si la resolución no está en el rango
     }
