@@ -18,7 +18,7 @@ import StickerBodyContent from "../components/StickerBodyContent/StickerBodyCont
 import CartNotification from "./CartNotification";
 import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
-
+import arrowIcon from "../assets/Icons/arrow-next-small-svgrepo-com.svg" 
 
 /*Defino las fuentes disponibles*/
 /*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
@@ -39,44 +39,7 @@ const sizes = {
 reeditar un cupon! */
 
 function CuponEditView() {
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const requestFullScreen = () => {
-    const element = document.documentElement; // Se selecciona toda la página
-
-    // Verifica si el navegador soporta el modo pantalla completa y lo activa
-    if (element.requestFullscreen) {
-      element.requestFullscreen();
-    } else if (element.mozRequestFullScreen) {
-      // Firefox
-      element.mozRequestFullScreen();
-    } else if (element.webkitRequestFullscreen) {
-      // Chrome, Safari, Opera
-      element.webkitRequestFullscreen();
-    } else if (element.msRequestFullscreen) {
-      // IE/Edge
-      element.msRequestFullscreen();
-    } else {
-      console.log("Pantalla completa no soportada en este navegador.");
-    }
-    setIsFullScreen(true);
-  };
-
-  const exitFullScreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      // Firefox
-      document.mozCancelFullScreen();
-    } else if (document.webkitExitFullscreen) {
-      // Chrome, Safari, Opera
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) {
-      // IE/Edge
-      document.msExitFullscreen();
-    }
-
-    setIsFullScreen(false);
-  };
+ 
 
   /*Debo ver el tema del inicio de sesion y el token, ya qe los
   cupones estan asociados a un usuario en particular (que pasa si no hay usuario?)*/
@@ -123,6 +86,20 @@ function CuponEditView() {
       setIsLandscape(false); // Asegúrate de deshabilitar el estado si la resolución no está en el rango
     }
   }
+
+  // Usar useEffect para controlar la lógica solo al montar o cuando la ventana cambie de tamaño
+  useEffect(() => {
+    checkResolution(); // Verificar la resolución al cargar el componente
+
+    // Configurar el listener para el cambio de tamaño
+    window.addEventListener("resize", checkResolution);
+
+    // Limpiar el listener cuando el componente se desmonte
+    return () => {
+      window.removeEventListener("resize", checkResolution);
+    };
+  }, []);
+
   /*Testing */
   // Usar otro useEffect para observar cambios en `isLandscape`
   useEffect(() => {}, [isLandscape]); // Este useEffect se ejecutará cuando `isLandscape` cambie
@@ -162,7 +139,7 @@ function CuponEditView() {
 
   /*Para manejar el estado de la fuente actual.. la seleccionada*/
   const [selectedFont, SetSelectedFont] =
-    useState(fonts.Asap); /* por default handlee*/
+    useState("Handlee"); /* por default handlee*/
 
   const handleFontChange = (e) => {
     SetSelectedFont(e.target.value);
@@ -367,6 +344,7 @@ function CuponEditView() {
       if (lastTap && now - lastTap.time < 500) {
         if (clickedSticker.id === lastTap.sticker.id) {
           // Doble toque: eliminamos el sticker
+          console.log("Sticker Seleccionado para eliminar", clickedSticker);
 
           setStickers((prevStickers) =>
             prevStickers.filter((sticker) => sticker.id !== clickedSticker.id)
@@ -422,6 +400,9 @@ function CuponEditView() {
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
 
+    console.log("x touch: ", x, "y touch:", y);
+
+    console.log("offsetX: ", selectedSticker.x, "offsetY:", selectedSticker.y);
 
     // Actualizar el sticker con las nuevas coordenadas
     const updatedSticker = {
@@ -429,7 +410,13 @@ function CuponEditView() {
       x: x - selectedSticker.offsetX,
       y: y - selectedSticker.offsetY,
     };
-    
+    console.log(
+      "x sticker: ",
+      updatedSticker.x,
+      "y sticker:",
+      updatedSticker.y
+    );
+
     setStickers((prevStickers) =>
       prevStickers.map((sticker) =>
         sticker.id === selectedSticker.id ? updatedSticker : sticker
@@ -797,13 +784,13 @@ function CuponEditView() {
   }
   return (
     <>
-      {/*Se debe revisar la implementacion en caso de que se venga desde el carrito
-    debido a una reediocion del cupon, ver eso, si es asi, la informacion
-    momentanea ha de recuperarse desde localStorage */}
+      
 
-      <Navbar toggleSidebar={toggleSidebar} />
-      <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} />
-      <div className="cupon-edit-view-container">
+      {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
+      <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
+      (<div style={{display:"none"}}></div>)}
+    {(window.innerWidth > 300 && window.innerWidth<450) ? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
+     ( <div className="cupon-edit-view-container">
         {
           
           !isLandscape ? (
@@ -1077,7 +1064,9 @@ function CuponEditView() {
             onClose={() => setShowNotification(false)}
           />
         )}
-      </div>
+      </div>)
+
+}
     </>
   );
 }
