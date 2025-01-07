@@ -50,7 +50,7 @@ function UserProfile() {
       <Navbar toggleSidebar={toggleSidebar}/>
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} />
       <div className="user-profile-body">
-        <div className="uqser-account-information">
+        <div className="user-account-information">
           <div className="user-profile-photo">
             <Avatar name={user.nombre} size={"80px"} round={true}/>
             <div style={{height: "10px"}}></div>
