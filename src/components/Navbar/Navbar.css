@@ -97,7 +97,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media screen and (min-width: 300px) and (max-width: 1024px) {
     .navbar-actions-right button {
         width: 60px; /* Reducir el ancho */
         height: 50px; /* Reducir la altura */
