@@ -202,8 +202,8 @@
 }
 
 /*Para un diseño horizontal de los elementos*/
-@media screen and (min-width: 768px) and (min-height: 300px) and (max-width: 1024px) and (orientation:landscape) {
-body{
+@media screen and (min-width: 300px) and (min-height: 300px) and (max-width: 900px) and (orientation:landscape) {
+  body{
   margin-top:0 !important;
   overflow: hidden;
 }
