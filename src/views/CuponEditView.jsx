@@ -83,10 +83,11 @@ function CuponEditView() {
   /*Variable de estado para saber si estoy en un telefono movil*/
   const [checkMovil, setCheckMovil]= useState(false);
   
-
-  /*Funcion que permite verificar en tiempo de ejcución si estoy viendo la aplicación
+  useEffect(()=>{
+    /*Funcion que permite verificar en tiempo de ejcución si estoy viendo la aplicación
   desde un dispositivo movil */
   const checkSmartphone=()=>{
+    
     if (window.innerWidth >= 300 && window.innerWidth<450) {
       setCheckMovil(true);
       
@@ -94,9 +95,8 @@ function CuponEditView() {
       setCheckMovil(false);
     }
   }
-
-  /*Funcion que permite detectar la accion de la funcion anterior mediante un useEffect*/
-  useEffect(()=>{
+  checkSmartphone();
+  
     window.addEventListener("resize",checkSmartphone);
     return () =>{
       window.removeEventListener("resize",checkSmartphone);
