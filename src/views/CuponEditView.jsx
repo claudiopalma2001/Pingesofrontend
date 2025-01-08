@@ -18,7 +18,6 @@ import StickerBodyContent from "../components/StickerBodyContent/StickerBodyCont
 import CartNotification from "./CartNotification";
 import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
-import arrowIcon from "../assets/Icons/arrow-next-small-svgrepo-com.svg" 
 
 /*Defino las fuentes disponibles*/
 /*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
@@ -78,6 +77,31 @@ function CuponEditView() {
   en el landscape de algun movil.*/
 
   const [isLandscape, setIsLandscape] = useState(false);
+
+
+
+  /*Variable de estado para saber si estoy en un telefono movil*/
+  const [checkMovil, setCheckMovil]= useState(false);
+  
+
+  /*Funcion que permite verificar en tiempo de ejcución si estoy viendo la aplicación
+  desde un dispositivo movil */
+  const checkSmartphone=()=>{
+    if (window.innerWidth >= 300 && window.innerWidth<450) {
+      setCheckMovil(true);
+      
+    }else{
+      setCheckMovil(false);
+    }
+  }
+
+  /*Funcion que permite detectar la accion de la funcion anterior mediante un useEffect*/
+  useEffect(()=>{
+    window.addEventListener("resize",checkSmartphone);
+    return () =>{
+      window.removeEventListener("resize",checkSmartphone);
+    }
+  },[checkMovil]);
 
   function checkResolution() {
     if (window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) {
@@ -696,7 +720,7 @@ function CuponEditView() {
     Check,
     datePlaceholder,
     stickers,
-    isLandscape
+    checkMovil
   ]);
 
   const { addToCart } = useContext(CartContext); // Accede a la función `addToCart`
@@ -784,18 +808,8 @@ function CuponEditView() {
     setIsToolsVisible(!isToolsVisible);
   }
 
-  const [checkMovil, setCheckMovil]= useState(false);
-  const checkSmartphone=()=>{
-    if (window.innerWidth > 300 && window.innerWidth<450) {
-      setCheckMovil(true);
-      
-    }else{
-      setCheckMovil(false);
-    }
-  }
-  useEffect(()=>{
-    checkSmartphone();
-  },[checkMovil]);
+
+  
   return (
     <>
       
@@ -803,7 +817,8 @@ function CuponEditView() {
       {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
-    {checkMovil? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
+      {console.log("cs", checkMovil)}
+    { checkMovil? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
      ( <div className="cupon-edit-view-container">
         {
           
