@@ -253,8 +253,6 @@
     align-self: center;
     justify-content: space-around;
     gap: 3px;
-
-    top: 18%;
     width: 60%;
   }
 
@@ -434,7 +432,8 @@
   .date-container {
     position: relative;
     top: -21%;
-    left: 20%;
+    left: 60%;
+    width: 0%;
   }
   .dateInput {
     position: inherit;
@@ -455,7 +454,7 @@
   .tools-container {
     position: absolute;
     z-index: 99999;
-    top: 43%;
+    top: 70%;
     display: flex;
     flex-direction: row-reverse;
   }
