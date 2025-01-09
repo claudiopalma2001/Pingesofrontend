@@ -2,9 +2,9 @@ import "@fontsource/alex-brush"; // Importa fuente para todo el proyecto
 import "@fontsource/handlee"; // Por defecto carga el estilo normal
 import "@fontsource/kalam";
 import "@fontsource/asap";
-import "@fontsource/crete-round"; 
+import "@fontsource/crete-round";
 import "@fontsource/marck-script";
-import "@fontsource/special-elite"
+import "@fontsource/special-elite";
 import { useParams } from "react-router-dom";
 import "../styles/CuponEditView.css";
 import Navbar from "../components/Navbar/Navbar";
@@ -23,16 +23,13 @@ import SideBar from "../components/SideBar/SideBar";
 /*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
 const fonts = {
   Asap: "Asap",
-  "Crete Round":"Crete Round",
+  "Crete Round": "Crete Round",
   "Special Elite": "Special Elite",
-  "Playwrite IT Moderna": "Playwrite IT Moderna"
-
+  "Playwrite IT Moderna": "Playwrite IT Moderna",
 };
 
 /*defino algunos tamaños de prueba*/
 const sizes = {
-  Pequeña: "12px", // Tamaño pequeño
-  Mediana: "18px", // Tamaño mediano
   Grande: "24px",
   Enorme: "28px", // Tamaño grande
   Especial: "40px", //De momento solo la usare para las cursivas con espacios
@@ -41,8 +38,8 @@ const sizes = {
 reeditar un cupon! */
 
 function CuponEditView() {
-
  
+
   /*Debo ver el tema del inicio de sesion y el token, ya qe los
   cupones estan asociados a un usuario en particular (que pasa si no hay usuario?)*/
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -76,18 +73,42 @@ function CuponEditView() {
     }
   }
 
-   /*Por temas de saber en que resolucion esta el componente, necesito una funcnion que lo detecte para saber si estoy
+  /*Por temas de saber en que resolucion esta el componente, necesito una funcnion que lo detecte para saber si estoy
   en el landscape de algun movil.*/
 
   const [isLandscape, setIsLandscape] = useState(false);
 
+
+
+  /*Variable de estado para saber si estoy en un telefono movil*/
+  const [checkMovil, setCheckMovil]= useState(false);
+  
+  useEffect(()=>{
+    /*Funcion que permite verificar en tiempo de ejcución si estoy viendo la aplicación
+  desde un dispositivo movil */
+  const checkSmartphone=()=>{
+    
+    if (window.innerWidth >= 300 && window.innerWidth<450) {
+      setCheckMovil(true);
+      
+    }else{
+      setCheckMovil(false);
+    }
+  }
+  checkSmartphone();
+  
+    window.addEventListener("resize",checkSmartphone);
+    return () =>{
+      window.removeEventListener("resize",checkSmartphone);
+    }
+  },[checkMovil]);
+
   function checkResolution() {
-    if (window.innerWidth >= 768 && window.innerWidth < 1025) {  
-      setIsLandscape(true);  // Establece el estado si la resolución está en el rango
+    if (window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) {
+      setIsLandscape(true); // Establece el estado si la resolución está en el rango
     } else {
       setIsLandscape(false); // Asegúrate de deshabilitar el estado si la resolución no está en el rango
     }
-  
   }
 
   // Usar useEffect para controlar la lógica solo al montar o cuando la ventana cambie de tamaño
@@ -95,22 +116,17 @@ function CuponEditView() {
     checkResolution(); // Verificar la resolución al cargar el componente
 
     // Configurar el listener para el cambio de tamaño
-    window.addEventListener('resize', checkResolution);
-  
+    window.addEventListener("resize", checkResolution);
 
     // Limpiar el listener cuando el componente se desmonte
     return () => {
-      window.removeEventListener('resize', checkResolution);
+      window.removeEventListener("resize", checkResolution);
     };
-  }, []); 
+  }, []);
 
   /*Testing */
-   // Usar otro useEffect para observar cambios en `isLandscape`
-   useEffect(() => {
-    console.log("lands", isLandscape);  // Aquí obtendrás el valor actualizado
-  }, [isLandscape]);  // Este useEffect se ejecutará cuando `isLandscape` cambie
-  
-  
+  // Usar otro useEffect para observar cambios en `isLandscape`
+  useEffect(() => {}, [isLandscape]); // Este useEffect se ejecutará cuando `isLandscape` cambie
 
   /*Creo un estado que sirva para almacenar el estado de edicion del lienzo, lo que se debe
   hacer es guardar la informacion para poder reeditar el lienzo*/
@@ -231,20 +247,20 @@ function CuponEditView() {
   const [stickers, setStickers] = useState([]);
 
   /* validador de cantidad de stickers, solo pueden incluirse 2 por cupón*/
-  const areTwoStickers =() =>{
+  const areTwoStickers = () => {
     if (stickers.length == 2) {
       return true;
-      
-    }return false;
-  }
+    }
+    return false;
+  };
 
   /*Funcion que permite añadir un sticker al arreglo de stickers*/
   //src es la ruta fuente, estará parametrizada
   const [stickerIdCount, setStickerIdCount] = useState(0);
   const [selectedSticker, setSelectedSticker] = useState(null);
 
-   // Agregar sticker automáticamente cuando se selecciona uno nuevo
-   useEffect(() => {
+  // Agregar sticker automáticamente cuando se selecciona uno nuevo
+  useEffect(() => {
     if (!selectedSticker) return; // Si no hay sticker seleccionado, no hacer nada
 
     // Verificar si el sticker ya está en el lienzo
@@ -271,7 +287,7 @@ function CuponEditView() {
           width: 170, // Tamaño predeterminado
           height: 170, // Tamaño predeterminado
           image: img,
-          imagesrc: img.src
+          imagesrc: img.src,
         },
       ]);
       setStickerIdCount((prevCount) => prevCount + 1); // Incrementar el ID para el próximo sticker
@@ -283,26 +299,21 @@ function CuponEditView() {
 
     // Limpiar el sticker seleccionado después de agregarlo
     setSelectedSticker(null);
-
   }, [selectedSticker, stickers, stickerIdCount]); // Solo depende de selectedSticker
 
- 
   /*Las siguientes funciones son para el movimiento de los stickers sobre el cupón */
 
   /*Primero defino un useState para el sticker seleccionado*/
-
 
   // Función que actualiza el estado en el componente padre
   const handleStickerSelection = (sticker) => {
     setSelectedSticker(sticker); // Actualiza el sticker seleccionado en el estado del padre
   };
 
- 
- 
   const [moveStartPosition, setMoveStartPosition] = useState(null); // Para almacenar la posición inicial al mover el sticker
   const [isTouching, setIsTouching] = useState(false); // Estado adicional para manejar el toque
-const [isMoving, setIsMoving] = useState(false); // Controlar si el sticker está siendo movido
-const [lastTap, setLastTap] = useState(null); // Último toque para verificar el doble toque
+  const [isMoving, setIsMoving] = useState(false); // Controlar si el sticker está siendo movido
+  const [lastTap, setLastTap] = useState(null); // Último toque para verificar el doble toque
   const handleDeleteMouse = (e) => {
     e.preventDefault();
 
@@ -312,8 +323,12 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
 
-    const x = e.clientX ? (e.clientX - rect.left) * scaleX : (e.touches[0].clientX - rect.left) * scaleX;
-    const y = e.clientY ? (e.clientY - rect.top) * scaleY : (e.touches[0].clientY - rect.top) * scaleY;
+    const x = e.clientX
+      ? (e.clientX - rect.left) * scaleX
+      : (e.touches[0].clientX - rect.left) * scaleX;
+    const y = e.clientY
+      ? (e.clientY - rect.top) * scaleY
+      : (e.touches[0].clientY - rect.top) * scaleY;
 
     const clickedSticker = stickers.find(
       (sticker) =>
@@ -334,10 +349,10 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-  
+
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
-  
+
     const clickedSticker = stickers.find(
       (sticker) =>
         x >= sticker.x &&
@@ -345,16 +360,16 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
         y >= sticker.y &&
         y <= sticker.y + sticker.height
     );
-  
+
     if (clickedSticker) {
       const now = Date.now();
-  
+
       // Si el tiempo entre los toques es corto, es un doble toque
       if (lastTap && now - lastTap.time < 500) {
         if (clickedSticker.id === lastTap.sticker.id) {
           // Doble toque: eliminamos el sticker
           console.log("Sticker Seleccionado para eliminar", clickedSticker);
-  
+
           setStickers((prevStickers) =>
             prevStickers.filter((sticker) => sticker.id !== clickedSticker.id)
           );
@@ -365,83 +380,86 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
         setSelectedSticker(clickedSticker);
         setIsTouching(true); // Iniciamos el modo de "tocando"
       }
-  
+
       // Actualizamos el último toque
       setLastTap({ sticker: clickedSticker, time: now });
     }
   };
   const handleMouseMove = (e) => {
     if (!selectedSticker) return;
-  
+
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-  
+
     // Factor de escala considerando el zoom de la pantalla
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-  
+
     // Ajustamos las coordenadas del mouse
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
-  
+
     // Calcular el nuevo sticker
     const updatedSticker = {
       ...selectedSticker,
-      x: x - selectedSticker.offsetX, 
-      y: y - selectedSticker.offsetY, 
+      x: x - selectedSticker.offsetX,
+      y: y - selectedSticker.offsetY,
     };
-  
+
     setStickers((prev) =>
       prev.map((sticker) =>
         sticker.id === selectedSticker.id ? updatedSticker : sticker
       )
     );
   };
-  
+
   const handleTouchMove = (e) => {
     if (!isMoving || !selectedSticker) return; // No hacer nada si no estamos moviendo el sticker
-  
+
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-  
+
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
 
-    console.log("x touch: ", x,"y touch:",y);
+    console.log("x touch: ", x, "y touch:", y);
 
-    console.log("offsetX: ", selectedSticker.x,"offsetY:",selectedSticker.y);
-  
+    console.log("offsetX: ", selectedSticker.x, "offsetY:", selectedSticker.y);
+
     // Actualizar el sticker con las nuevas coordenadas
     const updatedSticker = {
       ...selectedSticker,
       x: x - selectedSticker.offsetX,
       y: y - selectedSticker.offsetY,
-     
-      
     };
-    console.log("x sticker: ", updatedSticker.x,"y sticker:",updatedSticker.y);
-  
+    console.log(
+      "x sticker: ",
+      updatedSticker.x,
+      "y sticker:",
+      updatedSticker.y
+    );
+
     setStickers((prevStickers) =>
       prevStickers.map((sticker) =>
         sticker.id === selectedSticker.id ? updatedSticker : sticker
       )
     );
   };
-  
+
   const handleMouseDown = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-  
+
     // Factor de escala considerando el zoom de la pantalla
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-  
+
     // Calcula las coordenadas ajustadas por el zoom
     const x = (e.clientX - rect.left) * scaleX;
     const y = (e.clientY - rect.top) * scaleY;
-  
+
     // Detecta si el clic está dentro de un sticker
     const clickedSticker = stickers.find(
       (sticker) =>
@@ -450,10 +468,9 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
         y >= sticker.y &&
         y <= sticker.y + sticker.height
     );
-  
+
     if (clickedSticker) {
       canvas.style.cursor = "grab";
-  
 
       setSelectedSticker({
         ...clickedSticker,
@@ -462,18 +479,18 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
       });
     }
   };
-  
+
   const handleTouchDown = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
-  
+
     // Factor de escala considerando el zoom de la pantalla
     const scaleX = canvas.width / rect.width;
     const scaleY = canvas.height / rect.height;
-  
+
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
-  
+
     // Detecta si el clic está dentro de un sticker
     const clickedSticker = stickers.find(
       (sticker) =>
@@ -482,10 +499,10 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
         y >= sticker.y &&
         y <= sticker.y + sticker.height
     );
-  
+
     if (clickedSticker) {
       canvas.style.cursor = "grab";
-  
+
       // Si no estamos tocando un sticker para eliminar, lo movemos
       if (!isTouching) {
         setSelectedSticker({
@@ -493,18 +510,22 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
           offsetX: x - clickedSticker.x,
           offsetY: y - clickedSticker.y,
         });
-        console.log("offsetTDX:", clickedSticker.offsetX, "offsetTDY",clickedSticker.offsetY);
-        
+        console.log(
+          "offsetTDX:",
+          clickedSticker.offsetX,
+          "offsetTDY",
+          clickedSticker.offsetY
+        );
       }
     }
   };
-  
+
   const handleMouseUp = () => {
     setSelectedSticker(null); // Descartamos el sticker seleccionado cuando se deja de presionar el mouse
     const canvas = canvasRef.current;
     canvas.style.cursor = "default";
   };
-  
+
   const handleTouchEnd = () => {
     setIsMoving(false); // Terminamos el movimiento
     setIsTouching(false); // Terminamos el toque
@@ -556,7 +577,7 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
       });
     },
     [stickers]
-  ); 
+  );
   /*Defino lo que tiene el cupon, basicamente es */
   /*
   Plantilla del cupon
@@ -573,7 +594,6 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
 
     const image = new Image();
     image.src = imagePath;
-    
 
     function drawCupon() {
       ctx.clearRect(0, 0, canvas.width, canvas.height); // Limpiar canvas
@@ -638,9 +658,8 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     };
   };
 
-
-   // UseEffect para manejar eventos de mouse
-   useEffect(() => {
+  // UseEffect para manejar eventos de mouse
+  useEffect(() => {
     const canvas = canvasRef.current;
 
     if (!canvas) return;
@@ -658,26 +677,26 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
       canvas.removeEventListener("mouseup", handleMouseUp);
       canvas.removeEventListener("contextmenu", handleDeleteMouse);
     };
-  }, [handleMouseDown, handleMouseMove, handleMouseUp,handleDeleteMouse]);
+  }, [handleMouseDown, handleMouseMove, handleMouseUp, handleDeleteMouse]);
 
   // UseEffect para manejar eventos táctiles
   useEffect(() => {
     const canvas = canvasRef.current;
-  
+
     if (!canvas) return;
-  
+
     // Event listener de touchstart para manejar tanto el eliminar como el mover
     const onTouchStart = (e) => {
       e.preventDefault();
       handleTouchDelete(e); // Primero intentamos eliminar si es un doble toque
-      handleTouchDown(e);   // Si no es para eliminar, se maneja el movimiento
+      handleTouchDown(e); // Si no es para eliminar, se maneja el movimiento
     };
-  
+
     // Agregar los event listeners
     canvas.addEventListener("touchstart", onTouchStart);
     canvas.addEventListener("touchmove", handleTouchMove);
     canvas.addEventListener("touchend", handleTouchEnd);
-  
+
     // Cleanup: eliminar los event listeners
     return () => {
       canvas.removeEventListener("touchstart", onTouchStart);
@@ -685,9 +704,6 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
       canvas.removeEventListener("touchend", handleTouchEnd);
     };
   }, [handleTouchMove, handleTouchEnd, handleTouchDelete, handleTouchDown]);
-  
- 
-
 
   useEffect(() => {
     if (imagePath) {
@@ -704,9 +720,8 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     Check,
     datePlaceholder,
     stickers,
+    checkMovil
   ]);
-
-
 
   const { addToCart } = useContext(CartContext); // Accede a la función `addToCart`
 
@@ -714,19 +729,19 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
   const [cuponPrecio, setCuponPrecio] = useState(0); // Estado inicial vacío
   useEffect(() => {
     if (id) {
-      gestionService.getCuponesById(id)
-          .then((response) => {
-            if (response && response.data && response.data.nombreCupon) {
-              setCuponName(response.data.nombreCupon); // Actualiza el estado con el nombre del cupón
-              setCuponPrecio(response.data.precio);
-            }
-          })
-          .catch((error) => {
-            console.error("Error al obtener el nombre del cupón:", error);
-          });
+      gestionService
+        .getCuponesById(id)
+        .then((response) => {
+          if (response && response.data && response.data.nombreCupon) {
+            setCuponName(response.data.nombreCupon); // Actualiza el estado con el nombre del cupón
+            setCuponPrecio(response.data.precio);
+          }
+        })
+        .catch((error) => {
+          console.error("Error al obtener el nombre del cupón:", error);
+        });
     }
   }, [id]); // Ejecuta el efecto cuando `id` cambie
-
 
   const [showNotification, setShowNotification] = useState(false);
   const [notificationItem, setNotificationItem] = useState("");
@@ -742,7 +757,7 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = `${nombreTematica}_cupon_${id}.png`;
-    
+
     const nuevoCupon = {
       id: Date.now(),
       userId: userId, // Asegúrate de que userId tenga un valor válido // aca existe la posibilidad de que sea null debido a usuarios no registrados
@@ -760,7 +775,7 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
       datePlaceholder: { text: datePlaceholder, x: 832, y: 387 },
       dataURL,
       idCupon: id,
-      nombreTem:nombreTematica
+      nombreTem: nombreTematica,
     };
 
     addToCart(nuevoCupon); // Añade el cupón al carrito
@@ -773,12 +788,9 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
     setNotificationImage(nuevoCupon.cartImagePath);
 
     /*Lo guardo de forma momentanea en el navegador para poder utilizarlo en el carrito*/
-  
 
     // Ocultar notificación después de 5 segundos
     setTimeout(() => setShowNotification(false), 5000);
-    
-    
   };
 
   const [isSidebarVisible, setSidebarVisible] = useState(false);
@@ -787,29 +799,43 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
   };
   const closeSidebar = () => {
     setSidebarVisible(false);
+  };
+
+
+  /*variable de estado para ocultar las herramientas de edicion*/
+  const [isToolsVisible, setIsToolsVisible] = useState(false);
+  const toggleDiv = () => {
+    setIsToolsVisible(!isToolsVisible);
   }
 
 
+  
   return (
     <>
-    {/*Se debe revisar la implementacion en caso de que se venga desde el carrito
-    debido a una reediocion del cupon, ver eso, si es asi, la informacion
-    momentanea ha de recuperarse desde localStorage */}
+      
 
-<Navbar toggleSidebar={toggleSidebar}/>
-<SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} />
-      <div className="cupon-edit-view-container">
+      {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
+      <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
+      (<div style={{display:"none"}}></div>)}
+      {console.log("cs", checkMovil)}
+    { checkMovil? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
+     ( <div className="cupon-edit-view-container">
+        {
+          
+          !isLandscape ? (
         <div>
           <div className="cupon-edit-view-tools">
-            <div className="cupon-category-name">
-              <h2 className="handlee-text" style={{ fontSize: "3vw" }}>
+            <div className="cupon-category-name" style={{alignContent:"flex-start", display:"flex", flexDirection:"column", textAlign:"left"
+              , fontWeight:"bold"
+            }}>
+              <h2 className="handlee-text" style={{margin:"0", fontSize: "3vw" , fontFamily: 'Inria Sans', color: "#7e858d"}}>
                 {nombreTematica}
               </h2>
+              <div style={{fontFamily: 'Inria Sans'}}>Personaliza tu cupón y hazlo único!</div>
+              <div style={{fontFamily: 'Inria Sans', color:"#7e858d"}}>Ahora elige la letra, el color y el sticker que más te guste.</div>
             </div>
 
             <div className="font-edit-tools">
-              {/*Aca esta el selector de fuentes disponible.*/}
-
               <select
                 style={{ fontFamily: selectedFont }}
                 className="font-selector"
@@ -851,15 +877,26 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
               </button>
 
               {/*Componente a encajar la seleccion de stickers */}
-              { !areTwoStickers() && (<StickerBodyContent
-                className="Sticker-Component"
-                onStickerSelect={handleStickerSelection}
-              />)}
-      
+              {!areTwoStickers() && (
+                <StickerBodyContent
+                  className="Sticker-Component"
+                  onStickerSelect={handleStickerSelection}
+                />
+              )}
+
               {areTwoStickers() && (
-                     <div className="full-message" style={{position:"relative",width: "100%", fontSize: "15px", alignSelf:"center", zIndex:9999}}>
-                     ¡Stickers Maximos Alcanzados!
-                   </div>
+                <div
+                  className="full-message"
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    fontSize: "15px",
+                    alignSelf: "center",
+                    zIndex: 9999,
+                  }}
+                >
+                  ¡Stickers Maximos Alcanzados!
+                </div>
               )}
 
               <div
@@ -872,16 +909,112 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
                     setColor(newColor);
                   }}
                 />
-             
-          </div>
-          </div>
-               <p  className="help-text" style={{
-                textAlign: "center",
-                color: "#7c7c7c",
-                fontFamily:"Inria Sans",
-               }}>Para eliminar el sticker, presione click derecho encima de él</p>
+              </div>
             </div>
+            {stickers.length>0 && (<p
+                className="help-text"
+                style={{
+                  textAlign: "center",
+                  color: "#7c7c7c",
+                  fontFamily: "Inria Sans",
+                }}
+              >
+                Para eliminar el sticker, presione click derecho encima de él
+              </p>)}
+          </div>
         </div>
+          ) : ( 
+          <div className="tools-container">
+            <div className="cupon-edit-view-tools" style={{ visibility: isToolsVisible ? 'visible' : 'hidden'}}>
+              <div className="cupon-category-name">
+                <h2 className="handlee-text" style={{ fontSize: "3vw" }}>
+                  {nombreTematica}
+                </h2>
+              </div>
+  
+              <div className="font-edit-tools">
+                <select
+                  style={{ fontFamily: selectedFont }}
+                  className="font-selector"
+                  value={selectedFont}
+                  onChange={handleFontChange}
+                >
+                  {Object.keys(fonts).map((font, index) => (
+                    <option style={{ fontFamily: font }} key={index} value={font}>
+                      {font}
+                    </option>
+                  ))}
+                </select>
+  
+                {/*Selector de tamaño de fuente*/}
+                <select
+                  className="size-selector"
+                  value={Object.keys(sizes).find(
+                    (key) => sizes[key] === selectedfontSize
+                  )} // Mapea el valor correctamente
+                  onChange={handleFontSizeChange}
+                >
+                  {Object.keys(sizes).map((size, index) => (
+                    <option key={index} value={size}>
+                      {size}
+                    </option>
+                  ))}
+                </select>
+  
+                <button
+                  type="button"
+                  className="color-selector"
+                  onClick={handleTogglePicker}
+                >
+                  <img
+                    src={selectColorIcon}
+                    alt="select-color-icon"
+                    style={{ width: "20px", height: "20px" }}
+                  />
+                </button>
+  
+                {/*Componente a encajar la seleccion de stickers */}
+                {!areTwoStickers() && (
+                  <StickerBodyContent
+                    className="Sticker-Component"
+                    onStickerSelect={handleStickerSelection}
+                  />
+                )}
+  
+                {areTwoStickers() && (
+                  <div
+                    className="full-message"
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      fontSize: "15px",
+                      alignSelf: "center",
+                      zIndex: 9999,
+                    }}
+                  >
+                    ¡Stickers Maximos Alcanzados!
+                  </div>
+                )}
+  
+                <div
+                  className={`picker-container ${showPicker ? "visible" : ""}`}
+                >
+                  <HexColorPicker
+                    color={color}
+                    onChange={(newColor) => {
+                      console.log("Nuevo color seleccionado:", newColor);
+                      setColor(newColor);
+                    }}
+                  />
+                </div>
+              </div>
+             
+            </div>
+            <button type="button" className="toogle-tool-div" onClick={toggleDiv}>
+        {isToolsVisible ? "<": '>'}
+      </button>
+
+          </div>)}
 
         <div className="cupon-image-container">
           {/* Aquí está el canvas que dibujará la imagen y los placeholders */}
@@ -937,26 +1070,32 @@ const [lastTap, setLastTap] = useState(null); // Último toque para verificar el
           <button className="btn-check" onClick={handleCheckClick}>
             {Check ? "✔" : ""}
           </button>
-          {/*Input para manejar la fecha*/}
-          <div className="date-container">
-          <input type="date" className="dateInput" ref={dateInputRef} />
+            {/*Input para manejar la fecha*/}
+            <div className="date-container">
+            <input type="date" className="dateInput" ref={dateInputRef} />
           </div>
 
           {/*Boton para agregar al carrito*/}
-          <button type="button" className="add-cart-button" onClick={handleSave}>
+          <button
+            type="button"
+            className="add-cart-button"
+            onClick={handleSave}
+          >
             Agregar al carrito
-           
           </button>
         </div>
         {/* Notificación */}
-        {showNotification && 
-        (<CartNotification
-          show={showNotification}
-          itemName={notificationItem}
-          itemImage={notificationImage}
-          onClose={() => setShowNotification(false)}
-      />)}
-      </div>
+        {showNotification && (
+          <CartNotification
+            show={showNotification}
+            itemName={notificationItem}
+            itemImage={notificationImage}
+            onClose={() => setShowNotification(false)}
+          />
+        )}
+      </div>)
+
+}
     </>
   );
 }

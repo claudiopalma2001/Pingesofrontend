@@ -2,22 +2,28 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
+    width: 800px;
+    border: 1px solid #bababa; /* Línea de 1px */
+    padding: 30px;
+    border-radius: 10px;
+    overflow-y: auto;
 }
 
 .user-account-information{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 800px;
+
 }
 
 .user-profile-photo{
     display: flex;
     flex-direction: column;
     align-self: center;
-    margin: 10px;
+
+
 }
+
 
 .user-information-paths{
     display: flex;
@@ -26,23 +32,27 @@
 
 .user-information-paths button{
 
-    background-color: #eaeaea;
-    color: #424242;
-    padding: 10px 20px;
-    width: 200px;
-    border: 3px;
-    border-radius: 5px;
-    font-size: 16px;
+    background-color: #ffffff;
+    width: 140px;
+    height: 65px;
+    color: #474747;
+    border: 1px solid #acacac;
+    border-radius: 25px;
     cursor: pointer;
-
-
+    font-size: 20px; /* Tamaño de fuente ajustado */
+    font-weight: bold; /* Opcional: para hacer el texto más grueso */
+    text-decoration: none;
+    font-family: 'Asap', sans-serif;
+    transition: border 0.3s ease, color 0.3s ease, font-size 0.1s linear;
+    cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .user-information-paths button:hover {
-    background-color: #f3f3f3;
-
-
+    border: 1px solid #131313;
+    color: #1b1b1b;
 }
+
 .profile-picture {
     width: 200px; /* Tamaño de la imagen */
     height: 200px; /* Tamaño de la imagen */
@@ -50,14 +60,16 @@
     object-fit: cover; /* Ajusta la imagen para que no se deforme */
     border: 2px solid #ddd; /* Opcional: Agrega un borde para estilizar */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Opcional: Agrega sombra */
+
 }
 
 .user-account-profile {
     width: 50%;
     padding: 20px;
-    background-color: #f8f9fa; /* Fondo claro */
+    background-color: #ffffff; /* Fondo claro */
     border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border: 1px solid #bababa; /* Línea de 1px */
+
 }
 
 .user-account-profile-name {
@@ -94,4 +106,39 @@
 .user-profile-value {
     color: #777;
     text-align: right;
+}
+
+@media (max-width: 768px) {
+
+    .user-profile-body{
+
+        width: 350px;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
+
+    .user-information-paths button{
+
+        background-color: #ffffff;
+        width: 80px;
+        height: 45px;
+        font-size: 10px;
+
+    }
+
+
+    .user-account-profile-name {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+
+    .user-profile-field {
+
+        font-size: 10px;
+        padding: 10px;
+
+    }
 }

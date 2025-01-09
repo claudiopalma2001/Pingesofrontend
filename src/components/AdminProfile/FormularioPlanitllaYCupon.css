@@ -4,7 +4,6 @@
     overflow-y: auto;
     overflow-x: hidden;
     justify-content: center;
-
     display: flex;
     background: linear-gradient(180deg, #ffffff 0%, rgb(255, 255, 255) 100%);
     width: 100vw;

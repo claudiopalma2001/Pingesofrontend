@@ -5,7 +5,7 @@
     color: #222222;
     font-weight: 500;
     font-size: 22px;
-    margin-top: 30px;
+
 }
 
 .cupons-body-content2 {
@@ -18,7 +18,7 @@
     width: 100vw; /* Asegúrate de que ocupe el ancho completo de la ventana */
     max-width: 100%;
     height: calc(100vh - 250px); /* Ajusta el valor en px */
-    margin-top: 100px; /* Empuja el contenido hacia abajo */
+    padding-top: 100px; /* Empuja el contenido hacia abajo */
 
 }
 
@@ -47,6 +47,7 @@
     background-color: #fff;
     opacity: 0; /* Estado inicial */
     animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+
 }
 
 @media (max-width: 768px) {

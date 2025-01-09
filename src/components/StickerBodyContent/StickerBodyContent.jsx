@@ -34,8 +34,12 @@ function StickerBodyContent({ onStickerSelect }) {
   return (
     <div style={{ position: "relative", gridArea:"stickers"}}>
       {/* Botón para abrir el menú */}
-      <button onClick={toggleMenu} className="open-sticker-menu-btn">
-        Seleccionar Sticker
+      <button 
+  onClick={toggleMenu} 
+  className="open-sticker-menu-btn" 
+  style={{ backgroundImage: `url(${images[0].image})`, fontFamily:'Inria Sans' }}
+>
+  Stickers
       </button>
 
       {/* Menú con los stickers */}

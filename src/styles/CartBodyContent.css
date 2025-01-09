@@ -47,6 +47,7 @@
     align-items: center; /* Centra verticalmente el texto */
     transition: background-color 0.3s ease;
     font-family: 'Asap', sans-serif;
+    opacity: 0;
 
 }
 
@@ -140,10 +141,21 @@
 
     .editar-button {
 
-        margin-right: 30px;
-
+        margin-right: 10px;
+        width: 60px;
+        height: 35px;
+        font-size: 14px;
     }
 
+    .cart-info h3 {
+        margin: 0;
+        font-size: 13px;
+    }
 
+    .cart-plantilla-image {
+        width: 130px;
+        height: auto;
+        border: 1px solid #bcbcbc;
 
+    }
 }

@@ -25,7 +25,7 @@ function SideBar({ isVisible, closeSidebar }) {
 
     return (
         <div className={`sidebar ${isVisible ? 'visible' : ''}`}>
-            <div style={{ height: "40px" }}></div>
+            <div style={{height: "40px"}}></div>
             <div className="form-group">
                 {referencias.map((ref, index) => (
                     <div key={index}>
@@ -38,6 +38,7 @@ function SideBar({ isVisible, closeSidebar }) {
                     </div>
                 ))}
             </div>
+            <div style={{height: "80px"}}></div>
         </div>
     );
 }

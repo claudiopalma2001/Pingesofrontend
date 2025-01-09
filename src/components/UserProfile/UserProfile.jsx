@@ -1,10 +1,12 @@
 import { useParams,useNavigate } from "react-router-dom";
 import gestionService from "../../services/gestion-service";
 import "../UserProfile/UserProfile.css";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import profileTest from "../../assets/Icons/profile.jpg";
 import Navbar from "../Navbar/Navbar"; 
 import Avatar from "react-avatar"
+import SideBar from "../SideBar/SideBar";
+
 
 function UserProfile() {
   const { correo } = useParams();
@@ -34,31 +36,32 @@ function UserProfile() {
     navigate('/'); // O usa '/login' si prefieres redirigir al login explícitamente
 }
 
+
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarVisible((prevState) => !prevState);
+  };
+  const closeSidebar = () => {
+    setSidebarVisible(false);
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar toggleSidebar={toggleSidebar}/>
+      <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} />
       <div className="user-profile-body">
         <div className="user-account-information">
           <div className="user-profile-photo">
-            
-            <Avatar name={user.nombre} size="180px" round={true} />
-
-            
-            
+            <Avatar name={user.nombre} size={"80px"} round={true}/>
+            <div style={{height: "10px"}}></div>
           </div>
-
           <div className="user-information-paths">
-            <div className="user-information-link">
-              <button type="button">Mi Cuenta</button>
-            </div>
+            
             <div className="user-information-link">
               <button onClick={() => navigate('/historial')} type="button"> Mis cupones </button>
             </div>
-            
             <div className="user-information-link">
-              
               <button onClick={logout} type="button">Cerrar sesión</button>
-              
             </div>
           </div>
         </div>

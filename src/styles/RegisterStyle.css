@@ -88,3 +88,11 @@
     border-radius: 5px;
   }
 
+@media (max-width: 768px) {
+
+    .login-container {
+
+        width: 300px;
+
+    }
+}

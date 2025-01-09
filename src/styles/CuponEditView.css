@@ -1,39 +1,43 @@
-@media screen and (min-width: 1366px) {
+@media  (min-width:300px) and (max-width:450px) {
+ .message{
+  width: 100%;
+  font-family: "Inria sans";
+  color: #7e858d;
+  font-size: 9vw;
+ }
+  
+  
+}
 
+@media screen and (min-width: 901px)  {
   .cupon-edit-view-container {
     display: flex;
     width: 100vw;
     flex-direction: row;
     justify-content: space-around;
     position: relative;
-   
   }
-  
+
   .cupon-edit-view-tools {
     display: grid;
     grid-template-rows: 30% 70%;
     grid-template-areas:
       "name name name name"
-      "tools tools tools tools"
       "tools tools tools tools";
-  
-    background-color: #d9d9d9;
     width: 30vw;
-    height: 100%;
+    height: 80%;
   }
   .font-edit-tools {
     display: grid;
     grid-area: tools;
     grid-template-areas:
-      "font font size size"
-      "colorS colorS colorS colorS"
-      "stickers stickers stickers stickers";
+      "font     size     colorS  "
+      "stickers stickers stickers";
     align-self: center;
-    justify-content: space-around;
-    gap: 20px;
+    gap: 40px;
   }
-  
-  .Sticker-Component{
+
+  .Sticker-Component {
     display: grid;
     grid-area: stickers;
     align-items: center;
@@ -41,44 +45,45 @@
     border: none;
     width: 100%;
   }
-  
-  .full-message{
+
+  .full-message {
     grid-area: stickers;
   }
-  
+
   /*estilos para el selector de fuente*/
-  .font-selector{
+  .font-selector {
     background-color: #fff;
     grid-area: font;
     text-align: center;
     height: 8vh;
     font-size: 20px;
-    border: none;
+    border-color: black;
+    width: 173px;
   }
   .font-selector option {
-      background: #fff;
-      color: #333;
-      padding: 10px;
-      font-size: 20px;
-      border: none;
-    }
-  
-    /*Estilos para el selector de tamaño*/
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+  }
+
+  /*Estilos para el selector de tamaño*/
   .size-selector {
     background-color: #fff;
     grid-area: size;
     text-align: center;
     height: 8vh;
+    border-color: black;
+  }
+
+  .font-selector option {
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    font-size: 20px;
     border: none;
   }
-  
-  .font-selector option {
-      background: #fff;
-      color: #333;
-      padding: 10px;
-      font-size: 20px;
-      border: none;
-    }
   /*----------------------------------*/
   .color-selector {
     grid-area: colorS;
@@ -86,41 +91,47 @@
     height: 50px;
     background-color: rgba(206, 206, 206, 0);
     color: #151515;
-    border: none;
+
+    border-color: black;
     border-radius: 50px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: -10px;
     background-color: #ffffff;
     justify-self: center;
   }
-  .sticker-add-button{
+  .sticker-add-button {
     display: grid;
     grid-area: stickerButton;
     align-items: center;
   }
-  
+
   .picker-container {
-      position: fixed;
-      top: 70vh; 
-      left: 11.5vw; 
-      opacity: 0; 
-      transform: translateY(-10px); /* Lo mueve hacia arriba */
-      pointer-events: none; /* Evita interacción mientras está oculto */
-      transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-      grid-area: colorP;
-      width: min(20vw, 200px);  /* El 20% del ancho de la ventana, pero no mayor de 200px */
-      height: min(20vw, 200px); /* El 20% del ancho de la ventana, pero no mayor de 200px */
-    }
-    
-    .picker-container.visible {
-      opacity: 1; /* Hace visible el componente */
-      transform: translateY(20); /* Vuelve a su posición original */
-      pointer-events: auto; /* Permite interacción */
-    }
+    position: fixed;
+    top: 37vh;
+    left: 32.5vw;
+
+    opacity: 0;
+    transform: translateY(-10px); /* Lo mueve hacia arriba */
+    pointer-events: none; /* Evita interacción mientras está oculto */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    grid-area: colorP;
+    width: min(
+      20vw,
+      200px
+    ); /* El 20% del ancho de la ventana, pero no mayor de 200px */
+    height: min(
+      20vw,
+      200px
+    ); /* El 20% del ancho de la ventana, pero no mayor de 200px */
+  }
+
+  .picker-container.visible {
+    opacity: 1; /* Hace visible el componente */
+    transform: translateY(20); /* Vuelve a su posición original */
+    pointer-events: auto; /* Permite interacción */
+  }
   .cupon-category-name {
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+    justify-content: space-between;
     grid-area: name;
   }
   .alex-brush-text {
@@ -136,57 +147,53 @@
     position: relative;
     object-fit: contain;
   }
-  
+
   .first-cupon-image-placeholder {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 53.2%;
     width: 17%;
     transform-origin: center;
-   
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-   
-  
   }
   .second-cupon-image-placeholder {
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 73.4%;
     width: 12%;
     transform-origin: center;
-  
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-   
   }
   .third-cupon-image-placeholder {
     position: absolute;
-    top: 52%;
+    top: 46%;
     left: 55%;
     width: 30%;
     transform-origin: center;
-  
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-  
   }
-  .btn-check{
-      position: absolute;
+  .btn-check {
+    position: absolute;
     cursor: pointer;
-    top: 59%;
+    top: 54%;
     left: 62.4%;
     background-color: transparent;
     border: none;
@@ -198,63 +205,58 @@
   .canvas-cupon {
     width: 60vw;
   }
-  
+  .date-container {
+    position: relative;
+    top: -28%;
+    z-index: 999999;
+    left: 58%;
+    width: 50px;
+  }
 }
 
 /*Para un diseño horizontal de los elementos*/
-@media screen and (min-width: 300px) and (max-width: 900px) and (orientation:landscape) {
-  body{
-  margin-top:0 !important;
-  overflow: hidden;
-}
-  /*No necesito el navbar.*/
-  .navbar{
-    display: none;
+@media screen and (min-width: 300px) and (max-width: 900px) and (orientation: landscape) {
+  body {
+    margin-top: 0 !important;
     overflow: hidden;
-    touch-action: none;
+    width: 100%;
   }
   /* Estilos para dispositivos móviles en modo horizontal */
   .cupon-edit-view-container {
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+
     position: relative;
-    overflow: hidden;
-   
   }
-  
+
   .cupon-edit-view-tools {
-    position: absolute;
+    position: relative;
     display: grid;
     top: 20%;
     grid-template-rows: 30% 70%;
-    grid-template-areas:
-"tools tools tools tools";
+    grid-template-areas: "tools tools tools tools";
     background-color: transparent;
-    width: 27vw;
+    width: 19vw;
     height: 400%;
-    
   }
   .font-edit-tools {
     position: absolute;
     display: grid;
     grid-area: tools;
     grid-template-areas:
-      "font" 
+      "font"
       "size"
-      "colorS" 
-      "stickers";  /*Solo una fila de edicion para el cupon*/
+      "colorS"
+      "stickers"; /*Solo una fila de edicion para el cupon*/
 
     align-self: center;
     justify-content: space-around;
     gap: 3px;
- 
-    top: 18%;
     width: 60%;
   }
-  
-  .Sticker-Component{
+
+  .Sticker-Component {
     display: grid;
     grid-area: stickers;
     align-items: center;
@@ -263,13 +265,13 @@
     width: 100%;
     background-color: #ffffffb4;
   }
-  
-  .full-message{
+
+  .full-message {
     grid-area: stickers;
   }
-  
+
   /*estilos para el selector de fuente*/
-  .font-selector{
+  .font-selector {
     background-color: #ffffffb4;
     grid-area: font;
     text-align: center;
@@ -280,10 +282,10 @@
 
     border: none;
   }
-  
-    /*Estilos para el selector de tamaño*/
+
+  /*Estilos para el selector de tamaño*/
   .size-selector {
-    background-color:#ffffffb4;
+    background-color: #ffffffb4;
     grid-area: size;
     text-align: center;
     height: 8vh;
@@ -291,7 +293,7 @@
     width: 80px;
     justify-self: center;
   }
-  
+
   /*----------------------------------*/
   .color-selector {
     grid-area: colorS;
@@ -307,23 +309,29 @@
     justify-self: center;
   }
   .picker-container {
-      position: fixed;
-      top: 40vh; 
-      left: 15.5vw; 
-      opacity: 0; 
-      transform: translateY(-10px); /* Lo mueve hacia arriba */
-      pointer-events: none; /* Evita interacción mientras está oculto */
-      transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
-      grid-area: colorP;
-      width: min(20vw, 200px);  /* El 20% del ancho de la ventana, pero no mayor de 200px */
-      height: min(20vw, 200px); /* El 20% del ancho de la ventana, pero no mayor de 200px */
-    }
-    
-    .picker-container.visible {
-      opacity: 1; /* Hace visible el componente */
-      transform: translateY(20); /* Vuelve a su posición original */
-      pointer-events: auto; /* Permite interacción */
-    }
+    position: fixed;
+    top: 40vh;
+    left: 15.5vw;
+    opacity: 0;
+    transform: translateY(-10px); /* Lo mueve hacia arriba */
+    pointer-events: none; /* Evita interacción mientras está oculto */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transiciones suaves */
+    grid-area: colorP;
+    width: min(
+      20vw,
+      200px
+    ); /* El 20% del ancho de la ventana, pero no mayor de 200px */
+    height: min(
+      20vw,
+      200px
+    ); /* El 20% del ancho de la ventana, pero no mayor de 200px */
+  }
+
+  .picker-container.visible {
+    opacity: 1; /* Hace visible el componente */
+    transform: translateY(20); /* Vuelve a su posición original */
+    pointer-events: auto; /* Permite interacción */
+  }
   .cupon-category-name {
     display: none; /*En version movil no necesito el titulo, minimizre todos los componentes*/
     background-color: #fff;
@@ -344,22 +352,20 @@
     position: relative;
     object-fit: contain;
   }
-  
+
   .first-cupon-image-placeholder {
     position: absolute;
     top: 43%;
     left: 26.2%;
     width: 27%;
     transform-origin: center;
-   
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-   
-  
   }
   .second-cupon-image-placeholder {
     position: absolute;
@@ -367,14 +373,13 @@
     left: 59.4%;
     width: 21%;
     transform-origin: center;
-  
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-   
   }
   .third-cupon-image-placeholder {
     position: absolute;
@@ -382,18 +387,17 @@
     left: 29%;
     width: 50%;
     height: 6%;
- 
+
     transform-origin: center;
-  
+
     background: inherit;
     background-color: transparent;
     outline: none;
     border: 0;
     cursor: text;
     opacity: 0;
-  
   }
-  .btn-check{
+  .btn-check {
     position: absolute;
     cursor: pointer;
     top: 61%;
@@ -409,21 +413,49 @@
     width: 100%;
     height: 100%;
   }
-  .help-text{
+  .help-text {
     display: none;
   }
-  .add-cart-button{
+  .add-cart-button {
     position: absolute;
-    top:80%;
+    top: 80%;
     left: 80%;
-    z-index:9999;
+    z-index: 9999;
   }
-  .date-container{
+  .Landscape-button {
+    position: absolute;
+    top: 78%;
+    left: 55%;
+    width: 50px;
+    font-size: 10px;
+  }
+  .date-container {
     position: relative;
     top: -21%;
-    left: 20%;
+    left: 60%;
+    width: 0%;
   }
-  .dateInput{
-   position: inherit;
+  .dateInput {
+    position: inherit;
+  }
+  .toogle-tool-div {
+    position: relative;
+    z-index: 9999;
+    top: 58%;
+    padding: 10px 10px;
+    background-color: #ffffffb4;
+    color: rgb(0, 0, 0);
+    border: none;
+
+    cursor: pointer;
+    font-size: 10px;
+    width: 40px;
+  }
+  .tools-container {
+    position: absolute;
+    z-index: 99999;
+    top: 70%;
+    display: flex;
+    flex-direction: row-reverse;
   }
 }

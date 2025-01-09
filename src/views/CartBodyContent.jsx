@@ -121,21 +121,18 @@ function CartBodyContent() {
     */
 
     const calcularTotal = () => {
-
-
         const cantidadCupones = cartItems.length; // Contar la cantidad de cupones en el carrito
+        const precioBase = cartItems.reduce((acc, item) => acc + item.precioF, 0); // Calcular el precio total base
 
-        if (cantidadCupones === 5) {
-            return 10000; // Precio fijo para 5 cupones
+        if (cantidadCupones >= 5 && cantidadCupones < 10) {
+            return precioBase - 5000; // Descuento de 5000 si hay entre 5 y 9 cupones
         } else if (cantidadCupones === 10) {
-            return 15000; // Precio fijo para 10 cupones
+            return precioBase - 15000; // Descuento de 15000 si hay 10 cupones
         } else {
-            // Lógica por defecto: 3000 por cupón si no aplican los descuentos
-            return cartItems.reduce((acc, item) => acc + item.precioF, 0); // Suponiendo que cada item tiene un precio
+            return precioBase; // Precio total sin descuentos
         }
-
-        //return cartItems.reduce((acc, item) => acc + item.precioF, 0);
     };
+
 
     const handleDeleteCupon = async (id) => {
         try {
@@ -215,7 +212,7 @@ function CartBodyContent() {
                     <div className="cart-info">
                         <h3>{item.cuponName || "Cargando..."}</h3>
                         <div className="cart-actions">
-                            <button type="submit"  onClick={() => navigate(`/reedit/${item.id}`)} className="editar-button">Editar
+                            <button type="submit"   className="editar-button">Editar
 
                             </button>
                         </div>
