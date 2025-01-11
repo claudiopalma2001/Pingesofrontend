@@ -45,7 +45,7 @@ const ConfirmarPago = () => {
     setError(null);
 
     try {
-      const response = await axios.post('http://pingeso12deseostest-env.eba-hdavpsmw.sa-east-1.elasticbeanstalk.com/api/v1/pago/webpay/commit', null, {
+      const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/pago/webpay/commit', null, {
         params: { token_ws: token },
       });
 
@@ -97,7 +97,7 @@ if (!correo) {
 let userId = 0;
 
 try {
-  const response = await axios.get(`http://pingeso12deseostest-env.eba-hdavpsmw.sa-east-1.elasticbeanstalk.com/api/v1/usuarios/correoId/${correo}`);
+  const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${correo}`);
 
   if (response?.data) {
     userId = response.data;
@@ -136,7 +136,7 @@ try {
     try {
     // Enviar la compra al backend
     if(!compraProcesada){
-      const response = await axios.post('http://pingeso12deseostest-env.eba-hdavpsmw.sa-east-1.elasticbeanstalk.com/api/v1/compras/saveCompraWithCupones', compra);
+      const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);
     
 
     if (response.status === 200) {
