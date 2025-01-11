@@ -9,7 +9,7 @@ const Pago = () => {
   const [buyOrder, setBuyOrder] = useState("");
   const [sessionId, setSessionId] = useState("");
   const [amount, setAmount] = useState(location.state?.amount || "");  // Usamos el monto pasado
-  const [returnUrl, setReturnUrl] = useState("http://localhost:3000/pago/confirmar");
+  const [returnUrl, setReturnUrl] = useState("https://main.d26i076z7d4xot.amplifyapp.com/pago/confirmar");
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [transactionDetails, setTransactionDetails] = useState(null);
@@ -34,7 +34,7 @@ const Pago = () => {
     };
 
     try {
-      const response = await axios.post("http://localhost:8080/api/v1/pago/webpay", payload);
+      const response = await axios.post("https://pingesobackend-production.up.railway.app/api/v1/pago/webpay", payload);
       if (response.data?.token && response.data?.url) {
         setTransactionDetails({
           token: response.data.token,
