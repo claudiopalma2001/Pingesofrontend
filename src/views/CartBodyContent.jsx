@@ -25,14 +25,66 @@ function CartBodyContent() {
     /*Cupones almacenados en el carrito de compras*/
     const [cupones, SetCupones] = useState([]);
     
+        /*Esta función permite acceder a la base de datos indexedDB para obtener los cupones agregados al carrito*/
+        const openDB = () => {
+            return new Promise((resolve, reject) => {
+              const request = indexedDB.open('cartItems', 1);
+          
+              request.onsuccess = (event) => {
+                resolve(event.target.result); // Devuelve la base de datos
+              };
+          
+              request.onerror = (event) => {
+                reject(new Error('Error al abrir la base de datos.'));
+              };
+          
+              // Crear el esquema de la base de datos si no existe
+              request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains('cupones')) {
+                  db.createObjectStore('cupones', { keyPath: 'id' }); // Creamos el almacén con clave primaria 'id'
+                }
+              };
+            });
+          };
+          
+          /*Esta funcion me permite acceder a todos los cupones agregados al carrito mediante unaptomesa asincrona */
+          const getAllCupones = async () => {
+            const db = await openDB();
+            return new Promise((resolve, reject) => {
+              const transaction = db.transaction('cupones', 'readonly'); // Abrimos transacción solo de lectura
+              const store = transaction.objectStore('cupones');
+              const request = store.getAll(); // Obtener todos los elementos del almacén
+          
+              request.onsuccess = () => {
+                resolve(request.result); // Retorna todos los cupones
+              };
+          
+              request.onerror = (error) => {
+                reject(error);
+              };
+            });
+          };
+        
+        
+        
+          useEffect(() => {
+            const fetchCupones = async () => {
+              try {
+                const storedCupons = await getAllCupones() || [];
+                SetCupones(storedCupons);
+  
+              } catch (error) {
+                console.error("Error al obtener los cupones:", error);
+              }
+            };
+        
+            fetchCupones(); // Llamamos a la función asincrónica
+          }, [cartItems]); // Se ejecutará solo una vez cuando el componente se monte
+
+        ;
     
-    /*Los seteo en el estado (ver si es necesario realemnte manejarlo de esta manera)*/
-    useEffect(() => {
-        const storedCupons = JSON.parse(localStorage.getItem("cartItems")) || [];
-        SetCupones(storedCupons);
-        console.log(storedCupons); //Esta linea es para ver si se estan pasando los datos de los cupones a traves de local storage
-    
-    }, []);
+  
     /*Para saber si estoy en UserProfile */
     const location = useLocation();
 

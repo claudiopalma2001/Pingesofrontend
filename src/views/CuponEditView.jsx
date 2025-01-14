@@ -20,7 +20,7 @@ import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
 
 /*Defino las fuentes disponibles*/
-/*TODO: ver el tema de la fuente similar a la enviada por la clienta*/
+
 const fonts = {
   Asap: "Asap",
   "Crete Round": "Crete Round",
@@ -28,14 +28,14 @@ const fonts = {
   "Playwrite IT Moderna": "Playwrite IT Moderna",
 };
 
-/*defino algunos tamaños de prueba*/
+/*Se define un arreglo que contiene los tamaños en pixeles para las fuentes
+ */
 const sizes = {
   Grande: "24px",
   Enorme: "28px", // Tamaño grande
   Especial: "40px", //De momento solo la usare para las cursivas con espacios
 };
-/*Aca seguramente debe entrar la informacion del arreglo de cupones, para poder
-reeditar un cupon! */
+
 
 function CuponEditView() {
  
@@ -57,7 +57,11 @@ function CuponEditView() {
     }
   }, [token]); // Depende de `token` para que se actualice cuando cambie.
 
+
   // Función para obtener el nombre del usuario desde el token
+
+  /*DOM: token jwt
+  REC: Setea el id del usuario obtenido a través del token para simobolizar el inicio de sesión en la plataforma*/
   async function getUserNameFromToken(token) {
     if (token) {
       try {
@@ -73,19 +77,21 @@ function CuponEditView() {
     }
   }
 
-  /*Por temas de saber en que resolucion esta el componente, necesito una funcnion que lo detecte para saber si estoy
-  en el landscape de algun movil.*/
-
-  const [isLandscape, setIsLandscape] = useState(false);
-
-
-
-  /*Variable de estado para saber si estoy en un telefono movil*/
+  /*El siguiente useState sirve para saber si estoy viendo la aplicación desde un dispositivo móvil*/
+  /*Primero inicia en "false", el cual cambiará dependiendo del tamaño de pantalla desde el cual esta siendo
+  visualizada la aplicación*/
   const [checkMovil, setCheckMovil]= useState(false);
-  
-  useEffect(()=>{
+
+
     /*Funcion que permite verificar en tiempo de ejcución si estoy viendo la aplicación
-  desde un dispositivo movil */
+  desde un dispositivo movil.
+  
+  Para ello, se usa UseEffect para renderizar el componente*/
+
+  useEffect(()=>{
+  
+    /*Se crea una función dentro de useEffect para detectar si estoy en un dispositivo móvil
+    Para ello, detecta el tamaño de pantalla en pixeles y realiza una comparación de ancho*/
   const checkSmartphone=()=>{
     
     if (window.innerWidth >= 300 && window.innerWidth<450) {
@@ -95,6 +101,8 @@ function CuponEditView() {
       setCheckMovil(false);
     }
   }
+
+  /*Se ejecuta la función anterior para detectar el tamaño de pantalla*/
   checkSmartphone();
   
     window.addEventListener("resize",checkSmartphone);
@@ -103,7 +111,16 @@ function CuponEditView() {
     }
   },[checkMovil]);
 
-  function checkResolution() {
+/*-------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+   
+   /*El siguiente useState sirve para detectar si la aplicación esta siendo visualizada a través de un
+   dispositivo móvil de forma horizontal*/
+   const [isLandscape, setIsLandscape] = useState(false);
+
+  /*Esta función sirve para comprobar si la aplicación esta siendo vista a través de un dispositivo móvil
+  de forma horizontal, cambiando el valor de "isLandscape" */
+  function checkLandscape() {
     if (window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) {
       setIsLandscape(true); // Establece el estado si la resolución está en el rango
     } else {
@@ -111,106 +128,150 @@ function CuponEditView() {
     }
   }
 
-  // Usar useEffect para controlar la lógica solo al montar o cuando la ventana cambie de tamaño
+/*Ahora se usa UseEffect para poder renderizar el componente
+Primero hace un check de pantalla con la funcion anterior para saber si estoy en una pantalla móvil de forma
+horizontal.
+El renderizado funciona cada vez que cambia la orientación de pantalla y la variable "checkMovil" para evitar errores, */
   useEffect(() => {
-    checkResolution(); // Verificar la resolución al cargar el componente
+    checkLandscape(); // Verificar la resolución al cargar el componente
 
     // Configurar el listener para el cambio de tamaño
-    window.addEventListener("resize", checkResolution);
+    window.addEventListener("orientationchange", checkLandscape);
 
     // Limpiar el listener cuando el componente se desmonte
     return () => {
-      window.removeEventListener("resize", checkResolution);
+      window.removeEventListener("orientationchange", checkLandscape);
     };
-  }, []);
+  }, [checkMovil, isLandscape]);
 
-  /*Testing */
-  // Usar otro useEffect para observar cambios en `isLandscape`
-  useEffect(() => {}, [isLandscape]); // Este useEffect se ejecutará cuando `isLandscape` cambie
+
+
+
+/*-------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 
   /*Creo un estado que sirva para almacenar el estado de edicion del lienzo, lo que se debe
-  hacer es guardar la informacion para poder reeditar el lienzo*/
+  hacer es guardar la informacion para poder re-editar el lienzo*/
   const [ElementsCupon, SetElementsCupon] = useState([]);
 
   /*Aca veo el tema d elas referencias del input y el boton del input*/
-  const dateInputRef = useRef(null); // Referencia al input de tipo fecha
-  /*Defino el estado del color */
+  const dateInputRef = useRef(null); 
+
+  /*Defino un useState para almacenar  el estado de la variable "color" seleccionado para la edicion del cupón */
   const [color, setColor] = useState("#aabbcc");
 
-  const [precioF, setPrecioF] = useState(3000); //Precio establecido por las clientas
+  /*Defino un useState para almacenar el estado de la variable "precioF", la cual indica el precio de los cupones
+  indicados por el cliente de la aplicación */
+  const [precioF, setPrecioF] = useState(1990);
 
+  /*Defino un useState para almacenar el estado de la variable "showPicker", la cual indica si la paleta de selección
+  de colores es visible una vez presionado el botón que la despliega por pantalla*/
   const [showPicker, setShowPicker] = useState(false);
 
-  // Función para alternar la visibilidad del selector
+  /*Función para alternar la visibilidad de la paleta de selección de colores cada vez que se presiona su botón
+  de despliegue en la aplicación*/
   const handleTogglePicker = () => {
     setShowPicker(!showPicker);
   };
 
-  /* Componente que representa la vista de la edición de un cupón */
+  /*----------------------------------------------------------------------------------------------------------------------*/
+
+  
+  /*Variable useParams que recoge el id y la tematica del cupón seleccionado para la edición */
   const { id, nombreTematica } = useParams();
 
-  // Normaliza el nombreTematica y reemplaza caracteres acentuados
+
+  /* función que normaliza el nombreTematica y reemplaza caracteres acentuados*/
   const normalizedTematica = nombreTematica
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase();
 
+  /*Variable que almacena el nombre de tematica normalizado junto con el id del cupón seleccionado */
   const cartImagePath = `${normalizedTematica}${id}.png`;
+  /*Variable que almacena el nombre de la imagen normalizado junto con el id del cupón seleccionado*/
   const imageName = `${normalizedTematica}/${normalizedTematica}${id}.png`;
 
-  /*Se usara canvas para preparar un lienzo editable con los campos de la imagen*/
+  /*-------------------------------------------------------------------------------------------------------------------------*/
+
+  /*Para poder realizar la edición de cupones, se utilizara la propiedad de HTML, el componente "canvas", el cual
+  crea un lienzo modificable en el cual se pueden dibujar elementos de forma persistente */
+
+  /*Variable que inicializa en lienzo canvas HTML*/
   const canvasRef = useRef(null);
 
-  /*Para manejar el estado de la fuente actual.. la seleccionada*/
-  const [selectedFont, SetSelectedFont] =
-    useState("Handlee"); /* por default handlee*/
 
+  /*useState para manejar el estado de la fuente seleccionada por el usuario en la edición del cupón */
+  const [selectedFont, SetSelectedFont] =
+    useState("Asap");
+
+ /*Función que permite cambiar el valor de la variable "selectedFont" del useState anterior, esto permite poder seleccionar
+ el tipo de fuente en tiempo de ejecución*/
   const handleFontChange = (e) => {
     SetSelectedFont(e.target.value);
   };
 
-  /*Esto es para manejar el tamaño de la fuente*/
+
+  /*useState para manejar el estado el tamaño de la fuente seleccionada por el usuario en la edición del cupón*/
   const [selectedfontSize, setSelectedFontSize] = useState(
     sizes.Enorme
-  ); /*por defecto 12px*/
+  ); 
+  
+ /*Función que permite cambiar el valor de la variable "selectedFontSize" del useState anterior, esto permite poder seleccionar
+ el tamaño de la fuente seleccionada en tiempo de ejecución*/
+
   const handleFontSizeChange = (e) => {
     setSelectedFontSize(sizes[e.target.value]); // Mapea el tamaño seleccionado a su valor en `sizes`
   };
 
-  /*Ahora se veran los campos editables, se incluyen 3 primero*/
+  /*Ahora se veran los campos editables en el cupón, se incluyen los primeros 3, correspondientes a los campos escritos*/
   const [remitente, setRemitente] = useState("remitente");
   const [destinatario, setDestinatario] = useState("destinatario");
   const [contenido, setContenido] = useState("contenido :)");
-  /*Para el manejor de la fecha */
+
+  /*variable para el manejo de la fecha en el cupón */
   const [datePlaceholder, setDatePlaceHolder] = useState("");
-  /*manejadores de estado*/
+
+  
+  /*Los siguientes tres manejadores sirven para setear los estados de los campos editables,
+  estos campos se actualizan cada vez que se escribe o borra en ellos, ya que corresponden a inputs editables
+  en el cupón*/
+
   const handleRemitente = (e) => {
     setRemitente(e.target.value);
   };
 
-  /*manejadores de estado*/
+
   const handleDestinatario = (e) => {
     setDestinatario(e.target.value);
   };
 
-  /*manejadores de estado*/
+
   const handleContenido = (e) => {
     setContenido(e.target.value);
   };
 
-  /*Esta parte es para manejar el estado de el ticket "ahora mismo, sera un button que cambie el estado"*/
+
+  /*---------------------------------------------------------------------------------------------------- */
+  /*Esta parte es para manejar el estado de el ticket "ahora mismo, será un button que cambie el estado"*/
   const [Check, SetCheck] = useState(false);
 
+
+  /*Función que cambia el estado de la variable anterior mediante un click, cada vez que se presiona la zona 
+  "ahora mismo" presente en el cupón editable*/
+
   const handleCheckClick = () => {
-    SetCheck((Check) => !Check); // Alterna el estado
+    SetCheck((Check) => !Check); 
   };
 
-  // Intenta cargar la imagen con `require`
+
+  /*Funcion que obtiene el cupón editable a través de un require. */
   const [imagePath, setImagePath] = useState(null);
   async function fecthCupon(idCupon) {
     try {
       const response = await gestionService.getPlantillaById(idCupon);
-      console.log(response.data.urlImagen);
+    
       setImagePath(
         require(`../assets/Plantillas/Todas/${response.data.urlImagen}`)
       );
@@ -219,12 +280,13 @@ function CuponEditView() {
     }
   }
 
+  /*El componente se renderiza cada vez que cambia el cupón a editar, esto permite cambiar el cupón a editar
+  dependiendo de su id*/
   useEffect(() => {
     fecthCupon(id);
   }, [id]);
 
   /* Funcion para formatear la fecha del input para poder tenerla en un formato mas amigable..*/
-
   const formatDate = (dateString) => {
     if (!dateString) return ""; // Manejo de caso donde no hay fecha
 
@@ -232,21 +294,19 @@ function CuponEditView() {
     return `${day} ${month} ${year.slice(-2)}`; // Devuelve en formato "DD MM YY"
   };
 
-  /*Ahora se opera con el canvas*/
+  /*---------------------------------------------------------------------------------------------------------------------------------*/
 
+  /*Ahora se comienza con la edición del cupón*/
+
+  /*useState que sirve para manejar el estado de la imagen cargada en el lienzo, inicialmente en null*/
   const [image, setImage] =
-    useState(null); /*Para manejar el estado de la imagen cargada */
+    useState(null); 
 
-  /*Para manejar el estado del sticker cargado: queda a implementar una version como arrays de estado para manejar
-    multiples estados y stickers.*/
-  /*Funciona como un array, ya que serán varios los stickers a aplicar
-    
-    TODO: posible limitacion de stickers en un lienzo (Quizá considerando las membresías)
-    */
-
+  /*Variable de estado que maneja los stickers seleccionados y presentes en el cupón mientras se está editando */
   const [stickers, setStickers] = useState([]);
 
-  /* validador de cantidad de stickers, solo pueden incluirse 2 por cupón*/
+  /* validador de cantidad de stickers, solo pueden incluirse 2 por cupón
+  esta funcion simplemente mide el arreglo de stickers de la variable anterior*/
   const areTwoStickers = () => {
     if (stickers.length == 2) {
       return true;
@@ -254,11 +314,12 @@ function CuponEditView() {
     return false;
   };
 
-  /*Funcion que permite añadir un sticker al arreglo de stickers*/
-  //src es la ruta fuente, estará parametrizada
+
   const [stickerIdCount, setStickerIdCount] = useState(0);
   const [selectedSticker, setSelectedSticker] = useState(null);
 
+
+    /*Funcion que permite añadir un sticker al arreglo de stickers*/
   // Agregar sticker automáticamente cuando se selecciona uno nuevo
   useEffect(() => {
     if (!selectedSticker) return; // Si no hay sticker seleccionado, no hacer nada
@@ -269,14 +330,21 @@ function CuponEditView() {
     );
 
     if (stickerExists) {
-      console.log("El sticker ya está en el lienzo.");
       return; // No agregarlo si ya está presente
     }
 
-    // Crear un nuevo sticker
+    // Crear un nuevo sticker, para ello se crea una Image(), propiedad de canvas y se asigna como fuente el sticker
     const img = new Image();
     img.src = selectedSticker.image;
 
+    /*Carga los stickers presentes en la carpeta de stickers, en el arreglo de stickers, para ello se asignan propiedades extras a cada sticker
+    por ejemplo: tamaño : alto, ancho
+    x: poscicion  inicial en el lienzo en la coordenada x
+    y: posicion inicial en el lienzo en la coordenada y
+    se asigna un id, ya que cada uno será guardado en el arreglo de stickers
+    */
+
+    /* En sí, convierte cada imagen de la carpeta stickers presente en assets para despues usarlo en el lienzo*/
     img.onload = () => {
       setStickers((prev) => [
         ...prev,
@@ -298,12 +366,16 @@ function CuponEditView() {
     };
 
     // Limpiar el sticker seleccionado después de agregarlo
+
     setSelectedSticker(null);
-  }, [selectedSticker, stickers, stickerIdCount]); // Solo depende de selectedSticker
+  }, [selectedSticker, stickers, stickerIdCount]);
+  
+  /*---------------------------------------------------------------------------------------------------------------------------*/
+
 
   /*Las siguientes funciones son para el movimiento de los stickers sobre el cupón */
 
-  /*Primero defino un useState para el sticker seleccionado*/
+  /*Se definen tanto funciones para mover el sticker con un mouse y de fomra tactil */
 
   // Función que actualiza el estado en el componente padre
   const handleStickerSelection = (sticker) => {
@@ -313,7 +385,9 @@ function CuponEditView() {
   const [moveStartPosition, setMoveStartPosition] = useState(null); // Para almacenar la posición inicial al mover el sticker
   const [isTouching, setIsTouching] = useState(false); // Estado adicional para manejar el toque
   const [isMoving, setIsMoving] = useState(false); // Controlar si el sticker está siendo movido
-  const [lastTap, setLastTap] = useState(null); // Último toque para verificar el doble toque
+  const [lastTap, setLastTap] = useState(null); // Último toque para verificar el doble toque, ya que para borrar el sticker en pantallas touch, se realiza con doble toque
+
+  /*Función que permite borrar un sticker desde el lienzo (cupón) mediante el presionado del click derecho*/
   const handleDeleteMouse = (e) => {
     e.preventDefault();
 
@@ -344,6 +418,8 @@ function CuponEditView() {
       );
     }
   };
+
+  /*Funcion que permite borrar un sticker del cupón en una pantalla táctil mediante 2 toques consecutivos */
   const handleTouchDelete = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -368,7 +444,7 @@ function CuponEditView() {
       if (lastTap && now - lastTap.time < 500) {
         if (clickedSticker.id === lastTap.sticker.id) {
           // Doble toque: eliminamos el sticker
-          console.log("Sticker Seleccionado para eliminar", clickedSticker);
+       
 
           setStickers((prevStickers) =>
             prevStickers.filter((sticker) => sticker.id !== clickedSticker.id)
@@ -385,6 +461,9 @@ function CuponEditView() {
       setLastTap({ sticker: clickedSticker, time: now });
     }
   };
+
+  /*Funcion que permite mover un sticker cen el cupón con el mouse de la computadora, para ello se mantiene presionado
+  y se arrastra por el cupón*/
   const handleMouseMove = (e) => {
     if (!selectedSticker) return;
 
@@ -413,6 +492,8 @@ function CuponEditView() {
     );
   };
 
+  /*Funcion que permite mover un sticker dentro dle cupón en una pantalla táctil, para ello se mantiene
+  presionado y se mueve a través del cupón */
   const handleTouchMove = (e) => {
     if (!isMoving || !selectedSticker) return; // No hacer nada si no estamos moviendo el sticker
 
@@ -424,22 +505,14 @@ function CuponEditView() {
     const x = (e.touches[0].clientX - rect.left) * scaleX;
     const y = (e.touches[0].clientY - rect.top) * scaleY;
 
-    console.log("x touch: ", x, "y touch:", y);
-
-    console.log("offsetX: ", selectedSticker.x, "offsetY:", selectedSticker.y);
-
+   
     // Actualizar el sticker con las nuevas coordenadas
     const updatedSticker = {
       ...selectedSticker,
       x: x - selectedSticker.offsetX,
       y: y - selectedSticker.offsetY,
     };
-    console.log(
-      "x sticker: ",
-      updatedSticker.x,
-      "y sticker:",
-      updatedSticker.y
-    );
+   
 
     setStickers((prevStickers) =>
       prevStickers.map((sticker) =>
@@ -448,6 +521,7 @@ function CuponEditView() {
     );
   };
 
+  /*Función que maneja el estado del sticker seleccionado cuando se deja de mover en el cupón mediante un mouse*/
   const handleMouseDown = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -480,6 +554,8 @@ function CuponEditView() {
     }
   };
 
+
+  /*Función que maneja el estado del sticker seleccionado una vez se deja de mover en el cupón cuando se usa una pantalla táctil */
   const handleTouchDown = (e) => {
     const canvas = canvasRef.current;
     const rect = canvas.getBoundingClientRect();
@@ -510,21 +586,19 @@ function CuponEditView() {
           offsetX: x - clickedSticker.x,
           offsetY: y - clickedSticker.y,
         });
-        console.log(
-          "offsetTDX:",
-          clickedSticker.offsetX,
-          "offsetTDY",
-          clickedSticker.offsetY
-        );
+       
       }
     }
   };
 
+  /*Funcion que maneja el temrino de movimiento del sticker con un mouse */
   const handleMouseUp = () => {
     setSelectedSticker(null); // Descartamos el sticker seleccionado cuando se deja de presionar el mouse
     const canvas = canvasRef.current;
     canvas.style.cursor = "default";
   };
+
+  /*Funcion que m anejra el termino de movimiento del sticker en  pantallas tactiles */
 
   const handleTouchEnd = () => {
     setIsMoving(false); // Terminamos el movimiento
@@ -532,7 +606,10 @@ function CuponEditView() {
     setMoveStartPosition(null); // Limpiamos la posición de inicio
   };
 
-  /*Esta funcion dibuja los stickers seleccionados en el lienzo*/
+
+
+  /*Esta funcion dibuja los stickers seleccionados en el lienzo, para ello recorre el arreglo de stickers
+  */
   const drawStickers = (ctx) => {
     stickers.forEach((sticker) => {
       ctx.drawImage(
@@ -544,6 +621,8 @@ function CuponEditView() {
       );
     });
   };
+
+
   // Cargar la imagen : Acá primeramente se carga el lienzo canvas con el cupon seleccionado.
 
   useEffect(() => {
@@ -557,34 +636,11 @@ function CuponEditView() {
   /*Esta funcion sirve para encontrar el sticker seleccionado desde el arreglo, para poder realizar el movimiento y demases
   en el lienzo del cupón seleccionado
   */
-  useEffect(
-    (e) => {
-      //para ver las coordenadas de los stickers por consola. asi se ve si las guardo o no
-      stickers.forEach((sticker) => {
-        console.log(
-          "Coordenadas Sticker:",
-          sticker.id,
-          "x:",
-          sticker.x,
-          "y:",
-          sticker.y,
-          "h: ",
-          sticker.height,
-          "w: ",
-          sticker.width
-        );
-        console.log("Cantidad Stickers:", stickers.length);
-      });
-    },
-    [stickers]
-  );
-  /*Defino lo que tiene el cupon, basicamente es */
-  /*
-  Plantilla del cupon
-  stickers
-  placeholders con el color adecuado, ademas de los checks y fechas
-  
-  */
+
+
+
+  /*--------------------------------------------------------------------------------------------------------------------------------*/
+
 
   // Dibuja la imagen y los placeholders en el canvas
   const drawCanvas = () => {
@@ -705,6 +761,9 @@ function CuponEditView() {
     };
   }, [handleTouchMove, handleTouchEnd, handleTouchDelete, handleTouchDown]);
 
+
+  /*Este useEffect permite redibujar el canvas cada vez que cambia alguna de sus dependencias.
+  esto en si permite la actualizacion del estado general de edicion del cupón de forma instantanea*/
   useEffect(() => {
     if (imagePath) {
       drawCanvas();
@@ -723,7 +782,9 @@ function CuponEditView() {
     checkMovil
   ]);
 
-  const { addToCart } = useContext(CartContext); // Accede a la función `addToCart`
+  /**Lo siguiente es para, una vez finalizada la edición del cupón, agregarlo al carrito*/
+
+ 
 
   const [cuponName, setCuponName] = useState(""); // Estado inicial vacío
   const [cuponPrecio, setCuponPrecio] = useState(0); // Estado inicial vacío
@@ -747,7 +808,13 @@ function CuponEditView() {
   const [notificationItem, setNotificationItem] = useState("");
   const [notificationImage, setNotificationImage] = useState("");
 
-  const handleSave = () => {
+
+  
+  const { addToCart } = useContext(CartContext); // Accede a la función `addToCart`
+
+  /*Esta funcion permite guardar el cupón en el carrito de comrpas.. el carrito
+  funcionará usando indexedDB, que a diferencia de locla storage, no tendrá problemas por limitación de memoria*/
+  const handleSave = async () => {
     const canvas = canvasRef.current;
     if (!canvas) {
       console.error("Canvas no está disponible o no ha sido inicializado.");
@@ -757,14 +824,15 @@ function CuponEditView() {
     const link = document.createElement("a");
     link.href = dataURL;
     link.download = `${nombreTematica}_cupon_${id}.png`;
-
+  
+    // Información del cupón
     const nuevoCupon = {
       id: Date.now(),
-      userId: userId, // Asegúrate de que userId tenga un valor válido // aca existe la posibilidad de que sea null debido a usuarios no registrados
+      userId: userId || 'anonimo', // Asegúrate de manejar el caso donde userId es null
       cartImagePath: cartImagePath,
       cuponName: cuponName,
-      precioF: cuponPrecio, // Asegúrate de que precioF tenga un valor válido, como "3000"
-      stickers, //Esto es un arreglo, notar eso, quiza se cambie el backend?
+      precioF: cuponPrecio, // Asegúrate de que precioF tenga un valor válido
+      stickers: stickers, // Esto es un arreglo
       remitente: { text: remitente, x: 380, y: 300 },
       destinatario: { text: destinatario, x: 830, y: 300 },
       contenido: { text: contenido, x: 420, y: 340 },
@@ -777,22 +845,59 @@ function CuponEditView() {
       idCupon: id,
       nombreTem: nombreTematica,
     };
-
-    addToCart(nuevoCupon); // Añade el cupón al carrito
+  
+    // Función para abrir la base de datos
+    const openDB = () => {
+      return new Promise((resolve, reject) => {
+        const request = indexedDB.open('cartItems', 1);
+  
+        request.onsuccess = (event) => {
+          resolve(event.target.result);
+        };
+  
+        request.onerror = (event) => {
+          reject(new Error('Error al abrir la base de datos.'));
+        };
+  
+        request.onupgradeneeded = (event) => {
+          const db = event.target.result;
+          if (!db.objectStoreNames.contains('cupones')) {
+            db.createObjectStore('cupones', { keyPath: 'id' }); // Creamos el almacén con clave primaria 'id'
+          }
+        };
+      });
+    };
+  
+    // Función para guardar un cupón en la base de datos
+    const saveCuponToDB = async (nuevoCupon) => {
+      try {
+        const db = await openDB();
+        const transaction = db.transaction('cupones', 'readwrite'); // Abrir transacción de lectura/escritura
+        const store = transaction.objectStore('cupones');
+        store.add(nuevoCupon); // Guardar el cupon en la base de datos
+        await transaction.complete; // Esperar a que la transacción termine
+     
+      } catch (error) {
+        console.error("Error al guardar el cupón en la base de datos:", error);
+      }
+    };
+  
+    // Guardar el cupón en la base de datos
+    await saveCuponToDB(nuevoCupon);
+  
+    // Añadir el cupón al carrito
+     await addToCart(nuevoCupon); 
+  
+    // Actualizar el estado de la UI
     SetElementsCupon(nuevoCupon);
-    //alert("Cupón agregado al carrito")
-
-    // Actualiza la notificación con el nombre del cupón
     setNotificationItem(nuevoCupon.cuponName);
     setShowNotification(true);
     setNotificationImage(nuevoCupon.cartImagePath);
-
-    /*Lo guardo de forma momentanea en el navegador para poder utilizarlo en el carrito*/
-
+  
     // Ocultar notificación después de 5 segundos
     setTimeout(() => setShowNotification(false), 5000);
   };
-
+  
   const [isSidebarVisible, setSidebarVisible] = useState(false);
   const toggleSidebar = () => {
     setSidebarVisible((prevState) => !prevState);
@@ -817,7 +922,7 @@ function CuponEditView() {
       {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
-      {console.log("cs", checkMovil)}
+    
     { checkMovil? (<div className="message"> Rote la pantalla para editar el cupón!</div>):
      ( <div className="cupon-edit-view-container">
         {
@@ -905,7 +1010,7 @@ function CuponEditView() {
                 <HexColorPicker
                   color={color}
                   onChange={(newColor) => {
-                    console.log("Nuevo color seleccionado:", newColor);
+                 
                     setColor(newColor);
                   }}
                 />
@@ -1002,7 +1107,7 @@ function CuponEditView() {
                   <HexColorPicker
                     color={color}
                     onChange={(newColor) => {
-                      console.log("Nuevo color seleccionado:", newColor);
+                      
                       setColor(newColor);
                     }}
                   />

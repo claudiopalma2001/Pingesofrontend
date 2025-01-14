@@ -6,6 +6,50 @@ import Navbar from "../components/Navbar/Navbar";
 import '../components/Navbar/Navbar.css';
 import gestionService from '../services/gestion-service';
 
+// Funciones para interactuar con IndexedDB
+const openDB = () => {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open('cartItems', 1);
+
+    request.onsuccess = (event) => resolve(event.target.result);
+    request.onerror = (event) => reject('Error al abrir la base de datos');
+
+    request.onupgradeneeded = (event) => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains('cupones')) {
+        db.createObjectStore('cupones', { keyPath: 'id' });
+      }
+    };
+  });
+};
+// Función para eliminar la base de datos de IndexedDB
+const deleteDatabase = (dbName) => {
+  const request = indexedDB.deleteDatabase(dbName);
+
+  request.onsuccess = () => {
+    console.log(`La base de datos ${dbName} ha sido eliminada exitosamente.`);
+  };
+
+  request.onerror = (event) => {
+    console.error(`Hubo un error al intentar eliminar la base de datos ${dbName}:`, event);
+  };
+
+  request.onblocked = () => {
+    console.log(`La base de datos ${dbName} está bloqueada y no puede ser eliminada en este momento.`);
+  };
+};
+
+const getCuponesFromDB = () => {
+  return new Promise(async (resolve, reject) => {
+    const db = await openDB();
+    const transaction = db.transaction('cupones', 'readonly');
+    const store = transaction.objectStore('cupones');
+    const request = store.getAll();
+
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = (error) => reject(error);
+  });
+};
 const ConfirmarPago = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -76,7 +120,7 @@ const ConfirmarPago = () => {
     return;
   }
   if (compraProcesada && isDownladed) {
-    localStorage.removeItem("cartItems");
+    await deleteDatabase('cartItems');
     // Evitar realizar la solicitud si la compra ya fue procesada
   }
   if (!compraProcesada && !isDownladed) {
@@ -114,6 +158,7 @@ try {
     // Manejar otros errores si es necesario
   }
 }
+const cupones = await getCuponesFromDB();
 
   const compra = {
     idUsuario: userId,
@@ -184,8 +229,7 @@ try {
   }
 
   async function saveFinalCupons() {
-    const cupons = JSON.parse(localStorage.getItem("cartItems"));
-
+   const cupones = await getCuponesFromDB();
     // Validación inicial
     if (!cupons || cupons.length === 0) {
         console.log("No hay cupones para descargar.");
@@ -231,46 +275,30 @@ try {
 
 
   {/*Para descargar el cupon (cupones) una vez validado el pago.*/}
-  const handleDownload = () => {
-    // Se obtienen los datos desde localStorage
-    const cupones = JSON.parse(localStorage.getItem("cartItems"));
-    
+  const handleDownload = async () => {
+    const cupones = await getCuponesFromDB("cartItems"); // Obtener cupones desde IndexedDB
     if (!cupones || cupones.length === 0) {
-        console.log("No hay cupones para descargar.");
-        return;
+      console.log("No hay cupones para descargar.");
+      return;
     }
 
-    // Iterar sobre los cupones
     for (let i = 0; i < cupones.length; i++) {
-        const cupon = cupones[i]; // Cada objeto del arreglo
-        const link = document.createElement('a'); // Crear enlace <a>
-        
-        // Verifica que exista la propiedad `dataURL` en el objeto
-        if (cupon.dataURL) {
-            link.href = cupon.dataURL; // Asignar el enlace base64
-            const nombreTematica = cupon.nombreTematica || 'cupon'; // Nombre de la temática (valor por defecto)
-            const id = cupon.id || i + 1; // ID del cupón (valor por defecto)
-            link.download = `${nombreTematica}_cupon_${id}.png`; // Nombre del archivo
-            link.click(); // Iniciar descarga
-
-            /*Seteo el estado de la descarga, para saber si se descargaron los cupones*/
-            setIsDownloaded(true);
-            setButtonState(false);
-
-        
-
-        } else {
-            console.log(`El cupón en el índice ${i} no tiene un dataURL válido.`);
-        }
-
-       
-
-       
-
-
-
+      const cupon = cupones[i];
+      const link = document.createElement('a');
+      
+      if (cupon.dataURL) {
+        link.href = cupon.dataURL;
+        const nombreTematica = cupon.nombreTematica || 'cupon';
+        const id = cupon.id || i + 1;
+        link.download = `${nombreTematica}_cupon_${id}.png`;
+        link.click();
+        setIsDownloaded(true);
+        setButtonState(false);
+      } else {
+        console.log(`El cupón en el índice ${i} no tiene un dataURL válido.`);
+      }
     }
-};
+  };
 
   return (
   <div>
