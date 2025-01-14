@@ -95,9 +95,9 @@ const HistorialCompras = () => {
 
   // Función para formatear la fecha
   const formatFecha = (fecha) => {
-    const date = new Date(fecha);
+    const date = new Date(fecha + "T00:00:00"); // Forzamos la interpretación en local
     const day = date.getDate().toString().padStart(2, "0");
-    const month = (date.getMonth() + 1).toString().padStart(2, "0"); // Mes es 0-11, sumamos 1
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
