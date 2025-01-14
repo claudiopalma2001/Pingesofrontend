@@ -231,14 +231,14 @@ const cupones = await getCuponesFromDB();
   async function saveFinalCupons() {
    const cupones = await getCuponesFromDB();
     // Validación inicial
-    if (!cupons || cupons.length === 0) {
+    if (!cupones || cupones.length === 0) {
         console.log("No hay cupones para descargar.");
         return;
     }
 
     try {
         // Procesar todos los cupones en paralelo
-        const savePromises = cupons.map((element) => {
+        const savePromises = cupones.map((element) => {
             // Validar las propiedades necesarias
             if (
                 !element.remitente?.text ||
