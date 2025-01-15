@@ -191,8 +191,7 @@ const ConfirmarPago = () => {
 
     try {
       if (!compraProcesada) {
-        const response = await axios.post('http://localhost:8080/api/v1/compras/saveCompraWithCupones', compra);
-        if (response.status === 200) {
+        const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);        if (response.status === 200) {
           setCompraProcesada(true);
         } else {
           console.error("Error al guardar la compra:", response.statusText);

@@ -3,7 +3,7 @@
   margin: 0;
   padding: 20;
   height: 100vh;
-  background-color: #f4f4f4;
+  background-color: #ffffff;
 }
 
 .historial-compras {
@@ -29,7 +29,7 @@
 }
 
 .tabla-compras th {
-  background-color: #4CAF50;
+  background-color: #8bc3bc;
   color: white;
 }
 
