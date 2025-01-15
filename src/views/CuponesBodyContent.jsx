@@ -1,13 +1,13 @@
 import '../components/SideBar2/styles.css';
 import React, { useEffect, useState } from "react";
 import gestionService from "../services/gestion-service";
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import {Link, useNavigate} from "react-router-dom";
 import "@fontsource/inria-sans"; //fuente para los titulos
 
 function CuponBodyContent({ idTematica }) {
     const [cupones, setCupones] = useState([]);
     const [plantillas, setPlantillas] = useState({});
+    const navigate = useNavigate();
 
     const tematicasNombres = {
         1: "Pololos",
@@ -62,6 +62,10 @@ function CuponBodyContent({ idTematica }) {
             });
     }, [idTematica]);
 
+    const handleCardClick = (nombreTematica, cuponId) => {
+        navigate(`/edit/${nombreTematica}/${cuponId}`);
+    };
+
     return (
         <div>
             <h1 className="tematica-title" style={{ fontFamily: 'Inria Sans', color: "#8f97a0;" }}> Cupones  <strong style={{ fontWeight: 'bold' }}>{nombreTematica}</strong></h1>
@@ -73,7 +77,7 @@ function CuponBodyContent({ idTematica }) {
             </h3>
             <div className="cupons-body-content">
                 {cupones.map((cupon) => (
-                    <div key={cupon.id} className="cupon-card">
+                    <div key={cupon.id} className="cupon-card" onClick={() => handleCardClick(nombreTematica, cupon.id) } style={{ cursor: "pointer" }} >
                         {plantillas[cupon.id] && plantillas[cupon.id].map((plantilla) => (
                             <div key={plantilla.id}>
                                 <img
@@ -84,12 +88,13 @@ function CuponBodyContent({ idTematica }) {
                             </div>
                         ))}
                         <h3 className="cupons-body-content-info-text">{cupon.nombreCupon}</h3>
-                        <div>
-                            <label className="cupons-price">${Number(cupon.precio).toLocaleString('es-CL')}</label>
-                        </div>
                         <Link to={`/edit/${nombreTematica}/${cupon.id}`}>
                             <button type="submit" className="editar2-button">Editar</button>
                         </Link>
+                        <div>
+                            <label className="cupons-price">${Number(cupon.precio).toLocaleString('es-CL')}</label>
+                        </div>
+
                     </div>
                 ))}
                 <div style={{ height: "80px" }}></div>

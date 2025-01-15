@@ -25,6 +25,8 @@ function CartBodyContent() {
     /*Cupones almacenados en el carrito de compras*/
     const [cupones, SetCupones] = useState([]);
     
+    
+    
         /*Esta función permite acceder a la base de datos indexedDB para obtener los cupones agregados al carrito*/
         const openDB = () => {
             return new Promise((resolve, reject) => {
@@ -80,11 +82,9 @@ function CartBodyContent() {
             };
         
             fetchCupones(); // Llamamos a la función asincrónica
-          }, [cupones]); // Se ejecutará solo una vez cuando el componente se monte
+          }, [cartItems]); // Se ejecutará solo una vez cuando el componente se monte
 
-        ;
-    
-  
+        /*Para saber si estoy en UserProfile */
     /*Para saber si estoy en UserProfile */
     const location = useLocation();
 
@@ -166,6 +166,8 @@ function CartBodyContent() {
         }
     }, [cuponesFinales]); // Se ejecuta cuando cambian los cupones finales
 
+    
+    
     /*
     function calcularTotal() {
         return cuponesFinales.reduce((acc, cupon) => acc + cupon.precioF, 0);
@@ -185,28 +187,6 @@ function CartBodyContent() {
         }
     };
 
-
-    const handleDeleteCupon = async (id) => {
-        try {
-            // Llamar a la API para eliminar el cupón final
-            await gestionService.deleteCuponFinalById(id);
-
-            // Actualizar la lista de cupones en el estado
-            setCuponesFinales((prevCupones) =>
-                prevCupones.filter((cupon) => cupon.id !== id)
-            );
-
-            // Opcional: También actualizar las plantillas asociadas, si es necesario
-            setPlantillasFinales((prevPlantillas) => {
-                const { [id]: _, ...rest } = prevPlantillas;
-                return rest;
-            });
-
-            console.log(`Cupón con ID ${id} eliminado exitosamente.`);
-        } catch (error) {
-            console.error(`Error al eliminar el cupón con ID ${id}:`, error);
-        }
-    };
 
     const handleNavigate = async () => {
         const totalAmount = calcularTotal();
@@ -235,7 +215,7 @@ function CartBodyContent() {
                 buyOrder: `BO-${Date.now()}`,
                 sessionId: sessionId,
                 amount: totalAmount,
-                returnUrl: "https://main.d26i076z7d4xot.amplifyapp.com/pago/confirmar",
+                returnUrl: "http://localhost:3000/pago/confirmar",
             };
 
             const response = await gestionService.iniciarPago(payload);

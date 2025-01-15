@@ -156,5 +156,8 @@
         background-color: #dddddd; /* Color */
         margin-top: 12px;
     }
+    .navbar-closed{
+        display: none;
+      }
     
 }

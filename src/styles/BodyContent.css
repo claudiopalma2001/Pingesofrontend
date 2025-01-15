@@ -47,8 +47,15 @@
     background-color: #fff;
     opacity: 0; /* Estado inicial */
     animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+    transition: 0.3s ease;
 
 }
+
+.cupon-card2:hover {
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid #d3d3d3;
+}
+
 
 @media (max-width: 768px) {
     .banner-image {

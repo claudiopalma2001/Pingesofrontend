@@ -156,7 +156,8 @@ const ConfirmarPago = () => {
     let userId = 0;
     try {
       const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${correo}`);
-    if (response?.data) {
+
+      if (response?.data) {
         userId = response.data;
       } else {
         console.warn("El usuario no fue encontrado en la base de datos.");
@@ -191,7 +192,9 @@ const ConfirmarPago = () => {
 
     try {
       if (!compraProcesada) {
-        const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);        if (response.status === 200) {
+        const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);
+    
+        if (response.status === 200) {
           setCompraProcesada(true);
         } else {
           console.error("Error al guardar la compra:", response.statusText);

@@ -37,7 +37,7 @@
 .cupons-body-content {
     display: grid;
     grid-template-columns: repeat(3, minmax(280px, 280px));
-    grid-auto-rows: minmax(270px, 270px);
+    grid-auto-rows: minmax(230px, 230px);
     column-gap: 40px; /* Espacio entre cupones */
     row-gap: 60px;
     justify-content: center;
@@ -55,6 +55,7 @@
     /*border-radius: 4px;*/
     border: 1px solid #ddd;
     opacity: 1; /* Comienza invisible */
+    margin-bottom: -10px;
 
 }
 
@@ -66,7 +67,7 @@
 .cupon-card {
     border: 1px solid #ddd;
     width: 400px;
-    height: 280px;
+    height: 235px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     text-align: center;
@@ -77,44 +78,46 @@
 }
 
 .cupon-card:hover{
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
+    border: 1px solid #d3d3d3;
 
-    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.2);
+    .editar2-button {
+        border: 1px solid #838383;
+    }
+
 }
 
 .cupons-body-content-info-text {
-    font-size: 25px;
-    margin: 10px 0;
+    font-size: 20px;
+    margin: -8px 0;
     color: #404040;
     font-weight: 500;
 
 }
 
 .cupons-price{
-    color: #72aaac;
+    color: #79a6a8;
     font-weight: 500;
-    font-size: 20px;
+    font-size: 18px;
+    font-family: 'Asap', sans-serif;
 }
 
 .tematica-title {
     font-size: 65px;
-
     color: #7e858d;
     margin-top: 60px;
-    margin-bottom: 20px;
+    margin-bottom: 1px;
     font-weight: normal;
-
-
 }
+
 .tematica-slogan{
     font-size: 23px;
-
-    margin-bottom: 5px;
+    margin-bottom: 1px;
     color:#7e858d ;
-
 }
 
 .slogan-text{
-    font-size: 21px;
+    font-size: 18px;
 
 }
 
@@ -126,17 +129,17 @@
 }
 
 .editar2-button {
+    margin-bottom: 15px;
     border: 1px solid #c3c3c3;
     background-color: #ffffff;
     color: #7c7c7c;
-    padding: 10px 20px;
-    width: 100px;
+    width: 95px;
     font-size: 16px;
     cursor: pointer;
     margin-top: 18px;
     transition: background-color 0.3s ease, border 0.3s ease;
     font-family: 'Asap', sans-serif;
-
+    height: 30px;
 
 }
 
