@@ -9,7 +9,6 @@ import UserProfile from './components/UserProfile/UserProfile';
 import AdminProfile from './components/AdminProfile/AdminProfile';
 import CuponEditView from "./views/CuponEditView";
 import FormularioCrearPlantillaYCupon from './components/AdminProfile/FormularioPlantillaYCupon';
-import Pago from './views/Pago';
 import ConfirmarPago from './views/ConfirmarPago';
 import CartPage from "./views/CartPage";
 import HistorialCompras from './views/HistorialCompra';
