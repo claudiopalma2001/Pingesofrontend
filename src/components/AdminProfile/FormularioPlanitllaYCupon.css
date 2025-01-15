@@ -79,3 +79,11 @@
 .add-cupon-button-admin:hover {
     background-color: #40bd43;
 }
+
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}

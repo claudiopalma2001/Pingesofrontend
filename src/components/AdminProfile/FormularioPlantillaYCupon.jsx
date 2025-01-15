@@ -8,7 +8,7 @@ const FormularioCrearPlantillaYCupon = () => {
     const [formData, setFormData] = useState({
         archivo: null,
         nombreCupon: '',
-        tipo: '',
+        tipo: 'free',
         idTematica: '',
         idIdioma: '1', // Por defecto, Español
         idPlataforma: '1', // Por defecto, Escritorio
@@ -32,6 +32,8 @@ const FormularioCrearPlantillaYCupon = () => {
     return (
         <div className="main-page-admin-content">
             <div className="form-admin-content">
+                {/* Título del formulario */}
+                <h1 className="form-title">Crear Plantilla y Cupón</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group-admin">
                         <label>Imagen de Plantilla</label>
@@ -48,7 +50,6 @@ const FormularioCrearPlantillaYCupon = () => {
                         <select name="tipo" onChange={handleChange} value={formData.tipo}>
                             <option value="">Selecciona un tipo</option>
                             <option value="free">Gratis</option>
-                            <option value="Premium">Membresía</option>
                         </select>
                     </div>
 
