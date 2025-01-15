@@ -110,33 +110,33 @@ const ConfirmarPago = () => {
   }, []);
   useEffect(() => {
     const deleteDataAndRedirect = async () => {
+      // Solo eliminar la base de datos si la compra está procesada y los cupones se descargaron
       if (compraProcesada && isDownladed) {
         try {
-          // Llamar a la función para borrar la base de datos
+          // Añadimos un pequeño retraso para evitar el error de bloqueo
+          await new Promise((resolve) => setTimeout(resolve, 1000)); // Espera de 1 segundo
+  
+          // Espera a que la base de datos se elimine correctamente
           await new Promise((resolve, reject) => {
             const request = indexedDB.deleteDatabase('cartItems');
-            
-            request.onsuccess = () => resolve(); // La base de datos se ha eliminado con éxito
-            request.onerror = (event) => reject(new Error('Error al eliminar la base de datos'));
-            request.onblocked = () => reject(new Error('La base de datos está bloqueada y no puede ser eliminada en este momento'));
+            request.onsuccess = () => resolve();
+            request.onerror = (event) => reject(new Error(`Error al eliminar la base de datos: ${event.target.error}`));
           });
   
-          // Después de eliminar la base de datos, abrirla nuevamente
+          // Después de eliminar la base de datos, intentar abrirla nuevamente
           const db = await openDB();
           console.log('Base de datos abierta nuevamente:', db);
   
           // Redirigir al inicio después de borrar la base de datos
           navigate('/');
         } catch (error) {
-          console.error('Error al borrar la base de datos o abrirla nuevamente:', error);
+          console.error("Error al borrar la base de datos o abrirla nuevamente:", error);
         }
       }
     };
   
-    deleteDataAndRedirect(); // Llamar a la función async
-  }, [compraProcesada, isDownladed]); // Dependencias
-  
-
+    deleteDataAndRedirect();
+  }, [compraProcesada, isDownladed, navigate]);
   const handleNavigate = async () => {
     if (!detallesTransaccion) {
       console.error("No hay detalles de la transacción disponibles.");

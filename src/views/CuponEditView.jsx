@@ -828,7 +828,7 @@ El renderizado funciona cada vez que cambia la orientación de pantalla y la var
     // Información del cupón
     const nuevoCupon = {
       id: Date.now(),
-      userId: userId || 'anonimo', // Asegúrate de manejar el caso donde userId es null
+      userId: userId || null, // Asegúrate de manejar el caso donde userId es null
       cartImagePath: cartImagePath,
       cuponName: cuponName,
       precioF: cuponPrecio, // Asegúrate de que precioF tenga un valor válido
