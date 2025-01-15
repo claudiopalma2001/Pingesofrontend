@@ -6,7 +6,7 @@ export const CartContext = createContext();
 // Función para abrir la base de datos de IndexedDB
 const openDB = () => {
     return new Promise((resolve, reject) => {
-        const request = indexedDB.open('cartItems', 1);
+        const request = indexedDB.open('cartItems', 2);
 
         request.onsuccess = (event) => {
             resolve(event.target.result); // Devuelve la base de datos
