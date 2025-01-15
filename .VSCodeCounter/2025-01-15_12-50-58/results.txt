@@ -1,0 +1,106 @@
+Date : 2025-01-15 12:50:58
+Directory : c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src
+Total : 63 files,  5377 codes, 391 comments, 1121 blanks, all 6889 lines
+
+Languages
++----------------+------------+------------+------------+------------+------------+
+| language       | files      | code       | comment    | blank      | total      |
++----------------+------------+------------+------------+------------+------------+
+| JavaScript JSX |         22 |      3,013 |        339 |        647 |      3,999 |
+| CSS            |         21 |      1,977 |         31 |        400 |      2,408 |
+| JavaScript     |          6 |        158 |         13 |         39 |        210 |
+| TypeScript JSX |          5 |        150 |          1 |         28 |        179 |
+| XML            |          8 |         70 |          3 |          3 |         76 |
+| TypeScript     |          1 |          9 |          4 |          4 |         17 |
++----------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                          | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                             |         63 |      5,377 |        391 |      1,121 |      6,889 |
+| . (Files)                                                                                                                     |          8 |        122 |          5 |         28 |        155 |
+| assets                                                                                                                        |          7 |         69 |          3 |          3 |         75 |
+| assets\Icons                                                                                                                  |          7 |         69 |          3 |          3 |         75 |
+| components                                                                                                                    |         19 |      1,373 |         45 |        267 |      1,685 |
+| components\AdminProfile                                                                                                       |          4 |        381 |         14 |         80 |        475 |
+| components\Navbar                                                                                                             |          2 |        255 |          8 |         45 |        308 |
+| components\SideBar                                                                                                            |          2 |        130 |          2 |         24 |        156 |
+| components\SideBar2                                                                                                           |          7 |        250 |          5 |         45 |        300 |
+| components\StickerBodyContent                                                                                                 |          2 |        158 |         13 |         23 |        194 |
+| components\UserProfile                                                                                                        |          2 |        199 |          3 |         50 |        252 |
+| context                                                                                                                       |          1 |         75 |          8 |         18 |        101 |
+| services                                                                                                                      |          1 |         82 |          8 |         23 |        113 |
+| styles                                                                                                                        |         12 |      1,221 |         14 |        234 |      1,469 |
+| views                                                                                                                         |         15 |      2,435 |        308 |        548 |      3,291 |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| filename                                                                                                                      | language       | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\App.css                                               | CSS            |         33 |          0 |          9 |         42 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\App.js                                                | JavaScript     |         41 |          0 |          8 |         49 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\App.test.js                                           | JavaScript     |          7 |          0 |          2 |          9 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\arrow-next-small-svgrepo-com.svg         | XML            |          4 |          0 |          0 |          4 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\color-picker-dropper-colour.svg          | XML            |          9 |          1 |          1 |         11 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\search-svgrepo-com.svg                   | XML            |          4 |          0 |          0 |          4 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\trash-icon-delete.svg                    | XML            |         21 |          1 |          1 |         23 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\trash-icon.svg                           | XML            |         21 |          1 |          1 |         23 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\user-circle-svgrepo-com.svg              | XML            |          6 |          0 |          0 |          6 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\assets\Icons\x-thin.svg                               | XML            |          4 |          0 |          0 |          4 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\AdminProfile\AdminProfile.css              | CSS            |        120 |         10 |         30 |        160 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\AdminProfile\AdminProfile.jsx              | JavaScript JSX |        111 |          4 |         16 |        131 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\AdminProfile\FormularioPlanitllaYCupon.css | CSS            |         61 |          0 |         20 |         81 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\AdminProfile\FormularioPlantillaYCupon.jsx | JavaScript JSX |         89 |          0 |         14 |        103 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\Navbar\Navbar.css                          | CSS            |        136 |          0 |         28 |        164 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\Navbar\Navbar.jsx                          | JavaScript JSX |        119 |          8 |         17 |        144 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\Example.tsx                       | TypeScript JSX |         42 |          0 |          6 |         48 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\MenuItem.tsx                      | TypeScript JSX |         45 |          1 |         11 |         57 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\MenuToggle.tsx                    | TypeScript JSX |         39 |          0 |          5 |         44 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\Navigation.tsx                    | TypeScript JSX |         19 |          0 |          4 |         23 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\index.tsx                         | TypeScript JSX |          5 |          0 |          2 |          7 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\styles.css                        | CSS            |         91 |          0 |         13 |        104 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar2\use-dimensions.ts                 | TypeScript     |          9 |          4 |          4 |         17 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar\SideBar.css                        | CSS            |         91 |          0 |         18 |        109 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\SideBar\SideBar.jsx                        | JavaScript JSX |         39 |          2 |          6 |         47 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\StickerBodyContent\StickerBodyContent.css  | CSS            |        100 |          7 |         13 |        120 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\StickerBodyContent\StickerBodyContent.jsx  | JavaScript JSX |         58 |          6 |         10 |         74 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\UserProfile\UserProfile.css                | CSS            |        112 |          0 |         32 |        144 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\components\UserProfile\UserProfile.jsx                | JavaScript JSX |         87 |          3 |         18 |        108 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\context\CartContext.jsx                               | JavaScript JSX |         75 |          8 |         18 |        101 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\index.css                                             | CSS            |         12 |          0 |          3 |         15 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\index.js                                              | JavaScript     |         15 |          1 |          3 |         19 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\logo.svg                                              | XML            |          1 |          0 |          0 |          1 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\reportWebVitals.js                                    | JavaScript     |         12 |          0 |          2 |         14 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\services\gestion-service.js                           | JavaScript     |         82 |          8 |         23 |        113 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\setupTests.js                                         | JavaScript     |          1 |          4 |          1 |          6 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\BodyContent.css                                | CSS            |         58 |          1 |         21 |         80 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\CartBodyContent.css                            | CSS            |        128 |          0 |         33 |        161 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\CartNotification.css                           | CSS            |         70 |          0 |         11 |         81 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\CartPage.css                                   | CSS            |         33 |          1 |         10 |         44 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\ConfirmarPago.css                              | CSS            |         91 |          2 |         12 |        105 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\CuponEditView.css                              | CSS            |        419 |          8 |         35 |        462 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\CuponesBodyContent.css                         | CSS            |        148 |          2 |         43 |        193 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\HistorialCompra.css                            | CSS            |         48 |          0 |         11 |         59 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\HomeStyle.css                                  | CSS            |         65 |          0 |         23 |         88 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\ImageEditor.css                                | CSS            |          4 |          0 |          0 |          4 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\LoginStyle.css                                 | CSS            |         77 |          0 |         17 |         94 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\styles\RegisterStyle.css                              | CSS            |         80 |          0 |         18 |         98 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\BodyContent.jsx                                 | JavaScript JSX |         49 |          0 |          8 |         57 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CartBodyContent.jsx                             | JavaScript JSX |        220 |         18 |         45 |        283 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CartNotification.jsx                            | JavaScript JSX |         27 |          0 |          7 |         34 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CartPage.jsx                                    | JavaScript JSX |         35 |          0 |          9 |         44 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\ConfirmarPago.jsx                               | JavaScript JSX |        278 |         14 |         43 |        335 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CuponEditView.jsx                               | JavaScript JSX |        808 |        168 |        233 |      1,209 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CuponReEditView.jsx                             | JavaScript JSX |        541 |         99 |        136 |        776 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CuponesBodyContent.jsx                          | JavaScript JSX |         96 |          2 |         11 |        109 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\CuponesPage.jsx                                 | JavaScript JSX |         31 |          0 |         11 |         42 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\HistorialCompra.jsx                             | JavaScript JSX |        145 |          4 |         14 |        163 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\HomePage.jsx                                    | JavaScript JSX |         31 |          1 |          7 |         39 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\ImageEditor.jsx                                 | JavaScript JSX |          7 |          0 |          2 |          9 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\LoginPage.jsx                                   | JavaScript JSX |         51 |          0 |          9 |         60 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\MenuPage.jsx                                    | JavaScript JSX |          0 |          0 |          1 |          1 |
+| c:\Users\clau_\OneDrive\Escritorio\Frontend pingeso\Pingesofrontend\src\views\RegisterPage.jsx                                | JavaScript JSX |        116 |          2 |         12 |        130 |
+| Total                                                                                                                         |                |      5,377 |        391 |      1,121 |      6,889 |
++-------------------------------------------------------------------------------------------------------------------------------+----------------+------------+------------+------------+------------+
