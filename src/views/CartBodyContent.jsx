@@ -80,7 +80,7 @@ function CartBodyContent() {
             };
         
             fetchCupones(); // Llamamos a la función asincrónica
-          }, [cartItems]); // Se ejecutará solo una vez cuando el componente se monte
+          }, [cupones]); // Se ejecutará solo una vez cuando el componente se monte
 
         ;
     

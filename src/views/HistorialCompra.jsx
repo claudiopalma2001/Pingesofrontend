@@ -63,7 +63,7 @@ const HistorialCompras = () => {
   // Función para obtener el userId a partir del correo
   const getUserIdByEmail = async (email) => {
     try {
-      const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${email}`);
+      const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${email}`);      
       if (response && response.data) {
         setUserId(response.data); // Establece el userId
       }
@@ -94,6 +94,7 @@ const HistorialCompras = () => {
   }
 
   // Función para formatear la fecha
+  // Función para formatear la fecha
   const formatFecha = (fecha) => {
     const date = new Date(fecha + "T00:00:00"); // Forzamos la interpretación en local
     const day = date.getDate().toString().padStart(2, "0");
@@ -101,6 +102,7 @@ const HistorialCompras = () => {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
 
   // Función para formatear el precio en CLP
   const formatPrecio = (precio) => {

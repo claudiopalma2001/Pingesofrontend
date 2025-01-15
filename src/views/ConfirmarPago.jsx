@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "../styles/ConfirmarPago.css";
@@ -50,22 +50,17 @@ const getCuponesFromDB = () => {
     request.onerror = (error) => reject(error);
   });
 };
+
+// Componente ConfirmarPago
 const ConfirmarPago = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [detallesTransaccion, setDetallesTransaccion] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  /*Para manejar los estados. el usuario no puede salir de la pestaña sin antes haber
-  descargado los cupones, los que a su vez deben ser guardados en backend antes de eliminar el carrito */
-
   const [isDownladed, setIsDownloaded] = useState(false);
-  /*Par amanejar el estado de la compra, y evitar que se envien multiples solicitudes al backend */
-
   const [compraProcesada, setCompraProcesada] = useState(false);
-  /*estado para controlar le boton de descarga*/
-  const [buttonState, setButtonState]= useState(true);
-
+  const [buttonState, setButtonState] = useState(true);
 
   const paymentTypeDescriptions = {
     VD: 'Débito',
@@ -75,7 +70,7 @@ const ConfirmarPago = () => {
     NC: 'Crédito en cuotas',
     SI: 'Crédito en cuotas',
     S2: 'Crédito en cuotas'
-  }; 
+  };
 
   const getQueryParams = (query) => {
     const params = new URLSearchParams(query);
@@ -93,6 +88,7 @@ const ConfirmarPago = () => {
         params: { token_ws: token },
       });
 
+
       if (response.status === 200) {
         setDetallesTransaccion(response.data);
       } else {
@@ -105,99 +101,6 @@ const ConfirmarPago = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    if (compraProcesada) {
-      navigate('/'); // Redirigir cuando compraProcesada sea true
-    }
-  }, [compraProcesada]); 
-
-  const handleNavigate = async () => {
-
-  
-  // Validar si los detalles de la transacción están disponibles
-  if (!detallesTransaccion) {
-    console.error("No hay detalles de la transacción disponibles.");
-    return;
-  }
-  if (compraProcesada && isDownladed) {
-    await deleteDatabase('cartItems');
-    // Evitar realizar la solicitud si la compra ya fue procesada
-  }
-  if (!compraProcesada && !isDownladed) {
-    alert("¡Debe descargar los cupones!")
-    // Evitar realizar la solicitud si la compra ya fue procesada
-  }
-
-
-  // Construir la información de la compra
-
-  const correo = detallesTransaccion?.sessionId;
-
-if (!correo) {
-  console.error("El sessionId no está definido o es nulo.");
-  return; // Salir de la función o manejar el caso donde sessionId sea inválido
-}
-
-let userId = 0;
-
-try {
-  const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${correo}`);
-
-  if (response?.data) {
-    userId = response.data;
-    // Continuar con la lógica que usa el userId
-  } else {
-    console.warn("El usuario no fue encontrado en la base de datos.");
-  }
-} catch (error) {
-  if (error.response?.status === 404) {
-    console.warn("Usuario Invitado. userId establecido en 0.");
-    userId = 0;
-  } else {
-    console.error("Error al obtener el usuario:", error);
-    // Manejar otros errores si es necesario
-  }
-}
-const cupones = await getCuponesFromDB();
-
-  const compra = {
-    idUsuario: userId,
-    fechaCompra: new Date().toISOString().split('T')[0], // Fecha actual en formato YYYY-MM-DD
-    montoTotal: detallesTransaccion.amount,
-    cuponesFinales: JSON.parse(localStorage.getItem("cartItems"))?.map(cupon => ({
-      id: cupon.id.text,
-      campoDe: cupon.remitente.text,
-      campoPara: cupon.destinatario.text,
-      campoIncluye: cupon.contenido.text,
-      fecha: "2024-12-21",
-      idCupon: cupon.idCupon,
-      idUsuario: cupon.userId,
-      idPlantilla: 0,
-      precioF: 3000,
-    })) || []
-  };
-
-
-    try {
-    // Enviar la compra al backend
-    if(!compraProcesada){
-      const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);
-    
-
-    if (response.status === 200) {
-      console.log("Compra guardada exitosamente:", response.data);
-      /*Seteo el estado de la compra en true, simbolizando que ya fue realizada */
-      setCompraProcesada(true);
-      /*reviso el estado de la descarga, para saber si es posible continuar o no*/
-      
-    } else {
-        console.error("Error al guardar la compra:", response.statusText);
-    }}
-    } catch (error) {
-        console.error("Error al enviar la compra al backend:", error);
-    }
-    
-  };
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -207,29 +110,104 @@ const cupones = await getCuponesFromDB();
     return () => clearTimeout(timeout); // Limpieza del timeout
   }, []);
 
-  if (loading) {
-    return <div className="loading-message">Procesando la transacción...</div>;
-  }
+  useEffect(() => {
+    const deleteDataAndRedirect = async () => {
+      if (compraProcesada && isDownladed) {
+        try {
+          // Llamar a la función para borrar la base de datos
+          await new Promise((resolve, reject) => {
+            const request = indexedDB.deleteDatabase('cartItems');
+            
+            request.onsuccess = () => resolve(); // La base de datos se ha eliminado con éxito
+            request.onerror = (event) => reject(new Error('Error al eliminar la base de datos'));
+            request.onblocked = () => reject(new Error('La base de datos está bloqueada y no puede ser eliminada en este momento'));
+          });
+  
+          // Después de eliminar la base de datos, abrirla nuevamente
+          const db = await openDB();
+          console.log('Base de datos abierta nuevamente:', db);
+  
+          // Redirigir al inicio después de borrar la base de datos
+          navigate('/');
+        } catch (error) {
+          console.error('Error al borrar la base de datos o abrirla nuevamente:', error);
+        }
+      }
+    };
+  
+    deleteDataAndRedirect(); // Llamar a la función async
+  }, [compraProcesada, isDownladed]); // Dependencias
+  
 
-  if (error) {
-    return (
-    <div>
-      <Navbar/>
-      <div className="error-message">
-        <h2>Orden de Compra: {detallesTransaccion?.buyOrder || 'N/A'}</h2>
-        <p>Las posibles causas de este rechazo son:
-        Error en el ingreso de los datos de su tarjeta de crédito o débito.
-        Saldo insuficiente en la tarjeta
-        </p>
-        <ul>
-        </ul>
-      </div>
-    </div> 
-    );
-  }
+
+  const handleNavigate = async () => {
+    if (!detallesTransaccion) {
+      console.error("No hay detalles de la transacción disponibles.");
+      return;
+    }
+  
+    if (!compraProcesada && !isDownladed) {
+      alert("¡Debe descargar los cupones!");
+    }
+
+    const correo = detallesTransaccion?.sessionId;
+    if (!correo) {
+      console.error("El sessionId no está definido o es nulo.");
+      return;
+    }
+
+    let userId = 0;
+    try {
+      const response = await axios.get(`https://pingesobackend-production.up.railway.app/api/v1/usuarios/correoId/${correo}`);
+      if (response?.data) {
+        userId = response.data;
+      } else {
+        console.warn("El usuario no fue encontrado en la base de datos.");
+      }
+    } catch (error) {
+      if (error.response?.status === 404) {
+        console.warn("Usuario Invitado. userId establecido en 0.");
+        userId = 0;
+      } else {
+        console.error("Error al obtener el usuario:", error);
+      }
+    }
+
+    const cupones = await getCuponesFromDB(); // Obtener los cupones desde IndexedDB
+
+    const compra = {
+      idUsuario: userId,
+      fechaCompra: new Date().toISOString().split('T')[0],
+      montoTotal: detallesTransaccion.amount,
+      cuponesFinales: cupones.map(cupon => ({
+        id: cupon.id.text,
+        campoDe: cupon.remitente.text,
+        campoPara: cupon.destinatario.text,
+        campoIncluye: cupon.contenido.text,
+        fecha: "2024-12-21",
+        idCupon: cupon.idCupon,
+        idUsuario: cupon.userId,
+        idPlantilla: 0,
+        precioF: 1990,
+      })) || []
+    };
+
+    try {
+      if (!compraProcesada) {
+        const response = await axios.post('https://pingesobackend-production.up.railway.app/api/v1/compras/saveCompraWithCupones', compra);        if (response.status === 200) {
+          setCompraProcesada(true);
+        } else {
+          console.error("Error al guardar la compra:", response.statusText);
+        }
+      }
+    } catch (error) {
+      console.error("Error al enviar la compra al backend:", error);
+    }
+  };
 
   async function saveFinalCupons() {
-   const cupones = await getCuponesFromDB();
+    const cupones = await getCuponesFromDB();
+
     // Validación inicial
     if (!cupones || cupones.length === 0) {
         console.log("No hay cupones para descargar.");
@@ -273,10 +251,13 @@ const cupones = await getCuponesFromDB();
     }
 }
 
+ 
+  
 
-  {/*Para descargar el cupon (cupones) una vez validado el pago.*/}
   const handleDownload = async () => {
-    const cupones = await getCuponesFromDB("cartItems"); // Obtener cupones desde IndexedDB
+    const cupones = await getCuponesFromDB("cartItems"); 
+    console.log("larco cupones", cupones.length);
+    // Obtener cupones desde IndexedDB
     if (!cupones || cupones.length === 0) {
       console.log("No hay cupones para descargar.");
       return;
@@ -301,20 +282,20 @@ const cupones = await getCuponesFromDB();
   };
 
   return (
-  <div>
-    <Navbar/> 
-    <div className="transaction-container">
-      {!detallesTransaccion ? (
-        <div className="loading-message">Confirmando transacción...</div>
-      ) : (
-        <>
-          {detallesTransaccion.status === 'AUTHORIZED' ? (
-            <div className="transaction-details">
-              <div className="header">
-                <h3>Compra Exitosa</h3>
-                <p>Tu transacción se ha completado con éxito.</p>
-              </div>
-              <div className="details">
+    <div>
+      <Navbar />
+      <div className="transaction-container">
+        {!detallesTransaccion ? (
+          <div className="loading-message">Confirmando transacción...</div>
+        ) : (
+          <>
+            {detallesTransaccion.status === 'AUTHORIZED' ? (
+              <div className="transaction-details">
+                <div className="header">
+                  <h3>Compra Exitosa</h3>
+                  <p>Tu transacción se ha completado con éxito.</p>
+                </div>
+                <div className="details">
                 <p><strong>Orden de Compra:</strong> {detallesTransaccion.buyOrder}</p>
                 <p><strong>Nombre del Comercio:</strong> 12 Deseos</p>
                 <p><strong>Monto:</strong> ${detallesTransaccion.amount.toLocaleString()} CLP</p>
@@ -323,33 +304,30 @@ const cupones = await getCuponesFromDB();
                 <p><strong>Tipo de Pago:</strong> {paymentTypeDescriptions[detallesTransaccion.paymentTypeCode] || 'N/A'}</p>
                 <p><strong>Cantidad de Cuotas:</strong> {detallesTransaccion.installmentsNumber}</p>
                 <p><strong>Monto por Cuota:</strong> {(detallesTransaccion.amount / (detallesTransaccion.installmentsNumber || 1)).toLocaleString('es-CL')} CLP</p>
-                <button className="redirect-button" onClick={handleNavigate}>
-                  Continuar
-                </button>
-                {
-                buttonState ?
-                (
-                <button className="download-button" onClick={handleDownload}>
-                Descargar Cupones
-                  </button>) : (
-                    <button className="disabled-button" disabled={true} >
+                  <button className="redirect-button" onClick={handleNavigate}>
+                    Continuar
+                  </button>
+                  {buttonState ? (
+                    <button className="download-button" onClick={handleDownload}>
+                      Descargar Cupones
+                    </button>
+                  ) : (
+                    <button className="disabled-button" disabled={true}>
                       ¡Cupones Descargados!
                     </button>
-                  )
-                }
-               
+                  )}
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="error-message">
-              <h2>Transacción Rechazada</h2>
-              <p>La transacción fue rechazada. Por favor, verifica los detalles de pago.</p>
-            </div>
-          )}
-        </>
-      )}
+            ) : (
+              <div className="error-message">
+                <h2>Transacción Rechazada</h2>
+                <p>La transacción fue rechazada. Por favor, verifica los detalles de pago.</p>
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
-  </div> 
   );
 };
 
