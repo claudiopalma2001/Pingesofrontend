@@ -8,7 +8,10 @@ const FormularioCrearPlantillaYCupon = () => {
     const [formData, setFormData] = useState({
         archivo: null,
         nombreCupon: '',
+        tipo: '',
         idTematica: '',
+        idIdioma: '1', // Por defecto, Español
+        idPlataforma: '1', // Por defecto, Escritorio
         precio: '',
     });
 
@@ -41,6 +44,15 @@ const FormularioCrearPlantillaYCupon = () => {
                     </div>
 
                     <div className="form-group-admin">
+                        <label>Tipo de cupón</label>
+                        <select name="tipo" onChange={handleChange} value={formData.tipo}>
+                            <option value="">Selecciona un tipo</option>
+                            <option value="free">Gratis</option>
+                            <option value="Premium">Membresía</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group-admin">
                         <label>Temática del cupón</label>
                         <select name="idTematica" onChange={handleChange} value={formData.idTematica}>
                             <option value="">Selecciona una temática</option>
@@ -52,6 +64,20 @@ const FormularioCrearPlantillaYCupon = () => {
                             <option value="6">Embarazada</option>
                             <option value="7">Personalizable</option>
                             <option value="8">Extra</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group-admin">
+                        <label>Idioma</label>
+                        <select name="idIdioma" onChange={handleChange} value={formData.idIdioma}>
+                            <option value="1">Español</option>
+                        </select>
+                    </div>
+
+                    <div className="form-group-admin">
+                        <label>Plataforma</label>
+                        <select name="idPlataforma" onChange={handleChange} value={formData.idPlataforma}>
+                            <option value="1">Escritorio</option>
                         </select>
                     </div>
 
