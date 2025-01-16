@@ -166,22 +166,16 @@ function CartBodyContent() {
         }
     }, [cuponesFinales]); // Se ejecuta cuando cambian los cupones finales
 
-    
-    
-    /*
-    function calcularTotal() {
-        return cuponesFinales.reduce((acc, cupon) => acc + cupon.precioF, 0);
-    }
-    */
+
 
     const calcularTotal = () => {
         const cantidadCupones = cartItems.length; // Contar la cantidad de cupones en el carrito
         const precioBase = cartItems.reduce((acc, item) => acc + item.precioF, 0); // Calcular el precio total base
 
         if (cantidadCupones >= 5 && cantidadCupones < 10) {
-            return precioBase - 5000; // Descuento de 5000 si hay entre 5 y 9 cupones
+            return precioBase - 2450; // Descuento de 2450 si hay entre 5 y 9 cupones
         } else if (cantidadCupones === 10) {
-            return precioBase - 15000; // Descuento de 15000 si hay 10 cupones
+            return precioBase - 9900; // Descuento de 9900 si hay 10 cupones
         } else {
             return precioBase; // Precio total sin descuentos
         }

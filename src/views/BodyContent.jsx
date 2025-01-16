@@ -6,14 +6,28 @@ import img4 from '../assets/Plantillas/Tapas/amistadtapa.png';
 import img5 from '../assets/Plantillas/Tapas/papatapa.png';
 import img6 from '../assets/Plantillas/Tapas/embarazadatapa.png';
 import img7 from '../assets/Plantillas/Tapas/personalizabletapa.png';
-
 import '../components/SideBar2/styles.css';
 import '../styles/BodyContent.css';
 import React, { useState } from "react";
 
+/**
+ * Componente que muestra una lista de tarjetas de cupones temáticos.
+ * Cada tarjeta contiene una imagen y un título, y es clicable para navegar
+ * a una ruta específica según la temática del cupón.
+ *
+ */
 function BodyContent() {
+    // Hook para manejar la navegación entre rutas en la aplicación.
     const navigate = useNavigate();
 
+    /**
+     * Lista de cupones disponibles.
+     * Cada elemento contiene:
+     * - `id`: Identificador único del cupón.
+     * - `title`: Título del cupón.
+     * - `image`: Ruta de la imagen asociada al cupón.
+     * - `path`: Ruta a la que redirige al hacer clic en el cupón.
+     */
     const coupons = [
         { id: 1, title: 'Pololos', image: img1, path: "/cupones/tematica/1" },
         { id: 2, title: 'Familiar', image: img2, path: "/cupones/tematica/2" },
@@ -24,12 +38,21 @@ function BodyContent() {
         { id: 7, title: 'Personalizable', image: img7, path: "/cupones/tematica/7" },
     ];
 
+    // Estado que controla si las imágenes ya se han cargado.
     const [loaded, setLoaded] = useState(false);
 
+    /**
+     * Navega a la ruta específica del cupón al hacer clic en la tarjeta.
+     *
+     * @param {string} path - Ruta a la que se debe redirigir.
+     */
     const handleNavigate = (path) => {
         navigate(path);
     };
 
+    /**
+     * Estructura visual de la lista de tarjetas de cupones temáticos.
+     */
     return (
         <div className="cupons-body-content2">
             {coupons.map((coupon) => (

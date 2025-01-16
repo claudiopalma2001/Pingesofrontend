@@ -1,24 +1,24 @@
+/* Contenedor principal de la sidebar */
 .sidebar {
-
-    width: 300px; /* Ancho total de la sidebar */
+    width: 300px;
     height: 100vh;
     background-color: #eaeaea;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
     position: fixed;
     top: 80px;
-
-    left: -300px; /* Mueve la sidebar hacia la izquierda dejando visible una franja */
-    transition: transform 0.3s ease, left 0.3s ease; /* Animación para la transición */
+    left: -300px;
+    transition: transform 0.3s ease, left 0.3s ease;
     z-index: 9997;
     overflow-y: auto;
-
 }
 
+/* Clase que desplaza y hace visible la sidebar */
 .sidebar.visible {
-    transform: translateX(0px); /* Desplaza la sidebar completamente a la vista */
+    transform: translateX(0px);
     left: 0;
 }
 
+/* Botón para abrir/cerrar la sidebar */
 .toggle-sidebar-button {
     position: fixed;
     top: 13px;
@@ -30,19 +30,21 @@
     border: 1px solid #acacac;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 20px; /* Tamaño de fuente ajustado */
-    font-weight: bold; /* Opcional: para hacer el texto más grueso */
+    font-size: 20px;
+    font-weight: bold;
     text-decoration: none;
     font-family: 'Asap', sans-serif;
     transition: border 0.3s ease, color 0.3s ease, font-size 0.1s linear;
     z-index: 10000;
 }
 
+/* Efecto hover para el botón */
 .toggle-sidebar-button:hover {
     border: 1px solid #131313;
     color: #1b1b1b;
 }
 
+/* Efecto al presionar el botón */
 .toggle-sidebar-button:active {
     border: 1px solid #131313;
     background-color: #f3f3f3;
@@ -50,6 +52,7 @@
     font-size: 19px;
 }
 
+/* Botones dentro del formulario de la sidebar */
 .form-group button {
     width: 100%;
     height: 65px;
@@ -72,13 +75,14 @@
     font-family: 'Asap', sans-serif;
 }
 
+/* Efecto hover en los botones del formulario */
 .form-group button:hover {
     background: #f6f6f6;
     font-size: 26px;
     color: #272727;
 }
 
-
+/* Icono de flecha dentro de los botones */
 .button-arrow-icon{
     height: 30px;
     width: 30px;
@@ -88,15 +92,14 @@
     opacity: 30%;
 }
 
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
 
-
     .toggle-sidebar-button {
-
-        width: 80px; /* Reducir el ancho */
-        height: 40px; /* Reducir la altura */
-        font-size: 12px; /* Reducir el tamaño de la fuente */
-        border-radius: 20px; /* Ajustar el radio */
+        width: 80px;
+        height: 40px;
+        font-size: 12px;
+        border-radius: 20px;
         top: 20px;
         left: 55px;
     }
@@ -104,6 +107,4 @@
     .toggle-sidebar-button:active {
         font-size: 10px;
     }
-
-
 }

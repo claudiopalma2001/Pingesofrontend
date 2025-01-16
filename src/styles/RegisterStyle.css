@@ -1,12 +1,15 @@
-.login-page {
+/* Estilo principal para la página de registro */
+.register-page {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     background-color: #ffffff;
+    font-family: 'Asap', sans-serif;
 }
 
-.login-container {
+/* Contenedor del formulario de registro */
+.register-container {
     background-color: white;
     padding: 30px;
     border-radius: 8px;
@@ -16,37 +19,44 @@
     text-align: center;
 }
 
-.login-container p {
+/* Estilo para los párrafos dentro del contenedor */
+.register-container p {
     color: #7a7a7a;
     text-decoration: none;
 }
 
-.login-container a {
+/* Estilo para los enlaces */
+.register-container a {
     color: #7a7a7a;
     text-decoration: none;
 }
 
-.login-container a:hover {
+/* Cambia el estilo de los enlaces al pasar el cursor */
+.register-container a:hover {
     color: #7a7a7a;
     text-decoration: underline;
 }
 
-.login-container h2 {
+/* Estilo para el encabezado principal del formulario */
+.register-container h2 {
     color: #7a7a7a;
     margin-bottom: 20px;
 }
 
+/* Grupo de campos del formulario */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
+/* Etiquetas de los campos del formulario */
 .form-group label {
     display: block;
     color: #7a7a7a;
     margin-bottom: 5px;
 }
 
+/* Campos de entrada del formulario */
 .form-group input {
     width: 95%;
     padding: 8px;
@@ -55,13 +65,37 @@
     border-radius: 5px;
 }
 
+/* Botón principal para registro */
+.register-button {
+    background-color: #7a7a7a;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 0;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Asap', sans-serif;
+}
 
+/* Icono "X" para volver */
+.volver-icon {
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin-right: -40px;
+}
 
-.social-login {
+/* Estilo del botón al pasar el cursor */
+.register-button:hover {
+    background-color: #8c8c8c;
+}
+
+.social-register {
     margin-top: 20px;
 }
 
-.social-login button {
+.social-register button {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
@@ -70,6 +104,7 @@
     cursor: pointer;
 }
 
+/* Mensaje de éxito */
 .success-message {
     color: green;
     background-color: #e6f7e6;
@@ -78,7 +113,8 @@
     border: 1px solid green;
     border-radius: 5px;
   }
-  
+
+/* Mensaje de error */
   .error-message {
     color: red;
     background-color: #fdeaea;
@@ -88,11 +124,10 @@
     border-radius: 5px;
   }
 
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
 
     .login-container {
-
         width: 300px;
-
     }
 }

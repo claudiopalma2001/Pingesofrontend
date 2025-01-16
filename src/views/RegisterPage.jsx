@@ -5,7 +5,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { differenceInYears } from "date-fns";
 import volverIcon from "../assets/Icons/x-thin.svg";
 
+/**
+ * Vista de la página de registro de usuarios.
+ * Permite crear una nueva cuenta proporcionando datos como nombre, correo, contraseña, y fecha de nacimiento.
+ * Valida dominios de correo permitidos y verifica si el usuario ya está registrado.
+ *
+ * @returns {JSX.Element} Formulario de registro de usuarios.
+ */
 export default function RegisterPage() {
+  /**
+   * Estados para almacenar los datos del formulario.
+   */
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [password, setPassword] = useState("");
@@ -17,9 +27,10 @@ export default function RegisterPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
+  // Obtiene la fecha actual en formato `YYYY-MM-DD` para limitar la selección en el campo de fecha.
   const currentDate = new Date().toISOString().split('T')[0];
 
-  // Lista de dominios permitidos
+  // Lista de dominios permitidos para el registro de correos.
   const allowedDomains = [
     "gmail.com",
     "hotmail.com",
@@ -31,12 +42,22 @@ export default function RegisterPage() {
     "example.com"
   ];
 
-  // Función para verificar si el correo tiene un dominio permitido
+  /**
+   * Verifica si el correo proporcionado tiene un dominio permitido.
+   *
+   * @param {string} email - Correo electrónico ingresado.
+   * @returns {boolean} `true` si el dominio está permitido, de lo contrario, `false`.
+   */
   const isAllowedEmail = (email) => {
     const domain = email.split("@")[1];
     return allowedDomains.includes(domain);
   };
 
+  /**
+   * Maneja el envío del formulario y registra al usuario si los datos son válidos.
+   *
+   * @param {Event} event - Evento de envío del formulario.
+   */
   async function handleCreateUser(event) {
     event.preventDefault();
     if (!isAllowedEmail(correo)) {
@@ -64,6 +85,7 @@ export default function RegisterPage() {
             idRol,
           });
 
+          // Limpia los campos del formulario después de un registro exitoso.
           setNombre("");
           setCorreo("");
           setPassword("");
@@ -82,6 +104,11 @@ export default function RegisterPage() {
     }
   }
 
+  /**
+   * Calcula la edad del usuario al cambiar la fecha de nacimiento.
+   *
+   * @param {Event} e - Evento de cambio en el campo de fecha.
+   */
   const handleDateChange = (e) => {
     const date = e.target.value;
     setFechaNacimiento(date);
@@ -89,9 +116,12 @@ export default function RegisterPage() {
     setEdad(calculatedAge);
   };
 
+  /**
+   * Estructura principal de la página de registro de usuarios.
+   */
   return (
-    <div className="login-page">
-      <div className="login-container">
+    <div className="register-page">
+      <div className="register-container">
         <Link to="/"><img src={volverIcon} alt="volver-icon" className="volver-icon" /></Link>
         <h2>Regístrate</h2>
 
@@ -121,7 +151,7 @@ export default function RegisterPage() {
           <div className="form-group">
             <a href="/login">¿Ya eres miembro?</a>
           </div>
-          <button type="submit" className="login-button">Regístrate</button>
+          <button type="submit" className="register-button">Regístrate</button>
         </form>
       </div>
     </div>

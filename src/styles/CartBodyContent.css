@@ -1,5 +1,5 @@
 
-
+/* Estilo principal para cada tarjeta en el carrito */
 .cart-cupon-card {
     display: flex;
     align-items: center;
@@ -9,30 +9,33 @@
     margin: 10px 0;
     background-color: #fff;
     font-family: 'Asap', sans-serif;
-
 }
 
+/* Estilo para las imágenes de las plantillas en el carrito */
 .cart-plantilla-image {
     width: 150px;
     height: auto;
     border: 1px solid #bcbcbc;
-
 }
 
+/* Contenedor para la información del cupón */
 .cart-info {
     flex: 1;
     margin-left: 15px;
 }
 
+/* Estilo para el título del cupón */
 .cart-info h3 {
     margin: 0;
     font-size: 16px;
 }
 
+/* Contenedor para acciones dentro de la tarjeta */
 .cart-actions {
     margin-top: 10px;
 }
 
+/* Botón para editar cupones */
 .editar-button {
     cursor: pointer;
     margin-right: 300px;
@@ -42,27 +45,28 @@
     width: 80px;
     height: 35px;
     font-size: 16px;
-    display: flex; /* Activa el modelo Flexbox */
-    justify-content: center; /* Centra horizontalmente el texto */
-    align-items: center; /* Centra verticalmente el texto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: background-color 0.3s ease;
     font-family: 'Asap', sans-serif;
     opacity: 0;
-
 }
 
+/* Hover para el botón editar */
 .editar-button:hover {
     background-color: #efefef;
 }
 
+/* Estilo para el precio del cupón */
 .cart-precio {
     font-size: 16px;
     font-weight: 500;
     margin-top: 50px;
     color: #818181;
-
 }
 
+/* Icono de eliminar (papelera) */
 .trash-icon {
     background-image: url("../assets/Icons/trash-icon.svg");
     width: 20px;
@@ -74,50 +78,50 @@
     transition: 0.3s ease;
 }
 
+/* Hover para el icono de eliminar */
 .trash-icon:hover {
-
     opacity: 100%;
     background-image: url("../assets/Icons/trash-icon-delete.svg");
 }
 
+/* Contenedor para el total del carrito */
 .cart-total {
     display: flex;
-    justify-content: space-between; /* Espacio entre los elementos */
-    margin-top: 20px; /* Espaciado opcional */
-    font-size: 16px; /* Tamaño de fuente */
-    font-weight: bold; /* Resalta el texto */
-    color: #333; /* Color del texto */
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
 }
 
+/* Etiqueta para el total */
 .total-label {
-    flex: 1; /* Alinea a la izquierda */
+    flex: 1;
     text-align: left;
     color: #818181;
     font-size: 22px;
     font-weight: 400;
-
 }
 
+/* Valor total del carrito */
 .total-value {
-
-    text-align: right; /* Alinea a la derecha */
+    text-align: right;
     color: #818181;
     font-size: 22px;
     font-weight: 400;
-
 }
-
 .cart-info h3{
     color: #a3a3a3;
 }
 
+/* Botón para comprar */
 .cart-buy-button {
     margin-top: 30px;
     background-color: #959595;
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     font-size: 16px;
     cursor: pointer;
     width: 100%;
@@ -125,11 +129,12 @@
     font-family: 'Asap', sans-serif;
 }
 
+/* Hover para el botón de compra */
 .cart-buy-button:hover {
     background-color: #afafaf;
 }
 
-
+/* Línea divisoria */
 .divider-line {
     border: none;
     border-top: 1px solid #ddd; /* Línea de 1px */
@@ -137,10 +142,10 @@
     width: 100%; /* Abarca todo el ancho del contenedor */
 }
 
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 768px) {
 
     .editar-button {
-
         margin-right: 10px;
         width: 60px;
         height: 35px;
@@ -156,6 +161,5 @@
         width: 130px;
         height: auto;
         border: 1px solid #bcbcbc;
-
     }
 }

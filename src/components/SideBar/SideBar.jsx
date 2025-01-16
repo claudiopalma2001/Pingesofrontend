@@ -2,10 +2,22 @@ import React from 'react';
 import './SideBar.css';
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Componente de barra lateral (SideBar).
+ * Permite navegar entre diferentes temáticas de cupones y se puede mostrar u ocultar dinámicamente.
+ *
+ * @param {boolean} isVisible - Determina si la barra lateral es visible.
+ * @param {function} closeSidebar - Función para cerrar la barra lateral.
+ * @returns {JSX.Element} Componente SideBar.
+ */
 function SideBar({ isVisible, closeSidebar }) {
+    // Hook para manejar la navegación en la aplicación.
     const navigate = useNavigate();
 
-    // Array de referencias para las rutas de los botones
+    /**
+     * Array de referencias para las rutas de los botones.
+     * Cada objeto incluye una etiqueta (`label`) y una ruta (`path`).
+     */
     const referencias = [
         { label: "Pololos", path: "/cupones/tematica/1" },
         { label: "Familiar", path: "/cupones/tematica/2" },
@@ -17,12 +29,21 @@ function SideBar({ isVisible, closeSidebar }) {
         { label: "Extra", path: "/cupones/tematica/8" }
     ];
 
-    // Función para manejar la navegación y cerrar la sidebar
+    /**
+     * Maneja la navegación al presionar un botón.
+     * Navega a la ruta especificada y cierra la barra lateral.
+     *
+     * @param {string} path - Ruta a la que se navega.
+     */
     const handleNavigate = (path) => {
-        navigate(path); // Navega a la ruta
-        closeSidebar(); // Cierra la sidebar
+        navigate(path);
+        closeSidebar();
     };
 
+    /**
+     * Estructura de la barra lateral.
+     * Incluye botones que permiten navegar a diferentes temáticas.
+     */
     return (
         <div className={`sidebar ${isVisible ? 'visible' : ''}`}>
             <div style={{height: "40px"}}></div>

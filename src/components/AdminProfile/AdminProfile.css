@@ -1,20 +1,21 @@
-/* Asegura que el contenido principal no quede tapado por el header */
+/* Contenedor principal de la página de administrador */
 .admin-profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  /*margin-top: 200px;  Agrega margen superior para evitar que el contenido quede tapado por el header */
   font-family: 'Asap', sans-serif;
 }
 
+/* Cuerpo principal de la página de administrador */
 .admin-profile-body {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100vh - 110px); /* Ajusta el valor en px */
+  height: calc(100vh - 110px);
   width: 100vw;
 }
 
+/* Encabezado de la página de administrador */
 .admin-profile-header {
   display: flex;
   justify-content: center;
@@ -23,6 +24,7 @@
   padding-top: 100px;
 }
 
+/* Estilo para el texto dentro del encabezado */
 .admin-profile-header h2 {
   flex: 1;
   text-align: center;
@@ -31,16 +33,15 @@
   margin: 0;
 }
 
+/* Contenedor del botón para añadir cupones */
 .add-cupon-container {
   display: grid;
   place-items: center;
   padding-bottom: 30px;
-
 }
 
+/* Botón para añadir cupones */
 .add-cupon-button {
-
-
   background-color: #279529;
   color: #ffffff;
   border: 1px solid #009303;
@@ -53,9 +54,8 @@
   font-family: 'Asap', sans-serif;
 }
 
+/* Botón para cancelar la operación */
 .cancel-cupon-button {
-
-
   margin-top: 20px;
   background-color: #cf3535;
   color: #ffffff;
@@ -69,48 +69,43 @@
   font-family: 'Asap', sans-serif;
 }
 
+/* Efecto hover para el botón de añadir cupones */
 .add-cupon-button:hover {
   background-color: #40bd43;
 }
 
+/* Efecto hover para el botón de cancelar */
 .cancel-cupon-button:hover {
   background-color: #e14d4d;
-
 }
 
-
-/* El contenedor donde se encuentran los cupones
-.cupones-list-container {
-  width: 100%;
-  /*overflow-y: auto;
-  max-height: 80vh;
-  margin-top: 20px;
-}
-*/
+/* Lista de cupones con diseño en grid */
 .cupones-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(280px, 280px));
   grid-auto-rows: minmax(260px, 260px);
-  column-gap: 40px; /* Espacio entre cupones */
+  column-gap: 40px;
   row-gap: 70px;
   justify-content: center;
-  height: calc(100vh - 100px); /* Ajusta el valor en px */
-  margin-top: 100px; /* Empuja el contenido hacia abajo */
+  height: calc(100vh - 100px);
+  margin-top: 100px;
 }
 
+/* Tarjeta de cupón */
 .cupon-card {
   width: 100%;
   max-width: 300px;
   text-align: center;
 }
 
+/* Título dentro de la tarjeta de cupón */
 .cupon-card h3 {
   margin-top: 15px;
   font-size: 19px;
 }
 
+/* Botón para eliminar cupones */
 .eliminar-button {
-
   margin-top: 15px;
   padding: 8px 15px;
   border: none;
@@ -120,12 +115,13 @@
   border-radius: 5px;
   font-size: 16px;
   transition: background-color 0.3s ease;
-
 }
 
+/* Efecto hover para el botón de eliminar */
 .eliminar-button:hover{
   background-color: #fd6f65;
 }
+
 .cupones-body-content {
   display: flex;
   flex-wrap: wrap;
@@ -135,17 +131,14 @@
   overflow-y: auto;
 }
 
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
 
   .cupones-list {
-
     grid-template-columns: repeat(1, minmax(280px, 280px));
-
   }
 
   .add-cupon-button {
-
-
     background-color: #279529;
     color: #ffffff;
     border: 1px solid #009303;
@@ -155,6 +148,5 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-
   }
 }

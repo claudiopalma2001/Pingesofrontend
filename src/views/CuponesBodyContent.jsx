@@ -4,11 +4,24 @@ import gestionService from "../services/gestion-service";
 import {Link, useNavigate} from "react-router-dom";
 import "@fontsource/inria-sans"; //fuente para los titulos
 
+/**
+ * Componente para mostrar los cupones de una temática específica.
+ *
+ * @param {Object} props
+ * @param {number} props.idTematica - Identificador de la temática para filtrar los cupones.
+ * @returns {JSX.Element} Representación de los cupones para la temática seleccionada.
+ */
 function CuponBodyContent({ idTematica }) {
+    // Estado para almacenar los cupones obtenidos.
     const [cupones, setCupones] = useState([]);
+
+    // Estado para almacenar las plantillas asociadas a cada cupón.
     const [plantillas, setPlantillas] = useState({});
+
+    // Hook para redirigir a otras páginas.
     const navigate = useNavigate();
 
+    // Nombres de las temáticas.
     const tematicasNombres = {
         1: "Pololos",
         2: "Familiar",
@@ -31,25 +44,31 @@ function CuponBodyContent({ idTematica }) {
         8: "Cupones de temporada!\n Regala en estos momentos únicos del año!."
     };
 
+    // Nombre y slogan de la temática actual.
     const nombreTematica = tematicasNombres[idTematica];
     const sloganTematica = tematicasSlogans[idTematica];
 
-    // Función para transformar \n en <br />
+    /**
+     * Transforma el slogan con saltos de línea (\n) en etiquetas `<br />`.
+     */
     const formattedSlogan = sloganTematica.split("\n").map((line, index) => (
         <span key={index}>{line}<br /></span>
     ));
 
+    /**
+     * Hook que se ejecuta al montar el componente.
+     * Obtiene los cupones y las plantillas asociadas a la temática seleccionada.
+     */
     useEffect(() => {
-        // Llama al servicio para obtener los cupones
         gestionService.getCuponesByIdTematica(idTematica)
             .then(response => {
-                setCupones(response.data); // Guarda los cupones en el estado
+                setCupones(response.data);
                 response.data.forEach(cupon => {
                     gestionService.getPlantillasByIdCupon(cupon.id)
                         .then(res => {
                             setPlantillas(prevState => ({
                                 ...prevState,
-                                [cupon.id]: res.data // Save templates for each coupon ID
+                                [cupon.id]: res.data
                             }));
                         })
                         .catch(error => {
@@ -62,10 +81,19 @@ function CuponBodyContent({ idTematica }) {
             });
     }, [idTematica]);
 
+    /**
+     * Navega a la página de edición del cupón seleccionado.
+     *
+     * @param {string} nombreTematica - Nombre de la temática.
+     * @param {number} cuponId - Identificador del cupón.
+     */
     const handleCardClick = (nombreTematica, cuponId) => {
         navigate(`/edit/${nombreTematica}/${cuponId}`);
     };
 
+    /**
+     * Estructura visual de la lista de cupones temáticos.
+     */
     return (
         <div>
             <h1 className="tematica-title" style={{ fontFamily: 'Inria Sans', color: "#8f97a0;" }}> Cupones  <strong style={{ fontWeight: 'bold' }}>{nombreTematica}</strong></h1>
@@ -94,7 +122,6 @@ function CuponBodyContent({ idTematica }) {
                         <div>
                             <label className="cupons-price">${Number(cupon.precio).toLocaleString('es-CL')}</label>
                         </div>
-
                     </div>
                 ))}
                 <div style={{ height: "80px" }}></div>

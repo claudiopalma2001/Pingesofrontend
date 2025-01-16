@@ -3,7 +3,12 @@ import gestionService from "../../services/gestion-service";
 import { Link } from "react-router-dom";
 import "./FormularioPlanitllaYCupon.css"
 
-
+/**
+ * Vista de la pagina del Formulario para crear plantilla y cupon.
+ * Permite a los administradores crear plantillas y cupones mediante un formulario.
+ *
+ * @returns {JSX.Element} Formulario de creación de plantillas y cupones.
+ */
 const FormularioCrearPlantillaYCupon = () => {
     const [formData, setFormData] = useState({
         archivo: null,
@@ -15,6 +20,12 @@ const FormularioCrearPlantillaYCupon = () => {
         precio: '',
     });
 
+    /**
+     * Maneja los cambios en los campos del formulario.
+     * Actualiza el estado de `formData` según el campo modificado.
+     *
+     * @param {Event} e - Evento del input.
+     */
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         if (name === 'archivo') {
@@ -24,15 +35,24 @@ const FormularioCrearPlantillaYCupon = () => {
         }
     };
 
+    /**
+     * Maneja el envío del formulario.
+     * Envía los datos al servicio para guardar la plantilla y el cupón.
+     *
+     * @param {Event} e - Evento del envío del formulario.
+     */
     const handleSubmit = async (e) => {
         e.preventDefault();
         await gestionService.savePlantillaAndCupon(formData);
     };
 
+    /**
+     * Estructura del formulario de creación.
+     * Incluye campos para la imagen, datos del cupón, idioma, plataforma, y precio.
+     */
     return (
         <div className="main-page-admin-content">
             <div className="form-admin-content">
-                {/* Título del formulario */}
                 <h1 className="form-title">Crear Plantilla y Cupón</h1>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group-admin">

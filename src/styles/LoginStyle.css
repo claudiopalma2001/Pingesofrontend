@@ -1,3 +1,4 @@
+/* Estilo para la página principal de inicio de sesión */
 .login-page {
     display: flex;
     justify-content: center;
@@ -7,6 +8,7 @@
     font-family: 'Asap', sans-serif;
 }
 
+/* Contenedor principal del formulario de inicio de sesión */
 .login-container {
     background-color: #ffffff;
     padding: 30px;
@@ -16,37 +18,44 @@
     text-align: center;
 }
 
+/* Estilo para los párrafos dentro del contenedor */
 .login-container p {
     color: #7a7a7a;
     text-decoration: none;
 }
 
+/* Estilo para los enlaces dentro del contenedor */
 .login-container a {
     color: #7a7a7a;
     text-decoration: none;
 }
 
+/* Estilo para los enlaces al pasar el cursor */
 .login-container a:hover {
     color: #7a7a7a;
     text-decoration: underline;
 }
 
+/* Estilo para el encabezado principal */
 .login-container h2 {
     color: #7a7a7a;
     margin-bottom: 20px;
 }
 
+/* Grupo de campos del formulario */
 .form-group {
     margin-bottom: 20px;
     text-align: left;
 }
 
+/* Etiquetas de los campos */
 .form-group label {
     display: block;
     color: #7a7a7a;
     margin-bottom: 5px;
 }
 
+/* Campos de entrada del formulario */
 .form-group input {
     width: 95%;
     padding: 8px;
@@ -61,18 +70,20 @@
     margin-top: 20px;
 }
 
+/* Botón principal de inicio de sesión */
 .login-button {
     background-color: #7a7a7a;
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-family: 'Asap', sans-serif;
 }
 
+/* Icono "X" para volver */
 .volver-icon {
     width: 40px;
     height: 40px;
@@ -80,15 +91,15 @@
     margin-right: -40px;
 }
 
+/* Estilo del botón al pasar el cursor */
 .login-button:hover {
     background-color: #8c8c8c;
 }
 
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
 
     .login-container {
-
         width: 300px;
-
     }
 }

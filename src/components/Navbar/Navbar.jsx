@@ -9,48 +9,63 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 import gestionService from "../../services/gestion-service";
 
+/**
+ * Componente Navbar.
+ * Muestra la barra de navegación principal con opciones para autenticación, navegación, y acciones específicas para usuarios autenticados.
+ *
+ * @param {function} toggleSidebar - Función para abrir o cerrar la barra lateral de cupones.
+ * @returns {JSX.Element} Barra de navegación.
+ */
 const Navbar = ({ toggleSidebar}) => {
-  const navigate = useNavigate();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [name, setName] = useState("");
-  const [userId, setId] = useState(null);
-  const [correo, setCorreo] = useState("");
-  const [userRole, setUserRole] = useState(null);
-  const token = localStorage.getItem("userJwt");
+  const navigate = useNavigate(); // Hook para manejar la navegación.
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado para verificar si el usuario está autenticado.
+  const [name, setName] = useState(""); // Almacena el nombre del usuario.
+  const [userId, setId] = useState(null); // ID del usuario autenticado.
+  const [correo, setCorreo] = useState(""); // Correo electrónico del usuario.
+  const [userRole, setUserRole] = useState(null); // Rol del usuario autenticado.
+  const token = localStorage.getItem("userJwt"); // Recupera el token JWT del almacenamiento local.
 
-  /*Para saber si estoy en UserProfile */
-  const location = useLocation();
+  const location = useLocation(); // Hook para obtener la ruta actual.
 
-  // Verifica la autenticación cuando el componente se monta
+  /**
+   * Verifica la autenticación y extrae la información del usuario desde el token.
+   */
   useEffect(() => {
     const token = localStorage.getItem("userJwt");
     if (token) {
-      setIsAuthenticated(true); // Si hay token, el usuario está autenticado
-      getUserNameFromToken(token); // Obtén el nombre del usuario desde el token
+      setIsAuthenticated(true); // Usuario autenticado si hay token.
+      getUserNameFromToken(token); // Extrae el nombre del usuario.
     } else {
-      setIsAuthenticated(false); // Si no hay token, no está autenticado
+      setIsAuthenticated(false); // Usuario no autenticado si no hay token.
     }
-  }, [token]); // Depende de `token` para que se actualice cuando cambie.
+  }, [token]); // Actualiza cuando cambie el token.
 
+  /**
+   * Cierra la sesión del usuario eliminando el token y redirige al inicio.
+   */
   const logout = () => {
     // Elimina el token del localStorage
     localStorage.removeItem("userJwt");
 
-    // Actualiza el estado para reflejar que el usuario ha cerrado sesión
+    // Cambia el estado de autenticación para reflejar que el usuario ha cerrado sesión
     setIsAuthenticated(false);
 
-    // Redirige al homepage (o login) después de cerrar sesión
-    navigate("/"); // O usa '/login' si prefieres redirigir al login explícitamente
+    // Redirige al homepage después de cerrar sesión
+    navigate("/");
   };
 
-  // Función para obtener el nombre del usuario desde el token
+  /**
+   * Extrae el nombre del usuario desde el token y lo obtiene del servicio gestionService.
+   *
+   * @param {string} token - Token JWT del usuario.
+   */
   async function getUserNameFromToken(token) {
     if (token) {
       try {
         const emailFromToken = jwtDecode(token).correo;
         const response = await gestionService.getUserByEmail(emailFromToken);
         if (response && response.data) {
-          // Asegúrate de que `response.data` sea correcto
+
           setName(response.data.nombre);
           setUserRole(response.data.idRol);
           setId(response.data.id);
@@ -63,7 +78,11 @@ const Navbar = ({ toggleSidebar}) => {
   }
 
 
-  // Función para obtener el correo del usuario desde el token
+  /**
+   * Extrae el correo del usuario desde el token.
+   *
+   * @param {string} token - Token JWT del usuario.
+   */
   async function getUserEmailFromToken(token) {
     if (token) {
       try {
@@ -75,19 +94,20 @@ const Navbar = ({ toggleSidebar}) => {
     }
   }
 
-  
+  // Llama a la función para obtener el correo del usuario al montar el componente.
   useEffect(() => {
     getUserEmailFromToken(token);
   });
 
+  /**
+   * Estructura de la barra de navegación.
+   */
   return (
     <div className="navbar">
       <Link to="/"><img src={logo} alt="Logo" className="navbar-logo" /></Link>
       <button onClick={toggleSidebar} className="toggle-sidebar-button">
         ☰ Cupones
       </button>
-
-
       <div className="navbar-actions-right">
         {isAuthenticated ? (
           location.pathname !== `/user/${correo}` ? (
@@ -98,12 +118,12 @@ const Navbar = ({ toggleSidebar}) => {
                   </button>
                 </Link>
                 <div className="vertical-line"></div>
-                {userRole === 1 && ( // Si el usuario es administrador, mostrar el botón "Administrar cupones"
+                {userRole === 1 && (
                       <Link to={`/admin/${correo}`}>
                         <button type="button">Administrar cupones</button>
                       </Link>
                 )}
-                {userRole === 1 && ( // Si el usuario es administrador, mostrar el botón "Administrar cupones"
+                {userRole === 1 && (
                     <div className="vertical-line"></div>
                 )}
                 <button onClick={logout} type="button">

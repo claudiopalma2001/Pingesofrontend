@@ -1,3 +1,4 @@
+/* Animación de reducción para la barra de tiempo */
 @keyframes shrinkBar {
     from {
         width: 112%; /* Inicia con 112% */
@@ -7,6 +8,7 @@
     }
 }
 
+/* Contenedor principal de la notificación del carrito */
 .cart-notification {
     position: fixed;
     top: 20px;
@@ -24,11 +26,13 @@
     z-index: 9999;
 }
 
+/* Clase activa para mostrar la notificación */
 .cart-notification.show {
     opacity: 1;
     transform: translateY(0);
 }
 
+/* Texto principal dentro de la notificación */
 .cart-notification p {
     font-size: 14px;
     width: 100%;
@@ -39,12 +43,14 @@
     margin: 10px 0 -5px 0;
 }
 
+/* Título del contenido de la notificación */
 .notification-content h4 {
     font-size: 16px;
     margin: 0 0 10px 0;
     font-weight: 600;
 }
 
+/* Botón para ver el carrito */
 .view-cart-button {
     background-color: #7a7a7a;
     color: white;
@@ -57,25 +63,25 @@
     transition: background-color 0.3s ease;
 }
 
+/* Hover para el botón "Ver carrito" */
 .view-cart-button:hover {
     background-color: #a8a8a8;
 }
 
+/* Imagen dentro de la notificación */
 .notification-image {
-
     width: 100%;
     border: 1px solid #e1e1e1;
     height: auto;
     max-height: 100px; /* Limita la altura de la imagen */
     margin-bottom: 10px;
-
 }
 
+/* Barra de tiempo en la notificación */
 .notification-content-timebar {
     background-color: #365c36;
     height: 2px;
     margin-left: -15px;
     margin-top: 15px;
     margin-bottom: -15px;
-
 }

@@ -1,42 +1,40 @@
 
-
+/* Estilo para el texto del título en las tarjetas de cupones */
 .cupon-card2 h3{
     font-family: 'Asap', sans-serif;
     color: #222222;
     font-weight: 500;
     font-size: 22px;
-
 }
 
+/* Contenedor para las tarjetas de cupones */
 .cupons-body-content2 {
     display: grid;
     grid-template-columns: repeat(3, minmax(280px, 280px));
     grid-auto-rows: minmax(210px, 210px);
-    column-gap: 40px; /* Espacio entre cupones */
+    column-gap: 40px;
     row-gap: 50px;
     justify-content: center;
-    width: 100vw; /* Asegúrate de que ocupe el ancho completo de la ventana */
+    width: 100vw;
     max-width: 100%;
-    height: calc(100vh - 250px); /* Ajusta el valor en px */
-    padding-top: 100px; /* Empuja el contenido hacia abajo */
-
+    height: calc(100vh - 250px);
+    padding-top: 100px;
 }
 
-
+/* Estilo para las imágenes de las plantillas */
 .plantilla-image2 {
-    width: 280px; /* Ajusta el ancho a tu preferencia */
-    height: 121px; /* Mantiene la proporción de la imagen */
-    /*border-radius: 4px;*/
+    width: 280px;
+    height: 121px;
     border: 1px solid #ddd;
-    opacity: 1; /* Comienza invisible */
-
+    opacity: 1;
 }
 
+/* Clase para imágenes cargadas */
 .plantilla-image2.loaded {
-    opacity: 1; /* Visible */
-
+    opacity: 1;
 }
 
+/* Estilo para las tarjetas de cupones */
 .cupon-card2 {
     border: 1px solid #ddd;
     width: 280px;
@@ -45,35 +43,32 @@
     padding: 10px;
     text-align: center;
     background-color: #fff;
-    opacity: 0; /* Estado inicial */
-    animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+    opacity: 0;
+    animation: fadeIn2 0.7s ease forwards;
     transition: 0.3s ease;
-
 }
 
+/* Efecto hover en las tarjetas de cupones */
 .cupon-card2:hover {
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
     border: 1px solid #d3d3d3;
 }
 
-
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
     .banner-image {
-        width: 100%; /* Ajusta el ancho al contenedor */
-        height: auto; /* Mantiene la proporción */
+        width: 100%;
+        height: auto;
     }
 
+    /* Ajusta el grid de las tarjetas de cupones para pantallas pequeñas */
     .cupons-body-content2 {
         display: grid;
         grid-template-columns: repeat(1, minmax(280px, 280px));
         grid-auto-rows: minmax(210px, 210px);
-        column-gap: 40px; /* Espacio entre cupones */
+        column-gap: 40px;
         row-gap: 50px;
         justify-content: center;
         max-width: 100%;
-
-
     }
-
-
 }

@@ -9,16 +9,35 @@ import SideBar from "../components/SideBar/SideBar";
 import '../styles/CartPage.css'
 import {useState} from "react";
 
-
+/**
+ * Vista principal de la página del carrito de compras.
+ * Incluye un encabezado, un componente para el contenido del carrito y una barra lateral (sidebar).
+ *
+ */
 const CartPage = () => {
 
+    /**
+     * Estado para controlar la visibilidad de la barra lateral (sidebar).
+     * @type {boolean} isSidebarVisible - Determina si la barra lateral está visible.
+     */
     const [isSidebarVisible, setSidebarVisible] = useState(false);
 
+    /**
+     * Alterna la visibilidad de la barra lateral.
+     */
     const toggleSidebar = () => {
         setSidebarVisible((prevState) => !prevState);
     };
+
+    /**
+     * Cierra la barra lateral.
+     */
     const closeSidebar = () => setSidebarVisible(false);
 
+    /**
+     * Estructura principal de la página del carrito.
+     * Incluye el navbar, la sidebar y el contenido del carrito de compras.
+     */
     return (
         <div>
             <Navbar toggleSidebar={toggleSidebar}/>
@@ -33,7 +52,6 @@ const CartPage = () => {
                     <div>
                         <CartBodyContent/>
                     </div>
-
                 </div>
             </div>
         </div>

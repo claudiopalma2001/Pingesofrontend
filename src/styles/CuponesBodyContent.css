@@ -1,4 +1,4 @@
-
+/* Animación para un efecto de aparición desde abajo */
 @keyframes fadeIn2 {
     from {
         opacity: 0;
@@ -10,60 +10,61 @@
     }
 }
 
+/* Animación simple de aparición */
 @keyframes fadeIn3 {
     from {
         opacity: 0;
-
     }
     to {
         opacity: 1;
     }
 }
 
+/* Estilo principal del cuerpo de los cupones */
 .cupons-body {
-
     overflow-y: auto;
     overflow-x: hidden;
-    height: calc(100vh - 110px); /* Ajusta el valor en px */
+    height: calc(100vh - 110px);
     font-family: 'Asap', sans-serif;
 }
 
+/* Espaciado inferior adicional */
 .cupons-body-bottom-space {
-
     height: 80px;
     margin-bottom: 30px;
 }
 
+/* Contenedor para los cupones */
 .cupons-body-content {
     display: grid;
     grid-template-columns: repeat(3, minmax(280px, 280px));
     grid-auto-rows: minmax(230px, 230px);
-    column-gap: 40px; /* Espacio entre cupones */
+    column-gap: 40px;
     row-gap: 60px;
     justify-content: center;
-    width: 100vw; /* Asegúrate de que ocupe el ancho completo de la ventana */
+    width: 100vw;
     max-width: 100%;
-    height: calc(100vh - 250px); /* Ajusta el valor en px */
-    margin-top: 100px; /* Empuja el contenido hacia abajo */
-
+    height: calc(100vh - 250px);
+    margin-top: 100px;
 }
 
-
+/* Imagen de la plantilla */
 .plantilla-image {
-    width: 280px; /* Ajusta el ancho a tu preferencia */
-    height: 121px; /* Mantiene la proporción de la imagen */
+    width: 280px;
+    height: 121px;
     /*border-radius: 4px;*/
     border: 1px solid #ddd;
-    opacity: 1; /* Comienza invisible */
+    opacity: 1;
     margin-bottom: -10px;
-
 }
 
+/* Aplica visibilidad cuando está cargada */
 .plantilla-image.loaded {
-    opacity: 1; /* Visible */
+    opacity: 1;
 
 }
 
+/* Estilo de la tarjeta de cupón */
 .cupon-card {
     border: 1px solid #ddd;
     width: 400px;
@@ -72,11 +73,12 @@
     padding: 10px;
     text-align: center;
     background-color: #fff;
-    opacity: 0; /* Estado inicial */
-    animation: fadeIn2 0.7s ease forwards; /* Aplica la animación */
+    opacity: 0;
+    animation: fadeIn2 0.7s ease forwards;
     transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* Efecto hover en la tarjeta */
 .cupon-card:hover{
     box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.4);
     border: 1px solid #d3d3d3;
@@ -87,6 +89,7 @@
 
 }
 
+/* Texto de información de los cupones */
 .cupons-body-content-info-text {
     font-size: 20px;
     margin: -8px 0;
@@ -95,6 +98,7 @@
 
 }
 
+/* Estilo del precio del cupón */
 .cupons-price{
     color: #79a6a8;
     font-weight: 500;
@@ -102,6 +106,7 @@
     font-family: 'Asap', sans-serif;
 }
 
+/* Título de la temática */
 .tematica-title {
     font-size: 65px;
     color: #7e858d;
@@ -110,24 +115,28 @@
     font-weight: normal;
 }
 
+/* Slogan de la temática */
 .tematica-slogan{
     font-size: 23px;
     margin-bottom: 1px;
     color:#7e858d ;
 }
 
+/* Texto adicional del slogan */
 .slogan-text{
     font-size: 18px;
 
 }
 
+/* Contenedor para las plantillas */
 .plantillas-container {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 8px; /* Espacio entre imágenes de plantillas */
+    gap: 8px;
 }
 
+/* Botón de edición */
 .editar2-button {
     margin-bottom: 15px;
     border: 1px solid #c3c3c3;
@@ -143,44 +152,40 @@
 
 }
 
+/* Hover del botón de edición */
 .editar2-button:hover {
     background-color: #f8f8f8;
     border: 1px solid #838383;
-
 }
 
+/* imagen de las plantillas */
 .cupon-image {
     width: 100%; /* Que ocupe todo el ancho disponible */
     height: auto; /* Mantiene la proporción */
-    /*border-radius: 4px; /* Esquinas redondeadas */
     margin-bottom: 8px; /* Espacio debajo de la imagen */
 }
 
+/* Estilo responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
 
     .cupons-body-content {
-
         grid-template-columns: repeat(1, minmax(280px, 280px));
-
     }
 
     .tematica-title {
         font-size: 45px;
-
         color: #7e858d;
         margin-top: 60px;
         margin-bottom: 20px;
         font-weight: normal;
-
-
     }
+
     .tematica-slogan{
         font-size:17px;
         padding-left: 5px;
         padding-right: 5px;
         margin-bottom: 5px;
         color:#7e858d ;
-
     }
 
     .slogan-text{
@@ -188,6 +193,4 @@
         padding-left: 50px;
         padding-right: 50px;
     }
-
-
 }

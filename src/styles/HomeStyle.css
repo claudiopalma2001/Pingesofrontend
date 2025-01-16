@@ -1,15 +1,4 @@
-@keyframes fadeIn2 {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
+/* Estilo global para el cuerpo de la página */
 body{
     width: 100vw;
     height: 100vh;
@@ -22,33 +11,14 @@ body{
 
 }
 
+/* Estilo para la imagen del banner */
 .banner-image {
     width: 1181px; /* Ajusta el ancho al contenedor */
     height: 531px; /* Mantiene la proporción */
     margin-bottom: -50px; /* Espacio debajo de la imagen si es necesario */
-
 }
 
-.home-page {
-
-}
-
-
-.search-bar input {
-    width: 30px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px 0 0 4px;
-}
-
-.search-bar button {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-left: none;
-    background-color: white;
-    border-radius: 0 4px 4px 0;
-}
-
+/* Estilo para el contenedor de los cupones (diseño en cuadrícula) */
 .coupon-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
@@ -57,8 +27,8 @@ body{
     margin-right: 60px;
 }
 
+/* Estilo para cada tarjeta de cupón */
 .coupon-card {
-
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
@@ -67,21 +37,14 @@ body{
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilo para las imágenes dentro de las tarjetas de cupones */
 .coupon-card img {
     width: 100%;
     height: auto;
     border-radius: 8px;
 }
 
-
+/* Estilo para el botón la barra lateral */
 .toggle-sidebar-button{
     position: sticky;
-
-}
-
-@media (max-width: 768px) {
-
-
-
-
 }

@@ -1,3 +1,4 @@
+/* Contenedor principal del historial */
 .historial-container {
   font-family: 'Arial', sans-serif;
   margin: 0;
@@ -6,50 +7,60 @@
   background-color: #ffffff;
 }
 
+/* Sección que contiene las compras */
 .historial-compras {
   padding: 60px;
   overflow-x: auto;
 }
 
+/* Estilo para el encabezado de la sección */
 .historial-compras h2 {
   font-size: 32px;
   margin-bottom: 20px;
 }
 
+/* Tabla de compras */
 .tabla-compras {
   width: 100%;
   border-collapse: collapse;
   table-layout: fixed;
 }
 
+/* Celdas de la tabla */
 .tabla-compras th, .tabla-compras td {
   border: 1px solid #ddd;
   padding: 15px;
   text-align: left;
 }
 
+/* Encabezados de la tabla */
 .tabla-compras th {
   background-color: #8bc3bc;
   color: white;
 }
 
+/* Filas alternas */
 .tabla-compras tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
+/* Efecto hover en las filas */
 .tabla-compras tr:hover {
   background-color: #ddd;
 }
 
+/* Celdas de datos */
 .tabla-compras td {
   word-wrap: break-word;
   max-width: 200px;
 }
 
+/* Estilo de listas dentro del historial */
 ul {
   padding-left: 20px;
 }
 
+/* Mensaje de carga */
 .loading {
   font-size: 20px;
   text-align: center;
