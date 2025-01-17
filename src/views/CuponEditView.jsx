@@ -18,6 +18,7 @@ import StickerBodyContent from "../components/StickerBodyContent/StickerBodyCont
 import CartNotification from "./CartNotification";
 import "../styles/CartNotification.css";
 import SideBar from "../components/SideBar/SideBar";
+import { useOrientation } from 'react-use';
 
 /*Defino las fuentes disponibles*/
 
@@ -38,6 +39,7 @@ const sizes = {
 
 
 function CuponEditView() {
+  const {type}= useOrientation();
  
 
   /*Debo ver el tema del inicio de sesion y el token, ya qe los
@@ -116,36 +118,7 @@ function CuponEditView() {
    
    /*El siguiente useState sirve para detectar si la aplicación esta siendo visualizada a través de un
    dispositivo móvil de forma horizontal*/
-   const [isLandscape, setIsLandscape] = useState(false);
-
-  /*Esta función sirve para comprobar si la aplicación esta siendo vista a través de un dispositivo móvil
-  de forma horizontal, cambiando el valor de "isLandscape" */
-  function checkLandscape() {
-    if (window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) {
-      setIsLandscape(true); // Establece el estado si la resolución está en el rango
-    } else {
-      setIsLandscape(false); // Asegúrate de deshabilitar el estado si la resolución no está en el rango
-    }
-  }
-
-/*Ahora se usa UseEffect para poder renderizar el componente
-Primero hace un check de pantalla con la funcion anterior para saber si estoy en una pantalla móvil de forma
-horizontal.
-El renderizado funciona cada vez que cambia la orientación de pantalla y la variable "checkMovil" para evitar errores, */
-  useEffect(() => {
-    checkLandscape(); // Verificar la resolución al cargar el componente
-
-    // Configurar el listener para el cambio de tamaño
-    window.addEventListener("orientationchange", checkLandscape);
-
-    // Limpiar el listener cuando el componente se desmonte
-    return () => {
-      window.removeEventListener("orientationchange", checkLandscape);
-    };
-  }, [checkMovil, isLandscape]);
-
-
-
+   const isLandscape = type;
 
 /*-------------------------------------------------------------------------------------------------------------------------------------------*/
 
@@ -913,13 +886,14 @@ El renderizado funciona cada vez que cambia la orientación de pantalla y la var
     setIsToolsVisible(!isToolsVisible);
   }
 
-
+  console.log("orientacion", isLandscape);
+  
   
   return (
     <>
       
 
-      {!isLandscape ? (  <><Navbar toggleSidebar={toggleSidebar} />
+      {isLandscape === "portrait-primary"? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
     
@@ -927,7 +901,7 @@ El renderizado funciona cada vez que cambia la orientación de pantalla y la var
      ( <div className="cupon-edit-view-container">
         {
           
-          !isLandscape ? (
+          isLandscape === "portrait" ? (
         <div>
           <div className="cupon-edit-view-tools">
             <div className="cupon-category-name" style={{alignContent:"flex-start", display:"flex", flexDirection:"column", textAlign:"left"
