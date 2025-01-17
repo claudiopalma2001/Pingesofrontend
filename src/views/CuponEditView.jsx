@@ -893,7 +893,7 @@ function CuponEditView() {
     <>
       
 
-      {isLandscape === "portrait"? (  <><Navbar toggleSidebar={toggleSidebar} />
+      {isLandscape === "portrait-primary"? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
     
@@ -901,7 +901,7 @@ function CuponEditView() {
      ( <div className="cupon-edit-view-container">
         {
           
-          isLandscape === "portrait" ? (
+          isLandscape === "portrait-primary" ? (
         <div>
           <div className="cupon-edit-view-tools">
             <div className="cupon-category-name" style={{alignContent:"flex-start", display:"flex", flexDirection:"column", textAlign:"left"
