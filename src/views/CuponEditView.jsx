@@ -893,7 +893,7 @@ function CuponEditView() {
     <>
       
 
-      {isLandscape === "portrait-primary"? (  <><Navbar toggleSidebar={toggleSidebar} />
+      {isLandscape === "portrait"? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
     
