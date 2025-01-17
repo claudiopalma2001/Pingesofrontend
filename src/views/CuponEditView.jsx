@@ -893,7 +893,7 @@ function CuponEditView() {
     <>
       
 
-      {isLandscape === "portrait-primary"? (  <><Navbar toggleSidebar={toggleSidebar} />
+      {(!(window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight))? (  <><Navbar toggleSidebar={toggleSidebar} />
       <SideBar isVisible={isSidebarVisible} closeSidebar={closeSidebar} /></>) : 
       (<div style={{display:"none"}}></div>)}
     
@@ -901,7 +901,7 @@ function CuponEditView() {
      ( <div className="cupon-edit-view-container">
         {
           
-          isLandscape === "portrait-primary" ? (
+          (isLandscape === "landscape-primary" && !(window.innerWidth >= 300 && window.innerWidth < 900 && window.innerWidth > window.innerHeight) ) ? (
         <div>
           <div className="cupon-edit-view-tools">
             <div className="cupon-category-name" style={{alignContent:"flex-start", display:"flex", flexDirection:"column", textAlign:"left"
